@@ -6,6 +6,7 @@ public class SecondReactionScript : MonoBehaviour {
     bool active = false;
     public float hangtime;
     private float bck_hangtime;
+    public bool closes = false;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,8 @@ public class SecondReactionScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!closes)
+            return;
         if (!active)
             transform.position = Vector3.MoveTowards(transform.position, start, Time.deltaTime);
         else {
