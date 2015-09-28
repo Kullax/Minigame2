@@ -22,7 +22,6 @@ public class SecondReactionScript : MonoBehaviour {
                 hangtime -= Time.deltaTime;
             else
                 active = false;
-            return;
         }
     }
 

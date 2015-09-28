@@ -11,9 +11,8 @@ public class CubeScale : MonoBehaviour {
 
     //    public bool melting = false;
     public Status status = Status.None;
-
- public float meltingspeed;
-// public float size;
+     public float meltingspeed;
+    // public float size;
 
     public enum Status
     {
