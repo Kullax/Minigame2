@@ -2,53 +2,53 @@
 
 public class GodMovable : MonoBehaviour
 {
-    public float distanceReact = 1;
+    public float DistanceReact = 1;
 
-    public float heldForce = 1;
-    public ForceMode heldForceMode = ForceMode.Force;
+    public float HeldForce = 1;
+    public ForceMode HeldForceMode = ForceMode.Force;
 
-    public float tapForce = 1;
-    public ForceMode tapForceMode = ForceMode.Impulse;
+    public float TapForce = 1;
+    public ForceMode TapForceMode = ForceMode.Impulse;
 
-    private GodPhase phase;
-    private Rigidbody rb;
-    private Vector3 relativePosition = Vector3.zero;
+    private GodPhase _phase;
+    private Rigidbody _rb;
+    private Vector3 _relativePosition = Vector3.zero;
 
     void Awake ()
     {
-        rb = GetComponent<Rigidbody> ();
-        phase = GodTouch.phase;
+        _rb = GetComponent<Rigidbody> ();
+        _phase = GodTouch.Phase;
     }
 
     void Update ()
     {
-        phase = GodTouch.phase;
+        _phase = GodTouch.Phase;
 
-        relativePosition = phase != GodPhase.None ?
-            transform.position - GodTouch.worldPositionBegin :
+        _relativePosition = _phase != GodPhase.None ?
+            transform.position - GodTouch.WorldPositionBegin :
             Vector3.zero;
     }
 
 	void FixedUpdate ()
     {
-        if (relativePosition == Vector3.zero || relativePosition.magnitude > distanceReact + transform.localScale.x)
+        if (_relativePosition == Vector3.zero || _relativePosition.magnitude > DistanceReact + transform.localScale.x)
             return;
 
-        var distMod = 1 - Mathf.Sqrt(relativePosition.magnitude / (distanceReact + transform.localScale.x));
+        var distMod = 1 - Mathf.Sqrt(_relativePosition.magnitude / (DistanceReact + transform.localScale.x));
         
-        if (phase == GodPhase.Began)
-            rb.AddForce(relativePosition * distMod * tapForce, tapForceMode);
+        if (_phase == GodPhase.Began)
+            _rb.AddForce(_relativePosition * distMod * TapForce, TapForceMode);
 
-        if (phase == GodPhase.Held)
-            rb.AddForce(relativePosition * distMod * heldForce, heldForceMode);
+        if (_phase == GodPhase.Held)
+            _rb.AddForce(_relativePosition * distMod * HeldForce, HeldForceMode);
 	}
 
     void OnDrawGizmos()
     {
-        if (!Application.isPlaying || phase == GodPhase.None)
+        if (!Application.isPlaying || _phase == GodPhase.None)
             return;
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(GodTouch.worldPositionBegin, distanceReact);
+        Gizmos.DrawWireSphere(GodTouch.WorldPositionBegin, DistanceReact);
     }
 }

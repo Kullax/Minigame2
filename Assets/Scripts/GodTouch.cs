@@ -12,18 +12,25 @@ public class GodTouch : MonoBehaviour {
 
     public float DistanceFromCamera = 5;
 
-    public static GodPhase phase = GodPhase.None;
-    public static Vector3 worldPositionBegin = Vector3.zero;
-    public static Vector3 worldPositionHeld = Vector3.zero;
-    public static Vector3 worldPositionEnd = Vector3.zero;
-    
-    new private Camera camera;
-    private Vector3 screenPositionBegin = Vector3.zero;
-    private Vector3 screenPositionHeld = Vector3.zero;
-    private Vector3 screenPositionEnd = Vector3.zero;
+    private static GodPhase _phase = GodPhase.None;
+    public static GodPhase Phase { get { return _phase; } }
+
+    private static Vector3 _worldPositionBegin = Vector3.zero;
+    public static Vector3 WorldPositionBegin { get { return _worldPositionBegin; } }
+
+    private static Vector3 _worldPositionHeld = Vector3.zero;
+    public static Vector3 WorldPositionHeld { get { return _worldPositionHeld; } }
+
+    private static Vector3 _worldPositionEnd = Vector3.zero;
+    public static Vector3 WorldPositionEnd { get { return _worldPositionEnd; } }
+
+    private Camera _camera;
+    private Vector3 _screenPositionBegin = Vector3.zero;
+    private Vector3 _screenPositionHeld = Vector3.zero;
+    private Vector3 _screenPositionEnd = Vector3.zero;
 
     void Awake () {
-        camera = Camera.main;
+        _camera = Camera.main;
 	}
 	
     private void SetScreenPosition ()
@@ -33,53 +40,56 @@ public class GodTouch : MonoBehaviour {
             var mousePos = Input.mousePosition;
             var screenPos = new Vector3(mousePos.x, mousePos.y, DistanceFromCamera);
 
-            switch (phase)
+            switch (Phase)
             {
                 case GodPhase.None:
-                    phase = GodPhase.Began;
-                    screenPositionBegin = screenPos;
+                    _phase = GodPhase.Began;
+                    _screenPositionBegin = screenPos;
                     break;
                 case GodPhase.Began:
-                    phase = GodPhase.Held;
-                    screenPositionHeld = screenPos;
+                    _phase = GodPhase.Held;
+                    _screenPositionHeld = screenPos;
                     break;
                 case GodPhase.Held:
-                    screenPositionHeld = screenPos;
+                    _screenPositionHeld = screenPos;
                     break;
                 case GodPhase.End:
-                    phase = GodPhase.Began;
-                    screenPositionEnd = screenPos;
+                    _phase = GodPhase.Began;
+                    _screenPositionEnd = screenPos;
+                    break;
+                default:
+                    Debug.LogError("Unexpected phase value in SetScreenPosition");
                     break;
             }
         }
-        else
-        {
-            switch (phase)
-            {
+        else {
+            switch (Phase) {
                 case GodPhase.None:
                     break;
                 case GodPhase.Began:
-                    phase = GodPhase.End;
+                    _phase = GodPhase.End;
                     break;
                 case GodPhase.Held:
-                    phase = GodPhase.End;
+                    _phase = GodPhase.End;
                     break;
                 case GodPhase.End:
-                    phase = GodPhase.None;
+                    _phase = GodPhase.None;
+                    break;
+                default:
+                    Debug.LogError("Unexpected phase value in SetScreenPosition");
                     break;
             }
         }
     }
 
-    private void SetWorldPosition ()
-    {
-        worldPositionBegin = camera.ScreenToWorldPoint(new Vector3(screenPositionBegin.x, screenPositionBegin.y, DistanceFromCamera));
-        worldPositionHeld = camera.ScreenToWorldPoint(new Vector3(screenPositionHeld.x, screenPositionHeld.y, DistanceFromCamera));
-        worldPositionEnd = camera.ScreenToWorldPoint(new Vector3(screenPositionEnd.x, screenPositionEnd.y, DistanceFromCamera));
+    private void SetWorldPosition() {
+        _worldPositionBegin = _camera.ScreenToWorldPoint(new Vector3(_screenPositionBegin.x, _screenPositionBegin.y, DistanceFromCamera));
+        _worldPositionHeld = _camera.ScreenToWorldPoint(new Vector3(_screenPositionHeld.x, _screenPositionHeld.y, DistanceFromCamera));
+        _worldPositionEnd = _camera.ScreenToWorldPoint(new Vector3(_screenPositionEnd.x, _screenPositionEnd.y, DistanceFromCamera));
     }
 
-	void Update () {
+    private void Update() {
         SetScreenPosition();
         SetWorldPosition();
-	}
+    }
 }

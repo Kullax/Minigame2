@@ -449,11 +449,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df28e136e69b30f479b4f17680303a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceReact: 1.5
-  heldForce: 4
-  heldForceMode: 0
-  tapForce: 2
-  tapForceMode: 1
+  DistanceReact: 1.5
+  HeldForce: 4
+  HeldForceMode: 0
+  TapForce: 2
+  TapForceMode: 1
 --- !u!23 &327524171
 MeshRenderer:
   m_ObjectHideFlags: 0
