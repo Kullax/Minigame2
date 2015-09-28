@@ -5,7 +5,7 @@ public class GodMovable : MonoBehaviour
     public float distanceReact = 1;
 
     public float heldForce = 1;
-    public ForceMode heldForceMode = ForceMode.Acceleration;
+    public ForceMode heldForceMode = ForceMode.Force;
 
     public float tapForce = 1;
     public ForceMode tapForceMode = ForceMode.Impulse;

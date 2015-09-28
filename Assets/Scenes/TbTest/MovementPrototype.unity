@@ -451,7 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceReact: 1.5
   heldForce: 4
-  heldForceMode: 5
+  heldForceMode: 0
   tapForce: 2
   tapForceMode: 1
 --- !u!23 &327524171
