@@ -3,6 +3,7 @@
 public class GodMovable : MonoBehaviour
 {
     public float DistanceReact = 1;
+    public bool ShowDistanceInEditor = true;
 
     public float HeldForce = 1;
     public ForceMode HeldForceMode = ForceMode.Force;
@@ -43,12 +44,18 @@ public class GodMovable : MonoBehaviour
             _rb.AddForce(_relativePosition * distMod * HeldForce, HeldForceMode);
 	}
 
-    void OnDrawGizmos()
-    {
-        if (!Application.isPlaying || _phase == GodPhase.None)
+    void OnDrawGizmos() {
+        if (!Application.isEditor)
             return;
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(GodTouch.WorldPositionBegin, DistanceReact);
+        if (!Application.isPlaying && ShowDistanceInEditor) {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, DistanceReact + transform.localScale.x);
+        }
+
+        if (Application.isPlaying && _phase != GodPhase.None) {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(GodTouch.WorldPositionBegin, DistanceReact);
+        }
     }
 }

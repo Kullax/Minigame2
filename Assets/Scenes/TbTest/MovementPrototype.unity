@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceReact: 1.5
+  ShowDistanceInEditor: 0
   HeldForce: 4
   HeldForceMode: 0
   TapForce: 2
