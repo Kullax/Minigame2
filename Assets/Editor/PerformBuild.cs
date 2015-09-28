@@ -50,7 +50,7 @@ class PerformBuild
 		for (int i = 0; i < args.Length; i++) {
 			//Debug.Log("############################# - arg: " + i + " value: " + args[i]);
 			if(args[i].Equals("-bversion")){
-				PlayerSettings.Android.bundleVersionCode = args[i+1];
+				PlayerSettings.Android.bundleVersionCode = int.Parse(args[i+1]);
 				PlayerSettings.bundleVersion = args[i+1];
 			}
 		}
