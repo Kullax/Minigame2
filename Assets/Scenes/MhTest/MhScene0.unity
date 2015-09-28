@@ -197,9 +197,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 840639546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 407ac9e3fb93f5d4cad262828a903857, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c9adc3bfd5fd4b45a91b06a3478977b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hangtime: 2
 --- !u!23 &840639548
 MeshRenderer:
   m_ObjectHideFlags: 0

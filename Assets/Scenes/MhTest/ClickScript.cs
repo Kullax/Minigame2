@@ -23,7 +23,6 @@ public class ClickScript : MonoBehaviour {
                 if (target)
                 {
                     target.SendMessage("Activate");
-//                    Debug.Log("Hitting " + hit.collider.name + " " + mask.value);
                 }
             }
         }
