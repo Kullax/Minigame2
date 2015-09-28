@@ -48,6 +48,7 @@ class PerformBuild
 
 		string[] args = System.Environment.GetCommandLineArgs ();
 		for (int i = 0; i < args.Length; i++) {
+			Debug.Log("############################# - arg: " + i + " value: " + args[i]);
 			if(args[i].Equals("-bversion"))
 				PlayerSettings.bundleVersion = args[i+1];
 		}
