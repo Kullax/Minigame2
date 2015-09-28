@@ -47,9 +47,9 @@ class PerformBuild
 		PlayerSettings.keyaliasPass = "534231";
 
 		string[] args = System.Environment.GetCommandLineArgs ();
-		for (int i = 0; i < args.GetLength(); i++) {
-			if(args[i].Equals("-bversion"));
-			PlayerSettings.bundleVersion = args[i+1];
+		for (int i = 0; i < args.Length; i++) {
+			if(args[i].Equals("-bversion"))
+				PlayerSettings.bundleVersion = args[i+1];
 		}
 		
 		Debug.Log("Starting Android Build!");
