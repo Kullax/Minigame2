@@ -450,11 +450,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceReact: 1.5
-  ShowDistanceInEditor: 0
-  HeldForce: 4
+  HeldForce: 6
   HeldForceMode: 0
-  TapForce: 2
+  TapForce: 3
   TapForceMode: 1
+  ShowDistanceInEditMode: 1
+  ShowDistanceInPlayMode: 0
+  ShowTouch: 1
 --- !u!23 &327524171
 MeshRenderer:
   m_ObjectHideFlags: 0
