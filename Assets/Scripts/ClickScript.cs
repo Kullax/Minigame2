@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ClickScript : MonoBehaviour {
     public GameObject target;
-    public LayerMask mask;
+    public IList<GameObject> targetList;
+    private LayerMask mask;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        mask |= (1 << LayerMask.NameToLayer("Clickable"));
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -22,7 +23,7 @@ public class ClickScript : MonoBehaviour {
                 if (target)
                 {
                     target.SendMessage("Activate");
-                    Debug.Log("Hitting " + hit.collider.name);
+//                    Debug.Log("Hitting " + hit.collider.name + " " + mask.value);
                 }
             }
         }
