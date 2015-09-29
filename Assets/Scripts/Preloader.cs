@@ -36,6 +36,7 @@ public class Preloader : MonoBehaviour
         else
         {
             string mainPath = GooglePlayDownloader.GetMainOBBPath(expPath);
+#pragma warning disable 0219
             string patchPath = GooglePlayDownloader.GetPatchOBBPath(expPath);
             if (alreadyLogged == false)
             {
