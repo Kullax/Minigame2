@@ -7,6 +7,7 @@ public class CheckpointManager : MonoBehaviour {
 
     [Header("Debug options")]
     public bool SpawnInitialPlayer = true;
+    public bool ShowActiveCheckpoint = true;
 
     private static GameObject _prefab;
     private static Checkpoint _activeCheckpoint;
@@ -81,5 +82,14 @@ public class CheckpointManager : MonoBehaviour {
         }
 
         SetActiveCheckpoint(checkpointScript);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (ShowActiveCheckpoint && Application.isPlaying && _activeCheckpoint)
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawSphere(_activeCheckpoint.transform.position, 0.25f);
+        }
     }
 }
