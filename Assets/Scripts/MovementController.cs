@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class MovementController : MonoBehaviour {
 
@@ -85,6 +86,17 @@ public class MovementController : MonoBehaviour {
     }
 
     private Vector2? TapHoldPosition() {
+        if (Input.touchCount <= 0)
+            return null;
+
+        var touch = Input.touches.First();
+        
+        if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved )
+        {
+            return new Vector2(touch.deltaPosition.x, touch.deltaPosition.y);
+        }
+        return null;
+        
         /*
         var tapHoldPosition = Input.GetTouch(0);
         return tapHoldPosition.position;
