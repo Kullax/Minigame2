@@ -12,7 +12,7 @@ public class Checkpoint : MonoBehaviour {
 
     public void SetThisAsActiveCheckpoint()
     {
-        CheckpointManager.SetActiveCheckpoint(gameObject);
+        CheckpointManager.SetActiveCheckpoint(this);
     }
 
     void OnDrawGizmos()
