@@ -15,17 +15,17 @@ public class PipeCollider : MonoBehaviour {
         cube.SendMessage("Effect", effect);
     }
 
-    void Activate()
+    public void Activate()
     {
         active = !active;
     }
 
-    void MakeCold()
+    public void MakeCold()
     {
         effect = CubeScale.Status.Freezing;
     }
 
-    void MakeHot()
+    public void MakeHot()
     {
         effect = CubeScale.Status.Melting;
     }
