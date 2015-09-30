@@ -1696,10 +1696,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1054896352}
-  direction: 2
+  direction: 1
   camHeight: 1
   camDist: 5
-  rotationSpeed: 1
   movementSpeed: 1
 --- !u!1 &967090919
 GameObject:

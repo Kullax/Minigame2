@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour {
     public int direction = 1;
     public float camHeight = 1.0f;
     public float camDist = 5.0f;
-    public float rotationSpeed = 1.0f;
     public float movementSpeed = 1.0f;
 
     private Vector3 camPos;
@@ -37,27 +36,10 @@ public class CameraController : MonoBehaviour {
         //delete these if-statements when we have real directions
         if (direction == 1) //pz
         {
+
             camPos = new Vector3(0.0f, camHeight, -camDist);
             endPos = Player.transform.position + camPos;
             targetRotation = new Vector3(0, 0, 1);
-            //startPos = transform.position;
-            //endPos = Player.transform.position + camPos;
-
-            journeyLength = Vector3.Distance(startPos, endPos);
-
-            distCovered = distCovered + Time.deltaTime * movementSpeed;
-
-            var fracJourney = distCovered / journeyLength;
-
-            transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
-            
-            //create rotation
-            Quaternion wantedRotation = Quaternion.LookRotation(targetRotation);
-
-            //then rotate
-            transform.rotation = Quaternion.Lerp(transform.rotation, wantedRotation, fracJourney);
-
-
 
         }
         if (direction == 2) //nz
@@ -65,55 +47,33 @@ public class CameraController : MonoBehaviour {
             camPos = new Vector3(0.0f, camHeight, camDist);
             endPos = Player.transform.position + camPos;
             targetRotation = new Vector3(0, 0, -1);
-           // startPos = transform.position;
-          // endPos = Player.transform.position + camPos;
-
-            journeyLength = Vector3.Distance(startPos, endPos);
-
-            distCovered = distCovered + Time.deltaTime * movementSpeed;
-
-            var fracJourney = distCovered / journeyLength;
-
-            transform.position = Vector3.Lerp(startPos, endPos, fracJourney);
-
-            //create rotation
-            Quaternion wantedRotation = Quaternion.LookRotation(targetRotation);
-
-            //then rotate
-            transform.rotation = Quaternion.Lerp(transform.rotation, wantedRotation, fracJourney);
-
-
         }
         if (direction == 3) // px
         {
             camPos = new Vector3(-camDist, camHeight, 0);
             targetRotation = new Vector3(1, 0, 0);
-            startPos = transform.position;
             endPos = Player.transform.position + camPos;
-
-            transform.position = Vector3.MoveTowards(startPos, endPos, Time.deltaTime * movementSpeed);
-
-            //create rotation
-            Quaternion wantedRotation = Quaternion.LookRotation(targetRotation);
-
-            //then rotate
-            transform.rotation = Quaternion.Lerp(transform.rotation, wantedRotation, Time.deltaTime * rotationSpeed);
         }
         if (direction == 4) // nx
         {
             camPos = new Vector3(camDist, camHeight, 0);
             targetRotation = new Vector3(-1, 0, 0);
-            startPos = transform.position;
             endPos = Player.transform.position + camPos;
-
-            transform.position = Vector3.MoveTowards(startPos, endPos, Time.deltaTime * movementSpeed);
-
-            //create rotation
-            Quaternion wantedRotation = Quaternion.LookRotation(targetRotation);
-
-            //then rotate
-            transform.rotation = Quaternion.Lerp(transform.rotation, wantedRotation, Time.deltaTime * rotationSpeed);
         }
+        journeyLength = Vector3.Distance(startPos, endPos);
+
+        distCovered = distCovered + Time.deltaTime * movementSpeed;
+
+        var fracJourney = distCovered / journeyLength;
+
+        transform.position = Vector3.Lerp(transform.position, endPos, fracJourney);
+
+        //create rotation
+        Quaternion wantedRotation = Quaternion.LookRotation(targetRotation);
+
+        //then rotate
+        transform.rotation = Quaternion.Lerp(transform.rotation, wantedRotation, fracJourney);
+
         oldDiection = direction;
     }
 }
