@@ -4,9 +4,14 @@ using System.IO;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 class PerformBuild
 {
+	
+	static string buildFolder = "Builds";
+	static string apkName = "Icescape.apk";
+	
 	static string[] GetBuildScenes()
 	{
 		List<string> names = new List<string>();
@@ -22,18 +27,12 @@ class PerformBuild
 		return names.ToArray();
 	}
 	
-	static string GetBuildPathAndroid()
-	{
-		return "Builds/Icescape.apk";
-	}
-	
-	[UnityEditor.MenuItem("CUSTOM/Test Command Line Build Step Android")]
 	static void CommandLineBuildAndroid ()
 	{
 		Debug.Log("Command line build android version\n------------------\n------------------");
 		
 		string[] scenes = GetBuildScenes();
-		string path = GetBuildPathAndroid();
+		string path = buildFolder + "/" + apkName;
 		if(scenes == null || scenes.Length==0 || path == null)
 			return;
 		
@@ -42,11 +41,62 @@ class PerformBuild
 		{
 			Debug.Log(string.Format("Scene[{0}]: \"{1}\"", i, scenes[i]));
 		}
-
+		
 		PlayerSettings.keystorePass = "pjaskevand";
 		PlayerSettings.keyaliasPass = "534231";
 		
+		string[] args = System.Environment.GetCommandLineArgs ();
+		for (int i = 0; i < args.Length; i++) {
+			//Debug.Log("############################# - arg: " + i + " value: " + args[i]);
+			if(args[i].Equals("-bversion")){
+				PlayerSettings.Android.bundleVersionCode = int.Parse(args[i+1]);
+				PlayerSettings.bundleVersion = args[i+1];
+			}
+		}
+		
 		Debug.Log("Starting Android Build!");
 		BuildPipeline.BuildPlayer(scenes, path, BuildTarget.Android, BuildOptions.None);
+	}
+	
+	static Regex sceneNameRgx = new Regex(@"(?<=/)([^/]+)(?=.unity)", RegexOptions.IgnoreCase);
+
+	static Regex removeNonCharactersRgx = new Regex("[^a-zA-Z]");
+	
+	[UnityEditor.MenuItem("Build/Prototype From Open Scene")]
+	static void PrototypeBuild ()
+	{
+
+		EditorApplication.SaveScene();
+
+		string sceneToBuild = "MainMenu";
+		string sceneToBuildPath = "Assets/Scenes/MainMenu.unity";
+		
+		sceneToBuildPath = EditorApplication.currentScene;
+		sceneToBuild = sceneNameRgx.Match (sceneToBuildPath).Value;
+		
+		System.IO.Directory.CreateDirectory (buildFolder);
+		
+		PlayerSettings.keystorePass = "pjaskevand";
+		PlayerSettings.keyaliasPass = "534231";
+		
+		bool obbFiles = PlayerSettings.Android.useAPKExpansionFiles;
+		PlayerSettings.Android.useAPKExpansionFiles = false;
+		
+		string bundleIdent = PlayerSettings.bundleIdentifier;
+		PlayerSettings.bundleIdentifier = "com.prototype." + removeNonCharactersRgx.Replace(sceneToBuild, "");
+		
+		string pName = PlayerSettings.productName;
+		PlayerSettings.productName = sceneToBuild;
+
+		Debug.Log ("Building prototype with scene: " + sceneToBuild);
+		BuildPipeline.BuildPlayer(new string[]{sceneToBuildPath}, buildFolder + "/" + sceneToBuild + ".apk", BuildTarget.Android, BuildOptions.None);
+		
+		PlayerSettings.Android.useAPKExpansionFiles = obbFiles;
+		PlayerSettings.bundleIdentifier = bundleIdent;
+		PlayerSettings.productName = pName;
+
+		EditorApplication.SaveScene();
+
+		System.Diagnostics.Process.Start (System.IO.Directory.GetCurrentDirectory() + "/" + buildFolder + "/");
 	}
 }
