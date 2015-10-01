@@ -354,6 +354,7 @@ GameObject:
   - 114: {fileID: 439136915}
   - 114: {fileID: 439136914}
   - 114: {fileID: 439136917}
+  - 114: {fileID: 439136918}
   m_Layer: 0
   m_Name: GameScripts
   m_TagString: Untagged
@@ -374,7 +375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialPlayerPrefab: {fileID: 196462, guid: 73c16b6560b281d4bb716fedbcb8087c, type: 2}
   InitialSpawnPoint: {fileID: 1602158422}
-  SpawnInitialPlayer: 1
   ShowActiveCheckpoint: 1
 --- !u!114 &439136915
 MonoBehaviour:
@@ -411,6 +411,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbf2d464ad85c540ba7a00f1cce7408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &439136918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 439136913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22e25fb202fb6a468bd3b433dad5264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialGameRotation: 2
+  DontSpawnPlayerOnStart: 0
 --- !u!1001 &477946930
 Prefab:
   m_ObjectHideFlags: 0
@@ -1047,7 +1060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e01cc6e8e90444f9f451e4f898da96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 4
   camHeight: 1
   camDist: 5
   movementSpeed: 1
