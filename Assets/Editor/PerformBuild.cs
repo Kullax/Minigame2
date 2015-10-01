@@ -41,6 +41,8 @@ class PerformBuild
 		{
 			Debug.Log(string.Format("Scene[{0}]: \"{1}\"", i, scenes[i]));
 		}
+
+		PlayerSettings.Android.useAPKExpansionFiles = false;
 		
 		PlayerSettings.keystorePass = "pjaskevand";
 		PlayerSettings.keyaliasPass = "534231";
@@ -88,14 +90,23 @@ class PerformBuild
 		string pName = PlayerSettings.productName;
 		PlayerSettings.productName = sceneToBuild;
 
+		UnityException exc = null;
+
 		Debug.Log ("Building prototype with scene: " + sceneToBuild);
-		BuildPipeline.BuildPlayer(new string[]{sceneToBuildPath}, buildFolder + "/" + sceneToBuild + ".apk", BuildTarget.Android, BuildOptions.None);
-		
+		try{
+			BuildPipeline.BuildPlayer(new string[]{sceneToBuildPath}, buildFolder + "/" + sceneToBuild + ".apk", BuildTarget.Android, BuildOptions.None);
+		} catch(UnityException e){
+			exc = e;
+		}
+
 		PlayerSettings.Android.useAPKExpansionFiles = obbFiles;
 		PlayerSettings.bundleIdentifier = bundleIdent;
 		PlayerSettings.productName = pName;
 
 		EditorApplication.SaveScene();
+
+		if (exc != null)
+			throw exc;
 
 		System.Diagnostics.Process.Start (System.IO.Directory.GetCurrentDirectory() + "/" + buildFolder + "/");
 	}
