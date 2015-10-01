@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
 
     private GameObject Player;
     public int direction = 1;
@@ -18,17 +19,32 @@ public class CameraController : MonoBehaviour {
     private Vector3 startPos, endPos;
 
     // Use this for initialization
-    void Start () {
-	    camPos = new Vector3(0.0f, camHeight, -camDist);
+    void Start()
+    {
+        camPos = new Vector3(0.0f, camHeight, -camDist);
         startPos = transform.position;
-        Player = GameObject.FindGameObjectWithTag("Player");
-        if (Player == null) Debug.LogWarning("PlayerMissing from scene.");
+        FindPlayer();
         endPos = Player.transform.position + camPos;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if ( direction != oldDiection)
+
+    public void FindPlayer()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if (Player == null) Debug.LogWarning("PlayerMissing from scene.");
+        Debug.Log("PlayerName" + Player.name);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Player == null)
+        {
+            Debug.LogWarning("MissingPlayer");
+            FindPlayer();
+            return;
+        }
+
+        if (direction != oldDiection)
         {
             startTime = Time.time;
             distCovered = 0.0f;

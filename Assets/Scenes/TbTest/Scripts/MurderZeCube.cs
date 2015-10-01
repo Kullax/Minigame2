@@ -15,5 +15,8 @@ public class MurderZeCube : MonoBehaviour {
 
         // Resurrect ze cube... AND KILL IT AGAIN!!! (later... maybe...)
         CheckpointManager.SpawnPlayer();
+
+        CameraController tmpCam = FindObjectOfType<CameraController>();
+        tmpCam.FindPlayer();
 	}
 }

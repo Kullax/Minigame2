@@ -11,7 +11,7 @@ GameObject:
   - 198: {fileID: 19871932}
   - 199: {fileID: 19984492}
   m_Layer: 0
-  m_Name: WindBurst_Feedback
+  m_Name: AirBurst_Feedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
