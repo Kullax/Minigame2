@@ -17,7 +17,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &129256
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -78,11 +78,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.06000137, y: 2.07162333, z: 0}
-  m_LocalScale: {x: 6.96159649, y: 2.62759495, z: 6.11151838}
+  m_LocalPosition: {x: -.299999237, y: 1.91743493, z: 1.1969533}
+  m_LocalScale: {x: 3.48079824, y: 3.94139242, z: 3.05575919}
   m_Children: []
-  m_Father: {fileID: 428226}
-  m_RootOrder: 0
+  m_Father: {fileID: 467974}
+  m_RootOrder: 1
 --- !u!4 &428226
 Transform:
   m_ObjectHideFlags: 1
@@ -90,12 +90,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.82999992, y: -1.19000006, z: 1.19695282}
+  m_LocalPosition: {x: -2.82999992, y: .660000026, z: 1.19695282}
   m_LocalScale: {x: .5, y: 1.5, z: .5}
-  m_Children:
-  - {fileID: 418392}
+  m_Children: []
   m_Father: {fileID: 467974}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &452792
 Transform:
   m_ObjectHideFlags: 1
@@ -103,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.43764305, y: 3.83999991, z: -.819999993}
+  m_LocalPosition: {x: 1.43764305, y: 3, z: .180000007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 467974}
@@ -115,10 +114,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.9099998, y: -13.1800003, z: 27.7299995}
+  m_LocalPosition: {x: 3.17370605, y: -1.74000001, z: -8.86999989}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452792}
+  - {fileID: 418392}
   - {fileID: 428226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 145350}
-  status: 2
+  status: 4
 --- !u!114 &11437464
 MonoBehaviour:
   m_ObjectHideFlags: 1
