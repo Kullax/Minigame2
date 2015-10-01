@@ -8,11 +8,8 @@ public class CubeScale : MonoBehaviour {
     private float speed;
     private Vector3 smelted = new Vector3(0, 0, 0);
     private Vector3 frozen = new Vector3(1, 1, 1);
-
-    //    public bool melting = false;
     public Status status = Status.None;
      public float meltingspeed;
-    // public float size;
 
     public enum Status
     {
@@ -55,11 +52,9 @@ public class CubeScale : MonoBehaviour {
             elapsedtime = 0f;
             status = Status.None;
         }
-
-
     }
 
-    void Effect(Status effect)
+    public void Effect(Status effect)
     {
         if (effect == status)
             return;

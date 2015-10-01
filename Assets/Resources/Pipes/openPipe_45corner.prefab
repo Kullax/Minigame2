@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 459022}
   - 33: {fileID: 3394772}
   - 23: {fileID: 2319934}
+  - 64: {fileID: 6457672}
   m_Layer: 0
   m_Name: openPipe_45corner_colFloor02
   m_TagString: Untagged
@@ -27,6 +28,7 @@ GameObject:
   - 4: {fileID: 405724}
   - 33: {fileID: 3303110}
   - 23: {fileID: 2332692}
+  - 64: {fileID: 6459462}
   m_Layer: 0
   m_Name: openPipe_45corner
   m_TagString: Untagged
@@ -44,6 +46,7 @@ GameObject:
   - 4: {fileID: 410842}
   - 33: {fileID: 3378204}
   - 23: {fileID: 2355784}
+  - 64: {fileID: 6489238}
   m_Layer: 0
   m_Name: openPipe_45corner_colFloor01
   m_TagString: Untagged
@@ -99,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00997716188, y: -1.99086404, z: -.426494598}
+  m_LocalPosition: {x: -3.16964531, y: .0100846291, z: 1.72942162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 405724}
@@ -210,6 +213,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117276}
   m_Mesh: {fileID: 4300004, guid: 4a89dde0e6ebadf48bfe494fdad6182f, type: 3}
+--- !u!64 &6457672
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300004, guid: 4a89dde0e6ebadf48bfe494fdad6182f, type: 3}
+--- !u!64 &6459462
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 4a89dde0e6ebadf48bfe494fdad6182f, type: 3}
+--- !u!64 &6489238
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300002, guid: 4a89dde0e6ebadf48bfe494fdad6182f, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

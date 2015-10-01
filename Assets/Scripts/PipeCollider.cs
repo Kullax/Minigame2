@@ -4,7 +4,7 @@ using System.Collections;
 public class PipeCollider : MonoBehaviour {
 
     public bool active;
-    public CubeScale.Status effect;
+    private CubeScale.Status effect;
     
     void OnTriggerStay(Collider cube)
     {
@@ -12,12 +12,19 @@ public class PipeCollider : MonoBehaviour {
             return;
         if (!cube.tag.Equals("Player"))
             return;
-        cube.SendMessage("Effect", effect);
+        var script = cube.GetComponent<CubeScale>();
+        if (script)
+            script.Effect(effect);
     }
 
     public void Activate()
     {
-        active = !active;
+        active = true;
+    }
+
+    public void Deactivate()
+    {
+        active = false;
     }
 
     public void MakeCold()
