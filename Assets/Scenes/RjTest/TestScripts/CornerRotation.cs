@@ -12,57 +12,54 @@ public class CornerRotation : MonoBehaviour {
     void Start () {
     }
 	
-    void OnTriggerExit ( Collider player)
+    void OnCollisionEnter ( Collision player)
     {
-        if (player.tag != "Player")
+        /* (player.tag != "Player")
         {
             return;
-        }
-        reset = true;
-    }
+        }*/
 
-    void OnTriggerStay ( Collider player)
-    {
-
-
-        if (player.tag != "Player")
-        {
-            return;
-        }
-
-        var rb = player.GetComponent<Rigidbody>();
-
-        if (Vector3.Distance(player.transform.position, transform.position) < 0.05f && reset) {
-            reset = false;
-            if (direction == 1 || direction == 2) // px and nx
-            {
-                player.transform.Rotate(rightTurn ? new Vector3(0, -90, 0) : new Vector3(0, 90, 0));
-                if (rb)
+        switch (GameManager.GameRotation) {
+            case GameRotation.NegativeX:
+                if (rightTurn)
                 {
-                    rb.constraints = RigidbodyConstraints.None;
-                    if (rightTurn)
-                    {
-                        rb.constraints = RigidbodyConstraints.FreezePositionZ;
-                    } else {
-                        rb.constraints = RigidbodyConstraints.FreezePositionX;
-                    }
+                    GameManager.SetGameRotation(GameRotation.PositiveZ);
                 }
-            }
-            if (direction == 3 || direction == 4) // pz and nz
-            {
-                player.transform.Rotate(rightTurn ? new Vector3(0, 90, 0) : new Vector3(0, -90, 0));
-                if (rb)
+                else
                 {
-                    rb.constraints = RigidbodyConstraints.None;
-                    if (rightTurn)
-                    {
-                        rb.constraints = RigidbodyConstraints.FreezePositionX;
-                    } else {
-                        rb.constraints = RigidbodyConstraints.FreezePositionZ;
-                    }
+                    GameManager.SetGameRotation(GameRotation.NegativeZ);
                 }
-            }
-            //player.transform.position = transform.position;
+                break;
+            case GameRotation.PositiveX:
+                if (rightTurn)
+                {
+                    GameManager.SetGameRotation(GameRotation.NegativeZ);
+                }
+                else
+                {
+                    GameManager.SetGameRotation(GameRotation.PositiveZ);
+                }
+                break;
+            case GameRotation.NegativeZ:
+                if (rightTurn)
+                {
+                    GameManager.SetGameRotation(GameRotation.PositiveX);
+                }
+                else
+                {
+                    GameManager.SetGameRotation(GameRotation.NegativeX);
+                }
+                break;
+            case GameRotation.PositiveZ:
+                if (rightTurn)
+                {
+                    GameManager.SetGameRotation(GameRotation.NegativeX);
+                }
+                else
+                {
+                    GameManager.SetGameRotation(GameRotation.PositiveX);
+                }
+                break;
         }
     }
 
