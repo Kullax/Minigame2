@@ -45,11 +45,13 @@ public class GameManager : MonoBehaviour {
     public bool DontSpawnPlayerOnStart = false;
 
     private static GameObject _currentPlayer;
+    private static Rigidbody _currentRigidbody;
+
     private static GameRotation _gameRotation;
 
     void Start() {
         if (!DontSpawnPlayerOnStart)
-            _currentPlayer = CheckpointManager.SpawnPlayer();
+            RespawnPlayer();
 
         _gameRotation = InitialGameRotation;
 	}
@@ -65,12 +67,39 @@ public class GameManager : MonoBehaviour {
         if (!newPlayer)
             return false;
 
+        var newRigidbody = newPlayer.GetComponent<Rigidbody>();
+        if (!newRigidbody)
+            return false;
+            
+        
+        _currentRigidbody = newRigidbody;
+
         if (_currentPlayer)
             Destroy(_currentPlayer);
 
         _currentPlayer = newPlayer;
+        EnforceRigidbodyConstraints();
 
         return true;
+    }
+
+    private static void EnforceRigidbodyConstraints() {
+        switch (_gameRotation) {
+            case GameRotation.PositiveX:
+            case GameRotation.NegativeX:
+                _currentRigidbody.constraints =
+                    RigidbodyConstraints.FreezePositionX |
+                    RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationZ;
+                break;
+            case GameRotation.PositiveZ:
+            case GameRotation.NegativeZ:
+                _currentRigidbody.constraints =
+                    RigidbodyConstraints.FreezePositionZ |
+                    RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationX;
+                break;
+        }
     }
 
     /// <summary>
@@ -80,6 +109,9 @@ public class GameManager : MonoBehaviour {
     /// <returns>Returns true if the rotation was set</returns>
     public static bool SetGameRotation(GameRotation newRotation) {
         _gameRotation = newRotation;
+
+        if (_currentRigidbody)
+            EnforceRigidbodyConstraints();
 
         return true;
     }
