@@ -43,7 +43,7 @@ public class CheckpointManager : MonoBehaviour {
         return true;
     }
 
-	void Start () {
+	void Awake () {
         // If we can't pass sanity checks we disable ourselves and do nothing.
         if (!sanity())
         {

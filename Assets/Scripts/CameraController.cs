@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-    public GameObject Player;
+    private GameObject Player;
     public int direction = 1;
     public float camHeight = 1.0f;
     public float camDist = 5.0f;
@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour {
     void Start () {
 	    camPos = new Vector3(0.0f, camHeight, -camDist);
         startPos = transform.position;
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if (Player == null) Debug.LogWarning("PlayerMissing from scene.");
         endPos = Player.transform.position + camPos;
     }
 	
