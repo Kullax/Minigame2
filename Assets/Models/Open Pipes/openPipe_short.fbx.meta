@@ -7,12 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: openPipe_short_colFloor
+    100004: openPipe_short
     400000: //RootNode
     400002: openPipe_short_colFloor
+    400004: openPipe_short
     2300000: //RootNode
     2300002: openPipe_short_colFloor
+    2300004: openPipe_short
     3300000: //RootNode
     3300002: openPipe_short_colFloor
+    3300004: openPipe_short
     4300000: openPipe_short
     4300002: openPipe_short_colFloor
   materials:
