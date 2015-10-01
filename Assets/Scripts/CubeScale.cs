@@ -9,7 +9,8 @@ public class CubeScale : MonoBehaviour {
     private Vector3 smelted = new Vector3(0, 0, 0);
     private Vector3 frozen = new Vector3(1, 1, 1);
     public Status status = Status.None;
-     public float meltingspeed;
+    public float meltingspeed;
+    public float lethallimit;
 
     public enum Status
     {
@@ -25,6 +26,9 @@ public class CubeScale : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (transform.localScale.x <= lethallimit)
+            GameManager.RespawnPlayer();
+
         switch (status)
         {
             case Status.Melting:
