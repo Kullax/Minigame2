@@ -60,6 +60,7 @@ public class CameraController : MonoBehaviour {
             targetRotation = new Vector3(-1, 0, 0);
             endPos = Player.transform.position + camPos;
         }
+
         journeyLength = Vector3.Distance(startPos, endPos);
 
         distCovered = distCovered + Time.deltaTime * movementSpeed;
