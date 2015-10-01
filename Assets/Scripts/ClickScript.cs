@@ -5,9 +5,8 @@ public class ClickScript : MonoBehaviour {
     public GameObject target;
     public IList<GameObject> targetList;
     private LayerMask mask;
-    public Color color;
     public CubeScale.Status status;
-    public Light lt;
+
 
     // Use this for initialization
     void Start () {
@@ -24,7 +23,7 @@ public class ClickScript : MonoBehaviour {
             { 
                 if (target)
                 {
-                    var Pipe = target.GetComponent<PipeCollider>();
+                    var Pipe = target.GetComponent<Pipe>();
                     var Door = target.GetComponent<DoorScript>();
                     if (Pipe)
                     {
@@ -39,13 +38,6 @@ public class ClickScript : MonoBehaviour {
                                 break;
                             default:
                                 break;
-                        }
-                        if (lt)
-                        {
-                            lt.enabled = !lt.enabled;
-                            if (color != default(Color))
-                                lt.color = color;
-
                         }
                     }
                     if (Door)
