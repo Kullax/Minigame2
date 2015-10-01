@@ -335,7 +335,7 @@ Transform:
   - {fileID: 651773582}
   - {fileID: 683667118}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &75691285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1477,7 @@ Transform:
   - {fileID: 75691286}
   - {fileID: 5509897}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!23 &693385074
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1609,6 +1609,7 @@ GameObject:
   - 92: {fileID: 800729729}
   - 124: {fileID: 800729728}
   - 81: {fileID: 800729727}
+  - 114: {fileID: 800729732}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1678,11 +1679,27 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 800729726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0307223797, y: .0499999523, z: -3.91217232}
+  m_LocalPosition: {x: 10.8707228, y: 3.25, z: -4.46000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1054896353}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &800729732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 800729726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e01cc6e8e90444f9f451e4f898da96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1054896352}
+  direction: 1
+  camHeight: 1
+  camDist: 5
+  movementSpeed: 1
 --- !u!1 &967090919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1759,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &972408655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,10 +2011,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.8400002, y: 3.20000005, z: -.547827721}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 800729731}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &1054896354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2807,7 +2823,7 @@ Transform:
   - {fileID: 972408656}
   - {fileID: 718430742}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &2007982670
 GameObject:
   m_ObjectHideFlags: 0

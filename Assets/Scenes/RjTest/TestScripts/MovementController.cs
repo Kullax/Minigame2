@@ -23,9 +23,7 @@ public class MovementController : MonoBehaviour {
 
         var cubeScreenPosition = new Vector2(playerScreen.WorldToScreenPoint(transform.position).x, playerScreen.WorldToScreenPoint(transform.position).y);
         var screenDestination = TargetDestination() ?? cubeScreenPosition;
-        Debug.Log(screenDestination);
         var worldDestination = playerScreen.ScreenToWorldPoint(new Vector3(screenDestination.x, screenDestination.y, transform.position.z));
-        Debug.Log(worldDestination);
 
         if (!hold) {
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, worldDestination.x, Time.time), transform.position.y, 0);
@@ -95,12 +93,6 @@ public class MovementController : MonoBehaviour {
         {
             return new Vector2(touch.deltaPosition.x, touch.deltaPosition.y);
         }
-        return null;
-        
-        /*
-        var tapHoldPosition = Input.GetTouch(0);
-        return tapHoldPosition.position;
-        */
         return null;
     }
 
