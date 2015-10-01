@@ -845,7 +845,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11466604, guid: fa1170da5fa13bc4eaae2a12508c9a82, type: 2}
       propertyPath: SpawnRotation
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa1170da5fa13bc4eaae2a12508c9a82, type: 2}
