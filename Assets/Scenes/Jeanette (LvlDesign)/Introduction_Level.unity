@@ -747,7 +747,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 459378, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -14.3412399
+      value: -13.8599997
       objectReference: {fileID: 0}
     - target: {fileID: 459378, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1594,10 +1594,6 @@ Prefab:
     - target: {fileID: 154184, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
       propertyPath: m_Name
       value: MeltingPipe (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 495412, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.11000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
