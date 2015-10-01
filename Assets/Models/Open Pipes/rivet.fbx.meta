@@ -1,34 +1,15 @@
 fileFormatVersion: 2
-guid: 374ce134bc172524aab310ecf35f104e
-timeCreated: 1443603871
+guid: dfa51601e9fbceb41ae539746de16ba8
+timeCreated: 1443702846
 licenseType: Pro
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
-    100002: openPipe_T_colFloor01
-    100004: openPipe_T_colFloor02
-    100006: openPipe_T_colFloor03
-    100008: openPipe_T
     400000: //RootNode
-    400002: openPipe_T_colFloor01
-    400004: openPipe_T_colFloor02
-    400006: openPipe_T_colFloor03
-    400008: openPipe_T
     2300000: //RootNode
-    2300002: openPipe_T_colFloor01
-    2300004: openPipe_T_colFloor02
-    2300006: openPipe_T_colFloor03
-    2300008: openPipe_T
     3300000: //RootNode
-    3300002: openPipe_T_colFloor01
-    3300004: openPipe_T_colFloor02
-    3300006: openPipe_T_colFloor03
-    3300008: openPipe_T
-    4300000: openPipe_T
-    4300002: openPipe_T_colFloor03
-    4300004: openPipe_T_colFloor02
-    4300006: openPipe_T_colFloor01
+    4300000: flangePlate_metalBand
   materials:
     importMaterials: 1
     materialName: 0
