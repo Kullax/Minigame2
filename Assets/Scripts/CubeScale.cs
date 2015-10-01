@@ -55,11 +55,9 @@ public class CubeScale : MonoBehaviour {
             elapsedtime = 0f;
             status = Status.None;
         }
-
-
     }
 
-    void Effect(Status effect)
+    public void Effect(Status effect)
     {
         if (effect == status)
             return;

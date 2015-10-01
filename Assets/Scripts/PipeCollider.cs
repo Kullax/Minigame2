@@ -12,7 +12,9 @@ public class PipeCollider : MonoBehaviour {
             return;
         if (!cube.tag.Equals("Player"))
             return;
-        cube.SendMessage("Effect", effect);
+        var script = cube.GetComponent<CubeScale>();
+        if (script)
+            script.Effect(effect);
     }
 
     public void Activate()

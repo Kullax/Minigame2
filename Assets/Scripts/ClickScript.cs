@@ -9,15 +9,6 @@ public class ClickScript : MonoBehaviour {
     public CubeScale.Status status;
     public Light lt;
 
-    public enum Effect
-    {
-        ReactPipe,
-        ReactDoor,
-    }
-
-
-    public Effect effect = Effect.ReactPipe;
-
     // Use this for initialization
     void Start () {
         mask |= (1 << LayerMask.NameToLayer("Clickable"));
@@ -35,40 +26,31 @@ public class ClickScript : MonoBehaviour {
                 {
                     var Pipe = target.GetComponent<PipeCollider>();
                     var Door = target.GetComponent<DoorScript>();
-
-                    switch (effect)
+                    if (Pipe)
                     {
-                        case Effect.ReactPipe:
-                            if (Pipe)
-                            {
-                                Pipe.Activate();
-                                switch (status)
-                                {
-                                    case CubeScale.Status.Freezing:
-                                        Pipe.MakeCold();
-                                        break;
-                                    case CubeScale.Status.Melting:
-                                        Pipe.MakeHot();
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                            if (lt)
-                            {
-                                lt.enabled = !lt.enabled;
-                                if (color != default(Color))
-                                    lt.color = color;
+                        Pipe.Activate();
+                        switch (status)
+                        {
+                            case CubeScale.Status.Freezing:
+                                Pipe.MakeCold();
+                                break;
+                            case CubeScale.Status.Melting:
+                                Pipe.MakeHot();
+                                break;
+                            default:
+                                break;
+                        }
+                        if (lt)
+                        {
+                            lt.enabled = !lt.enabled;
+                            if (color != default(Color))
+                                lt.color = color;
 
-                            }
-
-                            break;
-                        case Effect.ReactDoor:
-                            if (Door)
-                                Door.Activate();
-                            break;
-                        default:
-                            break;
+                        }
+                    }
+                    if (Door)
+                    {
+                        Door.Activate();
                     }
                 }
             }
