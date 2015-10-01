@@ -8,14 +8,13 @@ public class PipeTransportationSystem : MonoBehaviour {
     public float requiredsize = 1.0f;
     //public direction;
 
-    private Rigidbody playerRB;
-   // private GameObject player;
+    //private Rigidbody playerRB;
+    //private GameObject player;
 
     // Use this for initialization
     void Start () {
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-       // playerRB = player.GetComponent<Rigidbody>();
+        //playerRB = player.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -24,17 +23,16 @@ public class PipeTransportationSystem : MonoBehaviour {
             return;
 
         Rigidbody player = cube.attachedRigidbody;
-        playerRB = player.GetComponent<Rigidbody>();
 
 
-        if (cube.transform.localScale.x > requiredsize)
+        if(cube.transform.localScale.x > requiredsize)
         {
             return;
         }
 
         //Do animation before changing the location and make sure the animation is complete.
 
-        playerRB.velocity = new Vector3(0, 0, 0);
+        player.velocity = new Vector3(0, 0, 0);
         cube.transform.position = ExitLocation.transform.position;
     }
 }
