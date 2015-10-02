@@ -38,6 +38,10 @@ public class Pipe : MonoBehaviour {
         }
 		audioSource = GetComponent<AudioSource>();
 		audioSource.loop = true;
+		audioSource.maxDistance = 15;
+		audioSource.minDistance = 5;
+		audioSource.spatialBlend = 1.0f;
+		audioSource.rolloffMode = AudioRolloffMode.Linear;
     }
 
     // Update is called once per frame
