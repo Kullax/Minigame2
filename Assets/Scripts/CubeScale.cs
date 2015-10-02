@@ -28,7 +28,7 @@ public class CubeScale : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         if (transform.localScale.x <= lethallimit)
         {
             GameManager.RespawnPlayer();
