@@ -3,9 +3,14 @@ using System.Collections;
 
 public class PipeCollider : MonoBehaviour {
 
-    public bool active;
+    private bool active;
     private CubeScale.Status effect;
     
+    void Start()
+    {
+
+    }
+
     void OnTriggerStay(Collider cube)
     {
         if (!active)
