@@ -29,7 +29,11 @@ public class CubeScale : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (transform.localScale.x <= lethallimit)
+        {
             GameManager.RespawnPlayer();
+            GameManager.ResetResettables();
+        }
+
 
         switch (status)
         {
@@ -70,7 +74,8 @@ public class CubeScale : MonoBehaviour {
                 status = Status.Melting;
                 elapsedtime = 0;
                 speed = meltingspeed;
-                camerasound.meltingmelody();
+                if(camerasound)
+                    camerasound.meltingmelody();
                 break;
             case Status.Freezing:
                 if (status != Status.Melting)
@@ -78,7 +83,8 @@ public class CubeScale : MonoBehaviour {
                 status = Status.Freezing;
                 elapsedtime = 0;
                 speed = refreeze;
-                camerasound.normalmelody();
+                if(camerasound)
+                    camerasound.normalmelody();
                 break;
             default:
                 break;
