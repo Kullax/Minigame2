@@ -4,7 +4,6 @@ using System.Collections;
 public class CornerRotation : MonoBehaviour {
 
     public bool rightTurn;
-    public int direction; // shoul be the direction in which the player is moving
 
     private bool reset = true;
 
