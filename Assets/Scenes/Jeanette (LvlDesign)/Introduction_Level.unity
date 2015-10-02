@@ -1561,6 +1561,7 @@ GameObject:
   - 124: {fileID: 1289845171}
   - 81: {fileID: 1289845170}
   - 114: {fileID: 1289845175}
+  - 114: {fileID: 1289845176}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1649,6 +1650,20 @@ MonoBehaviour:
   camHeight: 1
   camDist: 5
   movementSpeed: 1
+--- !u!114 &1289845176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1289845169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4db7afdd8811b84c8aef9e66f7b09d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FreezingMelody: {fileID: 8300000, guid: 7c29c3829c9b8c84caad420b190bf5eb, type: 3}
+  MeltingMelody: {fileID: 8300000, guid: 3ecdc809096f12b4691d8fad64f1697c, type: 3}
+  RefreezeSound: {fileID: 8300000, guid: 21aac7d1cf40d9e48bf319fd5dbcdce1, type: 3}
 --- !u!1001 &1383146641
 Prefab:
   m_ObjectHideFlags: 0
