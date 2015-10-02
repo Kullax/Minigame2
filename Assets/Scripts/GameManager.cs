@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public enum GameRotation
 {
@@ -28,8 +29,7 @@ public static class GameRotationMethods {
         return Quaternion.LookRotation(rotation.GetForward(), Vector3.up);
     }
 
-    public static Quaternion AsReverseWorldQuaternion(this GameRotation rotation)
-    {
+    public static Quaternion AsReverseWorldQuaternion(this GameRotation rotation) {
         return Quaternion.LookRotation(-rotation.GetForward(), Vector3.up);
     }
 }
@@ -46,15 +46,34 @@ public class GameManager : MonoBehaviour {
 
     private static GameObject _currentPlayer;
     private static Rigidbody _currentRigidbody;
-
     private static GameRotation _gameRotation;
+
+    private static LinkedList<ResettableMonoBehaviour> _resettables;
 
     void Start() {
         if (!DontSpawnPlayerOnStart)
             RespawnPlayer();
 
         _gameRotation = InitialGameRotation;
+
+        _resettables = new LinkedList<ResettableMonoBehaviour>();
+        foreach (var resettable in FindObjectsOfType<ResettableMonoBehaviour>())
+            _resettables.AddLast(resettable);
 	}
+
+    /// <summary>
+    /// Reset all ResettableMonoBehaviours in the scene.
+    /// </summary>
+    /// <returns>Returns true if successful. If false the game manager is most likely not in the scene or otherwise faulty.</returns>
+    public static bool ResetResettables () {
+        if (_resettables == null)
+            return false;
+
+        foreach (var resettable in _resettables)
+            resettable.ResetBehaviour();
+
+        return true;
+    }
 
     /// <summary>
     /// Destroys the current player, if any, and spawns a new one from the currently active checkpoint.
@@ -70,8 +89,7 @@ public class GameManager : MonoBehaviour {
         var newRigidbody = newPlayer.GetComponent<Rigidbody>();
         if (!newRigidbody)
             return false;
-            
-        
+
         _currentRigidbody = newRigidbody;
 
         if (_currentPlayer)
