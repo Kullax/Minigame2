@@ -116,16 +116,21 @@ public class Pipe : ResettableMonoBehaviour {
                 old_material = off_material;
                 break;
         }
-
-        if (org_active)
+        active = org_active;
+        if (active)
         {
             pipe_collider.Activate();
             if (audioSource)
                 audioSource.Play();
         }
-        if (effect == CubeScale.Status.Freezing)
+        else
+        {
+            pipe_collider.Deactivate();
+            audioSource.Stop();
+        }
+        if (org_effect == CubeScale.Status.Freezing)
             MakeCold();
-        if (effect == CubeScale.Status.Melting)
+        if (org_effect == CubeScale.Status.Melting)
             MakeHot();
     }
 }

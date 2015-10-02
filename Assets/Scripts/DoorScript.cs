@@ -14,9 +14,23 @@ public class DoorScript : ResettableMonoBehaviour
     private float uptime;
     private float downtime;
 
+    public AudioClip MovingSound;
+    public AudioClip Click;
+    public AudioClip Clunk;
+    private AudioSource move;
+    private AudioSource click;
+    private AudioSource clunk;
+
     // Use this for initialization
     void Start()
     {
+        move = gameObject.AddComponent<AudioSource>();
+        move.clip = Instantiate(MovingSound);
+        move.loop = true;
+        click = gameObject.AddComponent<AudioSource>();
+        click.clip = Instantiate(Click);
+        clunk = gameObject.AddComponent<AudioSource>();
+        clunk.clip = Instantiate(Clunk);
         start = transform.position;
         bck_hangtime = hangtime;
     }
@@ -33,9 +47,16 @@ public class DoorScript : ResettableMonoBehaviour
             transform.position = Vector3.Lerp(start, start + transform.up * distance, lerp1);
 
             // MOVE UP SOUND
+            if(!move.isPlaying)
+                move.Play();
             if (distance <= Vector3.Distance(transform.position, start))
+            {
                 moving = false;
+                move.Stop();
                 // STOP CLUNK SOUND
+                if (!click.isPlaying)
+                    click.Play();
+            }
             return;
         }
         if (!closes)
@@ -50,10 +71,14 @@ public class DoorScript : ResettableMonoBehaviour
                 float lerp2 = 1 - downtime / downspeed;
                 transform.position = Vector3.Lerp(start, start + transform.up * distance, lerp2);
                 // MOVE DOWN SOUND
+                if (!move.isPlaying)
+                    move.Play();
                 Debug.Log(lerp2);
                 if(lerp2 < 0)
                 {
                     // TOUCHDOWN CLUNK SOUND
+                    if (!clunk.isPlaying)
+                        clunk.Play();
                     active = false;
                 }
             }
