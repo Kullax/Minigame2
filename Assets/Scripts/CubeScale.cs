@@ -6,7 +6,7 @@ public class CubeScale : MonoBehaviour {
     private float epsilon = 0.05f;
     private float refreeze = 0.25f;
     private float speed;
-    private Vector3 smelted = new Vector3(0, 0, 0);
+    private Vector3 smelted;
     private Vector3 frozen = new Vector3(1, 1, 1);
     private Vector3 startstate;
     public Status status = Status.None;
@@ -25,12 +25,15 @@ public class CubeScale : MonoBehaviour {
     void Start () {
         elapsedtime = 0f;
         camerasound = Camera.main.GetComponent<CameraSoundScript>();
+        smelted = new Vector3(lethallimit, lethallimit, lethallimit);
     }
 
     // Update is called once per frame
     void FixedUpdate() {
         if (transform.localScale.x <= lethallimit)
         {
+            // PLACEHOLDER FOR DEATH ANIMATION
+
             GameManager.RespawnPlayer();
             GameManager.ResetResettables();
         }
