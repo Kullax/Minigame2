@@ -1,14 +1,9 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(BoxCollider))]
-[RequireComponent(typeof(CubeScale))]
 
 public class GodMovable : MonoBehaviour
 {
-    public float MaxFreezeSpeed = 8f;
-    public float MaxMeltSpeed = 10f;
-
     public float DistanceReact = 1;
 
     public float HeldForce = 1;
@@ -43,8 +38,6 @@ public class GodMovable : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckRBMaxSpeed();
-
         if (_relativePosition == Vector3.zero || _relativePosition.magnitude > DistanceReact + transform.localScale.x / 2)
             return;
 
@@ -55,24 +48,6 @@ public class GodMovable : MonoBehaviour
 
         if (_phase == GodPhase.Held)
             _rb.AddForce(_relativePosition * distMod * HeldForce, HeldForceMode);
-    }
-
-    private void CheckRBMaxSpeed()
-    {
-        float tmpSpeed = 0.0f;
-        CubeScale tmpScale = GetComponent<CubeScale>();
-
-        if (tmpScale.status == CubeScale.Status.Melting)
-            tmpSpeed = MaxMeltSpeed;
-        else
-            tmpSpeed = MaxFreezeSpeed;
-
-        // Limiting the rigidbody speed
-        if (_rb.velocity.magnitude > tmpSpeed)
-        {
-            //Debug.Log("Limiting max speed to: " + tmpSpeed);
-            _rb.velocity = _rb.velocity.normalized * tmpSpeed;
-        }
     }
 
     private void DrawDebugDistance()
