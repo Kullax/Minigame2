@@ -2,13 +2,17 @@
 
 public class DoorScript : ResettableMonoBehaviour
 {
-    Vector3 start;
+    private Vector3 start;
     bool active = false;
     public float hangtime;
     public float distance = 1.5f;
     private float bck_hangtime;
     public bool closes = false;
     private bool moving = false;
+    public float upspeed;
+    public float downspeed;
+    private float uptime;
+    private float downtime;
 
     // Use this for initialization
     void Start()
@@ -20,9 +24,14 @@ public class DoorScript : ResettableMonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!active)
+            return;
         if (moving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.up, Time.deltaTime);
+            uptime += Time.deltaTime;
+            float lerp1 = uptime / upspeed;
+            transform.position = Vector3.Lerp(start, start + transform.up * distance, lerp1);
+
             // MOVE UP SOUND
             if (distance <= Vector3.Distance(transform.position, start))
                 moving = false;
@@ -34,11 +43,21 @@ public class DoorScript : ResettableMonoBehaviour
         if (hangtime > 0)
             hangtime -= Time.deltaTime;
         else
-            transform.position = Vector3.MoveTowards(transform.position, start, Time.deltaTime);
-            // MOVE DOWN SOUND
-        if (0 >= Vector3.Distance(transform.position, start))
-            active = false;
-            // TOUCHDOWN CLUNK SOUND
+        {
+            if (downtime < downspeed)
+            {
+                downtime += Time.deltaTime;
+                float lerp2 = 1 - downtime / downspeed;
+                transform.position = Vector3.Lerp(start, start + transform.up * distance, lerp2);
+                // MOVE DOWN SOUND
+                Debug.Log(lerp2);
+                if(lerp2 < 0)
+                {
+                    // TOUCHDOWN CLUNK SOUND
+                    active = false;
+                }
+            }
+        }
 
     }
 
@@ -53,6 +72,8 @@ public class DoorScript : ResettableMonoBehaviour
     {
         if (!active)
         {
+            uptime = 0;
+            downtime = 0;
             active = true;
             moving = true;
             hangtime = bck_hangtime;

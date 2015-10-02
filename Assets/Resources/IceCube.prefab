@@ -592,7 +592,7 @@ Rigidbody:
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 98
   m_CollisionDetection: 1
 --- !u!65 &6592980
@@ -618,6 +618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df28e136e69b30f479b4f17680303a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxFreezeSpeed: 8
+  MaxMeltSpeed: 10
   DistanceReact: 1
   HeldForce: 1
   HeldForceMode: 1
@@ -638,8 +640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  meltingspeed: 1000
-  lethallimit: 0
+  meltingspeed: 16
+  lethallimit: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -678,7 +680,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: meltingspeed
-      value: 1000
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
@@ -687,6 +689,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Center.z
       value: -.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lethallimit
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
