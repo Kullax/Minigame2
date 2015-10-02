@@ -29,7 +29,7 @@ public class PipeCollider : MonoBehaviour {
 
     public void MakeCold()
     {
-        effect = CubeScale.Status.Freezing;
+       effect = CubeScale.Status.Freezing;
     }
 
     public void MakeHot()
