@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DoorScript : MonoBehaviour
+public class DoorScript : ResettableMonoBehaviour
 {
     Vector3 start;
     bool active = false;
@@ -41,6 +40,13 @@ public class DoorScript : MonoBehaviour
             active = false;
             // TOUCHDOWN CLUNK SOUND
 
+    }
+
+    public override void ResetBehaviour() {
+        active = false;
+        moving = false;
+        transform.position = start;
+        hangtime = 0;
     }
 
     public void Activate()
