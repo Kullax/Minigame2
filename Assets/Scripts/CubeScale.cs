@@ -4,10 +4,11 @@ using System.Collections;
 public class CubeScale : MonoBehaviour {
     private float elapsedtime;
     private float epsilon = 0.05f;
-    private float refreeze = 0.5f;
+    private float refreeze = 0.25f;
     private float speed;
     private Vector3 smelted = new Vector3(0, 0, 0);
     private Vector3 frozen = new Vector3(1, 1, 1);
+    private Vector3 startstate;
     public Status status = Status.None;
     public float meltingspeed;
     public float lethallimit;
@@ -29,7 +30,11 @@ public class CubeScale : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (transform.localScale.x <= lethallimit)
+        {
             GameManager.RespawnPlayer();
+            GameManager.ResetResettables();
+        }
+
 
         switch (status)
         {
@@ -50,7 +55,7 @@ public class CubeScale : MonoBehaviour {
         {
             elapsedtime += Time.deltaTime;
             float frac = elapsedtime / speed;
-            transform.localScale = Vector3.Lerp(transform.localScale, targetsize, frac);
+            transform.localScale = Vector3.Lerp(startstate, targetsize, frac);
         }
         else
         {
@@ -67,18 +72,22 @@ public class CubeScale : MonoBehaviour {
         switch (effect)
         {
             case Status.Melting:
+                startstate = transform.localScale;
                 status = Status.Melting;
                 elapsedtime = 0;
                 speed = meltingspeed;
-                camerasound.meltingmelody();
+                if(camerasound)
+                    camerasound.meltingmelody();
                 break;
             case Status.Freezing:
                 if (status != Status.Melting)
                     return;
+                startstate = transform.localScale;
                 status = Status.Freezing;
                 elapsedtime = 0;
                 speed = refreeze;
-                camerasound.normalmelody();
+                if(camerasound)
+                    camerasound.normalmelody();
                 break;
             default:
                 break;
