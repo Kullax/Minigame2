@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(CubeScale))]
+
 public class GodMovable : MonoBehaviour
 {
+    public float MaxFreezeSpeed = 8f;
+    public float MaxMeltSpeed = 10f;
+
     public float DistanceReact = 1;
 
     public float HeldForce = 1;
@@ -19,13 +26,13 @@ public class GodMovable : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _relativePosition = Vector3.zero;
 
-    void Awake ()
+    void Awake()
     {
-        _rb = GetComponent<Rigidbody> ();
+        _rb = GetComponent<Rigidbody>();
         _phase = GodTouch.Phase;
     }
 
-    void Update ()
+    void Update()
     {
         _phase = GodTouch.Phase;
 
@@ -34,35 +41,59 @@ public class GodMovable : MonoBehaviour
             Vector3.zero;
     }
 
-	void FixedUpdate ()
+    void FixedUpdate()
     {
-        if (_relativePosition == Vector3.zero || _relativePosition.magnitude > DistanceReact + transform.localScale.x/2)
+        CheckRBMaxSpeed();
+
+        if (_relativePosition == Vector3.zero || _relativePosition.magnitude > DistanceReact + transform.localScale.x / 2)
             return;
 
-        var distMod = 1 - Mathf.Sqrt(_relativePosition.magnitude / (DistanceReact + transform.localScale.x/2));
-        
+        var distMod = 1 - Mathf.Sqrt(_relativePosition.magnitude / (DistanceReact + transform.localScale.x / 2));
+
         if (_phase == GodPhase.Began)
             _rb.AddForce(_relativePosition * distMod * TapForce, TapForceMode);
 
         if (_phase == GodPhase.Held)
             _rb.AddForce(_relativePosition * distMod * HeldForce, HeldForceMode);
-	}
-
-    private void DrawDebugDistance () {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, DistanceReact + transform.localScale.x/2);
     }
 
-    private void DrawDebugTouch () {
+    private void CheckRBMaxSpeed()
+    {
+        float tmpSpeed = 0.0f;
+        CubeScale tmpScale = GetComponent<CubeScale>();
+
+        if (tmpScale.status == CubeScale.Status.Melting)
+            tmpSpeed = MaxMeltSpeed;
+        else
+            tmpSpeed = MaxFreezeSpeed;
+
+        // Limiting the rigidbody speed
+        if (_rb.velocity.magnitude > tmpSpeed)
+        {
+            //Debug.Log("Limiting max speed to: " + tmpSpeed);
+            _rb.velocity = _rb.velocity.normalized * tmpSpeed;
+        }
+    }
+
+    private void DrawDebugDistance()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, DistanceReact + transform.localScale.x / 2);
+    }
+
+    private void DrawDebugTouch()
+    {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(GodTouch.WorldPositionBegin, DistanceReact);
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmos()
+    {
         if (!Application.isEditor)
             return;
-        
-        if (Application.isPlaying) {
+
+        if (Application.isPlaying)
+        {
             if (ShowTouch && _phase != GodPhase.None)
                 DrawDebugTouch();
 
@@ -70,7 +101,8 @@ public class GodMovable : MonoBehaviour
                 DrawDebugDistance();
         }
 
-        if (!Application.isPlaying) {
+        if (!Application.isPlaying)
+        {
             if (ShowDistanceInEditMode)
                 DrawDebugDistance();
         }
