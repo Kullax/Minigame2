@@ -6,11 +6,12 @@ public class ClickScript : MonoBehaviour {
     public IList<GameObject> targetList;
     private LayerMask mask;
     public CubeScale.Status status;
-
+    private AudioSource audioSource;
 
     // Use this for initialization
     void Start () {
         mask |= (1 << LayerMask.NameToLayer("Clickable"));
+		audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -27,6 +28,9 @@ public class ClickScript : MonoBehaviour {
                     var Door = target.GetComponent<DoorScript>();
                     if (Pipe)
                     {
+                        // PLay Sound
+						if (audioSource)
+							audioSource.Play();
                         Pipe.Activate();
                         switch (status)
                         {
@@ -42,6 +46,9 @@ public class ClickScript : MonoBehaviour {
                     }
                     if (Door)
                     {
+                        // PLay Sound
+						if (audioSource)
+							audioSource.Play();
                         Door.Activate();
                     }
                 }
