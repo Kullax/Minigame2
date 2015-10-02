@@ -8,11 +8,10 @@ public class CubeScale : MonoBehaviour {
     private float speed;
     private Vector3 smelted = new Vector3(0, 0, 0);
     private Vector3 frozen = new Vector3(1, 1, 1);
-
-    //    public bool melting = false;
     public Status status = Status.None;
-     public float meltingspeed;
-    // public float size;
+    public float meltingspeed;
+    public float lethallimit;
+    private CameraSoundScript camerasound;
 
     public enum Status
     {
@@ -24,10 +23,14 @@ public class CubeScale : MonoBehaviour {
     // Use this for initialization
     void Start () {
         elapsedtime = 0f;
+        camerasound = Camera.main.GetComponent<CameraSoundScript>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (transform.localScale.x <= lethallimit)
+            GameManager.RespawnPlayer();
+
         switch (status)
         {
             case Status.Melting:
@@ -67,11 +70,15 @@ public class CubeScale : MonoBehaviour {
                 status = Status.Melting;
                 elapsedtime = 0;
                 speed = meltingspeed;
+                camerasound.meltingmelody();
                 break;
             case Status.Freezing:
+                if (status != Status.Melting)
+                    return;
                 status = Status.Freezing;
                 elapsedtime = 0;
                 speed = refreeze;
+                camerasound.normalmelody();
                 break;
             default:
                 break;

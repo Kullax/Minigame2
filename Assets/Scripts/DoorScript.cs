@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DoorScript : MonoBehaviour
+public class DoorScript : ResettableMonoBehaviour
 {
     Vector3 start;
     bool active = false;
@@ -24,8 +23,10 @@ public class DoorScript : MonoBehaviour
         if (moving)
         {
             transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.up, Time.deltaTime);
+            // MOVE UP SOUND
             if (distance <= Vector3.Distance(transform.position, start))
                 moving = false;
+                // STOP CLUNK SOUND
             return;
         }
         if (!closes)
@@ -34,9 +35,18 @@ public class DoorScript : MonoBehaviour
             hangtime -= Time.deltaTime;
         else
             transform.position = Vector3.MoveTowards(transform.position, start, Time.deltaTime);
+            // MOVE DOWN SOUND
         if (0 >= Vector3.Distance(transform.position, start))
             active = false;
+            // TOUCHDOWN CLUNK SOUND
 
+    }
+
+    public override void ResetBehaviour() {
+        active = false;
+        moving = false;
+        transform.position = start;
+        hangtime = 0;
     }
 
     public void Activate()
