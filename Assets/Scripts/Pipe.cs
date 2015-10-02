@@ -14,7 +14,7 @@ public class Pipe : MonoBehaviour {
     private Material old_material;
     private Material active_material;
     public bool active;
-    private AudioSource audio;
+    private AudioSource audioSource;
 
 
     // Use this for initialization
@@ -36,7 +36,8 @@ public class Pipe : MonoBehaviour {
                 old_material = off_material;
                 break;
         }
-        audio = GetComponent<AudioSource>();
+		audioSource = GetComponent<AudioSource>();
+		audioSource.loop = true;
     }
 
     // Update is called once per frame
@@ -55,14 +56,15 @@ public class Pipe : MonoBehaviour {
 
     public void Activate() {
         active = !active;
-        if (active)
-        {
-            pipe_collider.Activate();
-            if(audio)
-                audio.PlayDelayed(0.2f);
-        }
-        else
-            pipe_collider.Deactivate();
+        if (active) {
+			pipe_collider.Activate ();
+			if (audioSource)
+				audioSource.PlayDelayed (0.5f);
+		} else {
+			pipe_collider.Deactivate ();
+			if(audioSource)
+				audioSource.Stop();
+		}
     }
 
     public void MakeHot()
