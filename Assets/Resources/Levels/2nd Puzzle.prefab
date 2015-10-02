@@ -2156,7 +2156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.852636039, y: -2.08043456, z: 8.03845882}
+  m_LocalPosition: {x: .119999997, y: -2.08043456, z: 8.03999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486286}
@@ -6125,7 +6125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d92fe36891f9104b814b2a752d84468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
 --- !u!114 &11425812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6137,7 +6136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d92fe36891f9104b814b2a752d84468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
 --- !u!114 &11427130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6152,6 +6150,8 @@ MonoBehaviour:
   hangtime: 0
   distance: 1.5
   closes: 0
+  upspeed: 0
+  downspeed: 0
 --- !u!114 &11435104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6163,7 +6163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fa1f484555a6d449ef19f561295cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnRotation: 1
+  SpawnRotation: 0
   DrawCheckpointInEditMode: 1
   DrawCheckpointInPlayMode: 0
 --- !u!114 &11440806
@@ -6258,7 +6258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d92fe36891f9104b814b2a752d84468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
 --- !u!114 &11474994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6317,7 +6316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d92fe36891f9104b814b2a752d84468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
 --- !u!114 &11483502
 MonoBehaviour:
   m_ObjectHideFlags: 1
