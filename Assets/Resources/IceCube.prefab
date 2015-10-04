@@ -150,6 +150,7 @@ GameObject:
   - 54: {fileID: 5471644}
   - 114: {fileID: 11423582}
   - 114: {fileID: 11455594}
+  - 114: {fileID: 11426766}
   m_Layer: 0
   m_Name: IceCube
   m_TagString: Player
@@ -204,7 +205,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.3608398, y: 11.0371971, z: 10.0896101}
+  m_LocalPosition: {x: -2.94209981, y: -.476718664, z: 1.78443336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 408592}
@@ -592,7 +593,7 @@ Rigidbody:
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 98
   m_CollisionDetection: 1
 --- !u!65 &6592980
@@ -618,14 +619,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df28e136e69b30f479b4f17680303a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DistanceReact: 1
-  HeldForce: 1
-  HeldForceMode: 1
-  TapForce: 1
-  TapForceMode: 0
+  DistanceReact: 1.5
+  HeldForce: 12
+  HeldForceMode: 0
+  TapForce: 2
+  TapForceMode: 1
+  MaximalVelocity: 8
+  DampeningForce: 10
+  DampeningForceMode: 0
   ShowDistanceInEditMode: 1
   ShowDistanceInPlayMode: 0
   ShowTouch: 1
+--- !u!114 &11426766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570d4a08c1a8c05438e4152db269d9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meltMaximalVelocity: 20
 --- !u!114 &11455594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -638,8 +654,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  meltingspeed: 1000
-  lethallimit: 0
+  meltingspeed: 16
+  lethallimit: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -657,7 +673,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: TapForce
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Material
@@ -678,7 +694,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: meltingspeed
-      value: 1000
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
@@ -687,6 +703,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Center.z
       value: -.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lethallimit
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
