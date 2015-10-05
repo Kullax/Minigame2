@@ -25,6 +25,13 @@ public class CameraSoundScript : MonoBehaviour {
         refreeze.volume = volume;
     }
 
+	void Update(){
+		if (!freezing.isPlaying && !melting.isPlaying) {
+			freezing.Stop ();
+			freezing.PlayDelayed (1);
+		}
+	}
+
     public void meltingmelody()
     {
         freezing.Pause();
