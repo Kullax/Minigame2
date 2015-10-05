@@ -1732,10 +1732,10 @@ Prefab:
     - target: {fileID: 11476668, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
       propertyPath: InitialSpawnPoint
       value: 
-      objectReference: {fileID: 875479766}
+      objectReference: {fileID: 1812322477}
     - target: {fileID: 11481696, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
       propertyPath: InitialGameRotation
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11462958, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
       propertyPath: DistanceFromCamera
@@ -3940,16 +3940,16 @@ Prefab:
       propertyPath: SpawnRotation
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 130204, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &875479765 stripped
 Transform:
   m_PrefabParentObject: {fileID: 457628, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
-  m_PrefabInternal: {fileID: 875479764}
---- !u!1 &875479766 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 178782, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
   m_PrefabInternal: {fileID: 875479764}
 --- !u!1001 &885306477
 Prefab:
@@ -8476,6 +8476,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 445300, guid: fa0b227e01617b8408799eaae4a7a4b9, type: 2}
   m_PrefabInternal: {fileID: 1788114617}
+--- !u!1 &1812322477 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 178782, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
+  m_PrefabInternal: {fileID: 1421241739}
 --- !u!1001 &1825002291
 Prefab:
   m_ObjectHideFlags: 0
