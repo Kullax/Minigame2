@@ -8,13 +8,18 @@ public class ClickScript : MonoBehaviour {
     private LayerMask mask;
     public CubeScale.Status status;
     private AudioSource audioSource;
-
-    private LinkedList<Action> _registeredToggles;
+    private Pipe Pipe;
+    private DoorScript Door;
 
     // Use this for initialization
     void Start () {
         mask |= (1 << LayerMask.NameToLayer("Clickable"));
 		audioSource = GetComponent<AudioSource>();
+        if (target)
+        {
+            Pipe = target.GetComponent<Pipe>();
+            Door = target.GetComponent<DoorScript>();
+        }
     }
 
     public void RegisterToggle(Action toggle) {
@@ -23,15 +28,15 @@ public class ClickScript : MonoBehaviour {
 
         _registeredToggles.AddLast(toggle);
     }
-	
+
     private void ToggleEverything() {
         if (null != _registeredToggles)
             foreach (var toggle in _registeredToggles)
                 toggle();
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -39,16 +44,15 @@ public class ClickScript : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask) && hit.transform.gameObject == gameObject)
             {
                 ToggleEverything();
-
-                if (target)
+                
+                if (Pipe)
                 {
-                    var Pipe = target.GetComponent<Pipe>();
-                    var Door = target.GetComponent<DoorScript>();
-                    if (Pipe)
+                    if(Pipe.isIdle())
                     {
+                        Pipe.Activate();
                         // PLay Sound
-						if (audioSource)
-							audioSource.Play();
+                        if (audioSource)
+                            audioSource.Play();
                         switch (status)
                         {
                             case CubeScale.Status.Freezing:
@@ -60,16 +64,14 @@ public class ClickScript : MonoBehaviour {
                             default:
                                 break;
                         }
-                        Pipe.Activate();
-
                     }
-                    if (Door)
-                    {
-                        // PLay Sound
-						if (audioSource)
-							audioSource.Play();
-                        Door.Activate();
-                    }
+                }
+                if (Door)
+                {
+                    // PLay Sound
+					if (audioSource)
+						audioSource.Play();
+                    Door.Activate();
                 }
             }
         }
