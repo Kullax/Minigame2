@@ -42,12 +42,12 @@ public class characterRenderController : MonoBehaviour {
         }
         
         switch (GameManager.GameRotation) {
-            case (GameRotation.NegativeX):
-            case (GameRotation.PositiveX):
-                zRot = 0;
-                break;
             case (GameRotation.NegativeZ):
             case (GameRotation.PositiveZ):
+                zRot = 0;
+                break;
+            case (GameRotation.NegativeX):
+            case (GameRotation.PositiveX):
                 xRot = 0;
                 break;
         }
