@@ -17,9 +17,9 @@ public class Pipe : ResettableMonoBehaviour
     private AudioSource audioSource;
     private bool org_active;
     private CubeScale.Status org_effect;
-    private float degree;
     private Transform handle;
-    private float org_degree;
+    private Animator anm;
+
 
     // Use this for initialization
     void Start()
@@ -50,18 +50,15 @@ public class Pipe : ResettableMonoBehaviour
         audioSource.spatialBlend = 1.0f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         handle = transform.Find("../activator/lever_hotCold/handle");
+        anm = handle.GetComponent<Animator>();
+        anm.SetBool("Activated", active);
         if (active)
         {
             handle.transform.rotation = Quaternion.Euler(90, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Activate();
             if (audioSource)
                 audioSource.Play();
-            degree = 90;
         }
-        else
-            degree = 0;
-
-        org_degree = degree;
 
         if (effect == CubeScale.Status.Freezing)
             MakeCold();
@@ -87,6 +84,8 @@ public class Pipe : ResettableMonoBehaviour
     public void Activate()
     {
         active = !active;
+        anm.SetBool("Activated", active);
+
         if (active)
         {
             pipe_collider.Activate();
@@ -99,21 +98,6 @@ public class Pipe : ResettableMonoBehaviour
             if (audioSource)
                 audioSource.Stop();
         }
-
-        switch ((int)degree)
-        {
-            case 0:
-                degree = 90;
-                break;
-            case 90:
-                degree = 0;
-                break;
-            default:
-                break;
-        }
-        handle.transform.rotation = Quaternion.Euler(degree, handle.transform.rotation.y, handle.transform.rotation.z);
-
-
     }
 
     public void MakeHot()
@@ -132,7 +116,6 @@ public class Pipe : ResettableMonoBehaviour
 
     public override void ResetBehaviour()
     {
-        degree = org_degree;
         switch (org_effect)
         {
             case CubeScale.Status.Melting:
@@ -151,14 +134,12 @@ public class Pipe : ResettableMonoBehaviour
         active = org_active;
         if (active)
         {
-            handle.transform.rotation = Quaternion.Euler(90, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Activate();
             if (audioSource)
                 audioSource.Play();
         }
         else
         {
-            handle.transform.rotation = Quaternion.Euler(0, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Deactivate();
             audioSource.Stop();
         }
@@ -166,5 +147,11 @@ public class Pipe : ResettableMonoBehaviour
             MakeCold();
         if (org_effect == CubeScale.Status.Melting)
             MakeHot();
+        anm.SetBool("Activated", active);
+    }
+
+    public bool isIdle()
+    {
+        return (anm.GetCurrentAnimatorStateInfo(0).IsName("HandleOff") && !active) || (anm.GetCurrentAnimatorStateInfo(0).IsName("HandleOn") && active);
     }
 }
