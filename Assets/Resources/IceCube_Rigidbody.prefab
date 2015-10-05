@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  meltingspeed: 1000
-  lethallimit: 0
+  meltingspeed: 15
+  lethallimit: .100000001
 --- !u!114 &11440424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,6 +261,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: meltMaximalVelocity
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: meltingspeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lethallimit
+      value: .100000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
