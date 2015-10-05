@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: 546a934995544774d9bb75b4eda131f3
+timeCreated: 1444032502
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: BlendShapeController
+    100002: blendshapeGrp
+    100004: //RootNode
+    100006: Eyebrow_Grp
+    100008: eyeBrowBS_grp
+    100010: EyesBS_grp
+    100012: EyesGrp
+    100014: iceCube
+    100016: iceCubeBS_grp
+    100018: leftEye
+    100020: leftEyeBrow
+    100022: leftPupil
+    100024: mouth
+    100026: mouthBS_grp
+    100028: mouthGrp
+    100030: pupilBS_grp
+    100032: rightEye
+    100034: rightEyeBrow
+    100036: rightPupil
+    400000: BlendShapeController
+    400002: blendshapeGrp
+    400004: //RootNode
+    400006: Eyebrow_Grp
+    400008: eyeBrowBS_grp
+    400010: EyesBS_grp
+    400012: EyesGrp
+    400014: iceCube
+    400016: iceCubeBS_grp
+    400018: leftEye
+    400020: leftEyeBrow
+    400022: leftPupil
+    400024: mouth
+    400026: mouthBS_grp
+    400028: mouthGrp
+    400030: pupilBS_grp
+    400032: rightEye
+    400034: rightEyeBrow
+    400036: rightPupil
+    4300000: iceCube
+    4300002: leftEye
+    4300004: leftPupil
+    4300006: rightEye
+    4300008: rightPupil
+    4300010: mouth
+    4300012: rightEyeBrow
+    4300014: leftEyeBrow
+    9500000: //RootNode
+    13700000: iceCube
+    13700002: leftEye
+    13700004: leftEyeBrow
+    13700006: leftPupil
+    13700008: mouth
+    13700010: rightEye
+    13700012: rightEyeBrow
+    13700014: rightPupil
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
