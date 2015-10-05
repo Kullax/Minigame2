@@ -255,10 +255,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 484276, guid: d64a4c8ec50fc0244bbc035aa4e972c0, type: 2}
   m_PrefabInternal: {fileID: 43043953}
---- !u!1 &47519483 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 178782, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
-  m_PrefabInternal: {fileID: 691868144}
 --- !u!1001 &50743231
 Prefab:
   m_ObjectHideFlags: 0
@@ -686,7 +682,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 464014, guid: 0566e1fb08f81f34dbfbe479217ab026, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 22.1459999
+      value: 22.0790005
       objectReference: {fileID: 0}
     - target: {fileID: 476176, guid: 0566e1fb08f81f34dbfbe479217ab026, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1698,7 +1694,7 @@ Prefab:
     - target: {fileID: 11476668, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
       propertyPath: InitialSpawnPoint
       value: 
-      objectReference: {fileID: 47519483}
+      objectReference: {fileID: 769617484}
     - target: {fileID: 11481696, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
       propertyPath: InitialGameRotation
       value: 2
@@ -3339,6 +3335,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 411278, guid: 7d2640f00870b454da5c33753f5b125e, type: 2}
   m_PrefabInternal: {fileID: 758408692}
+--- !u!1 &769617484 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 178782, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
+  m_PrefabInternal: {fileID: 1979056196}
 --- !u!1001 &774253251
 Prefab:
   m_ObjectHideFlags: 0
