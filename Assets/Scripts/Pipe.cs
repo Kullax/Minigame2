@@ -16,7 +16,9 @@ public class Pipe : ResettableMonoBehaviour {
     private AudioSource audioSource;
     private bool org_active;
     private CubeScale.Status org_effect;
-
+    private float degree;
+    private Transform handle;
+    private float org_degree;
 
     // Use this for initialization
     void Start () {
@@ -45,9 +47,11 @@ public class Pipe : ResettableMonoBehaviour {
 		audioSource.minDistance = 5;
 		audioSource.spatialBlend = 1.0f;
 		audioSource.rolloffMode = AudioRolloffMode.Linear;
-
+        handle = transform.Find("../activator/lever_hotCold/handle");
+        org_degree = handle.transform.rotation.x;
         if (active)
         {
+            handle.transform.rotation = Quaternion.Euler(90, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Activate();
             if (audioSource)
                 audioSource.Play();
@@ -56,6 +60,7 @@ public class Pipe : ResettableMonoBehaviour {
             MakeCold();
         if (effect == CubeScale.Status.Melting)
             MakeHot();
+        degree = handle.transform.rotation.x;
     }
 
     // Update is called once per frame
@@ -83,6 +88,22 @@ public class Pipe : ResettableMonoBehaviour {
 			if(audioSource)
 				audioSource.Stop();
 		}
+
+        switch ((int)degree)
+        {
+            case 0:
+                degree = 90;
+                break;
+            case 90:
+                degree = 0;
+                break;
+            default:
+                degree = 90;
+                break;
+        }
+        handle.transform.rotation = Quaternion.Euler(degree, handle.transform.rotation.y, handle.transform.rotation.z);
+
+
     }
 
     public void MakeHot()
@@ -119,12 +140,14 @@ public class Pipe : ResettableMonoBehaviour {
         active = org_active;
         if (active)
         {
+            handle.transform.rotation = Quaternion.Euler(90, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Activate();
             if (audioSource)
                 audioSource.Play();
         }
         else
         {
+            handle.transform.rotation = Quaternion.Euler(0, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Deactivate();
             audioSource.Stop();
         }

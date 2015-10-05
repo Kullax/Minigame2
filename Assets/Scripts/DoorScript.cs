@@ -47,15 +47,22 @@ public class DoorScript : ResettableMonoBehaviour
             transform.position = Vector3.Lerp(start, start + transform.up * distance, lerp1);
 
             // MOVE UP SOUND
-            if(!move.isPlaying)
+            if (!move.isPlaying)
+            {
                 move.Play();
+                move.loop = true;
+            }
             if (distance <= Vector3.Distance(transform.position, start))
             {
                 moving = false;
                 move.Stop();
                 // STOP CLUNK SOUND
                 if (!click.isPlaying)
+                {
                     click.Play();
+                    move.Stop();
+                    move.loop = false;
+                }
             }
             return;
         }

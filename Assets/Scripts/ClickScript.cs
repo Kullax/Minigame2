@@ -13,9 +13,9 @@ public class ClickScript : MonoBehaviour {
         mask |= (1 << LayerMask.NameToLayer("Clickable"));
 		audioSource = GetComponent<AudioSource>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -43,7 +43,6 @@ public class ClickScript : MonoBehaviour {
                                 break;
                         }
                         Pipe.Activate();
-
                     }
                     if (Door)
                     {

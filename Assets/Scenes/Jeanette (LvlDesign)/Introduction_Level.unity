@@ -759,6 +759,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1.39999998
       objectReference: {fileID: 0}
+    - target: {fileID: 456136, guid: 91cfdd113c836834293606605d26df2d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .479999989
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91cfdd113c836834293606605d26df2d, type: 2}
   m_IsPrefabParent: 0
@@ -877,6 +881,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1.50999999
       objectReference: {fileID: 0}
+    - target: {fileID: 453324, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -.0399999991
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
   m_IsPrefabParent: 0
@@ -938,6 +946,14 @@ Prefab:
     - target: {fileID: 483776, guid: cca5497b35edc9049938d046febfc67f, type: 2}
       propertyPath: m_LocalPosition.x
       value: .879999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461296, guid: cca5497b35edc9049938d046febfc67f, type: 2}
+      propertyPath: upspeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461296, guid: cca5497b35edc9049938d046febfc67f, type: 2}
+      propertyPath: downspeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cca5497b35edc9049938d046febfc67f, type: 2}
@@ -1561,6 +1577,7 @@ GameObject:
   - 124: {fileID: 1289845171}
   - 81: {fileID: 1289845170}
   - 114: {fileID: 1289845175}
+  - 114: {fileID: 1289845176}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1649,6 +1666,20 @@ MonoBehaviour:
   camHeight: 1
   camDist: 5
   movementSpeed: 1
+--- !u!114 &1289845176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1289845169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4db7afdd8811b84c8aef9e66f7b09d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FreezingMelody: {fileID: 8300000, guid: 7c29c3829c9b8c84caad420b190bf5eb, type: 3}
+  MeltingMelody: {fileID: 8300000, guid: 3ecdc809096f12b4691d8fad64f1697c, type: 3}
+  RefreezeSound: {fileID: 8300000, guid: 21aac7d1cf40d9e48bf319fd5dbcdce1, type: 3}
 --- !u!1001 &1383146641
 Prefab:
   m_ObjectHideFlags: 0
@@ -1702,7 +1733,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476176, guid: 0566e1fb08f81f34dbfbe479217ab026, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -16.8600006
+      value: -17.2560005
       objectReference: {fileID: 0}
     - target: {fileID: 476176, guid: 0566e1fb08f81f34dbfbe479217ab026, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2314,6 +2345,10 @@ Prefab:
     - target: {fileID: 495412, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1.77999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 453324, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .209999993
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47a063325768bf34880ffc8d95b2ba3f, type: 2}
