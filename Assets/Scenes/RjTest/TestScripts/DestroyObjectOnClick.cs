@@ -20,8 +20,9 @@ public class DestroyObjectOnClick : MonoBehaviour {
                 if (hit.collider.gameObject.tag == "Destroyable")
                 {
                     Debug.Log(hit.collider.gameObject.transform.localRotation);
-                    //var destroyableCounter = hit.collider.gameObject.GetComponent<DestroyableObjectCounter>();
-                    //destroyableCounter.IncrementClicked();
+                    var destroyableCounter = hit.collider.gameObject.GetComponent<DestroyableObjectCounter>();
+                    destroyableCounter.IncrementClicked();
+                    
                     //Destroy(hit.collider.gameObject);
                 }
             }
