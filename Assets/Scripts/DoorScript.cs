@@ -73,7 +73,6 @@ public class DoorScript : ResettableMonoBehaviour
                 // MOVE DOWN SOUND
                 if (!move.isPlaying)
                     move.Play();
-                Debug.Log(lerp2);
                 if(lerp2 < 0)
                 {
                     // TOUCHDOWN CLUNK SOUND

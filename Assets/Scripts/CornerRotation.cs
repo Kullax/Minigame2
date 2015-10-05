@@ -5,8 +5,17 @@ public class CornerRotation : MonoBehaviour {
 
     public bool rightTurn;
 
+    // Use this for initialization
+    void Start () {
+    }
+	
     void OnCollisionEnter ( Collision player)
     {
+        /* (player.tag != "Player")
+        {
+            return;
+        }*/
+
         switch (GameManager.GameRotation) {
             case GameRotation.NegativeX:
                 if (rightTurn)
@@ -50,4 +59,9 @@ public class CornerRotation : MonoBehaviour {
                 break;
         }
     }
+
+	// Update is called once per frame
+	void Update () {
+
+	}
 }
