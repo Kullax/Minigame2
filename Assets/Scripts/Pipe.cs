@@ -129,6 +129,7 @@ public class Pipe : ResettableMonoBehaviour
 
     public override void ResetBehaviour()
     {
+        degree = org_degree;
         switch (org_effect)
         {
             case CubeScale.Status.Melting:
