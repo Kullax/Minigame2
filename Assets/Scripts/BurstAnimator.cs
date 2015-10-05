@@ -7,6 +7,7 @@ public class BurstAnimator : MonoBehaviour
     private ParticleSystem burstParticles;
     private float last;
     public float frequency = 0.25f;
+    public float volume = 0.2f;
 
     // Use this for initialization
     void Start()
@@ -15,6 +16,7 @@ public class BurstAnimator : MonoBehaviour
         audioSource.clip = Instantiate(burst);
         audioSource.maxDistance = 8;
         audioSource.minDistance = 6;
+        audioSource.volume = volume;
         last = Time.time;
 
         burstParticles = GetComponent<ParticleSystem>();
