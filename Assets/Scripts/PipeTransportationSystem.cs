@@ -6,6 +6,7 @@ public class PipeTransportationSystem : MonoBehaviour {
  
     public GameObject ExitLocation;
     public float requiredsize = 1.0f;
+    public GameRotation NewGameRotation = GameRotation.NegativeX;
     //public direction;
 
     //private Rigidbody playerRB;
@@ -19,7 +20,7 @@ public class PipeTransportationSystem : MonoBehaviour {
 
     // Update is called once per frame
     void OnTriggerStay(Collider cube) {
-        if (cube.gameObject.tag != "Player")
+        if (cube.gameObject.tag != "PlayerRB")
             return;
 
         Rigidbody player = cube.attachedRigidbody;
@@ -34,5 +35,6 @@ public class PipeTransportationSystem : MonoBehaviour {
 
         player.velocity = new Vector3(0, 0, 0);
         cube.transform.position = ExitLocation.transform.position;
+        GameManager.SetGameRotation(NewGameRotation);
     }
 }

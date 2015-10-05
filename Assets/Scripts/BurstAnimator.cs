@@ -21,6 +21,15 @@ public class BurstAnimator : MonoBehaviour
     {
         transform.position = GodTouch.WorldPositionBegin;
 
+        //Makes sure that the burst has the circle fronting the camera and not turned sideways.
+        if (GameManager.GameRotation == GameRotation.NegativeX || GameManager.GameRotation == GameRotation.NegativeZ)
+        {
+            transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
+        } else
+        {
+            transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+        }
+
         if (GodTouch.Phase == GodPhase.Began)
         {
             //if (!burstParticles.isPlaying)
