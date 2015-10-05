@@ -22,9 +22,9 @@ public class MainMenu : MonoBehaviour {
 				new Vector3(origPos.x,origPos.y + 800,origPos.z), 
 				(Time.time - panStartTime)/panTime);
 			shade.color = new Color(0,0,0, 1-(panTime-(Time.time - panStartTime))/panTime);
-		}
-		if (panStartTime + panTime < Time.time) {
-			Application.LoadLevel("Recombined_Level_with_correct_prefabs");
+			if (panStartTime + panTime < Time.time) {
+				Application.LoadLevel("Recombined_Level_with_correct_prefabs");
+			}
 		}
 	}
 
