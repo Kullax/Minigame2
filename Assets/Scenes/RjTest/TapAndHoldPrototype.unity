@@ -1079,11 +1079,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 496472, guid: ff667e765226c3849921b9ec51d6f116, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.209999993
+      value: .270000011
       objectReference: {fileID: 0}
     - target: {fileID: 496472, guid: ff667e765226c3849921b9ec51d6f116, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 6.21000004
+      value: 5.73000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574586, guid: ff667e765226c3849921b9ec51d6f116, type: 2}
+      propertyPath: m_Size.z
+      value: 1.67824054
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574586, guid: ff667e765226c3849921b9ec51d6f116, type: 2}
+      propertyPath: m_Center.x
+      value: -1.08991335e-05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574586, guid: ff667e765226c3849921b9ec51d6f116, type: 2}
+      propertyPath: m_Center.z
+      value: -.339125782
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff667e765226c3849921b9ec51d6f116, type: 2}
@@ -1791,6 +1803,7 @@ MonoBehaviour:
   camHeight: 1
   camDist: 5
   movementSpeed: .800000012
+  cameraTilt: 5
 --- !u!1 &962345515 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 118368, guid: 60288e78a240a3f47a951ccb50297e1d, type: 2}
@@ -1894,12 +1907,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 3312088, guid: 60288e78a240a3f47a951ccb50297e1d, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    m_RemovedComponents:
-    - {fileID: 11438764, guid: 60288e78a240a3f47a951ccb50297e1d, type: 2}
+    - target: {fileID: 417802, guid: 60288e78a240a3f47a951ccb50297e1d, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60288e78a240a3f47a951ccb50297e1d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &972408655

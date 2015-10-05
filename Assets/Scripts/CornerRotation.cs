@@ -5,8 +5,6 @@ public class CornerRotation : MonoBehaviour {
 
     public bool rightTurn;
 
-    private bool reset = true;
-
     // Use this for initialization
     void Start () {
     }

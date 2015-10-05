@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
     public float camHeight = 1.0f;
     public float camDist = 5.0f;
     public float movementSpeed = 1.0f;
+    public float cameraTilt = 5.0f;
 
     private Vector3 offset;
     private float journeyLength;
@@ -83,6 +84,8 @@ public class CameraController : MonoBehaviour {
             transform.position = endPos;
         }
         RotationTravel();
+
+        transform.eulerAngles = new Vector3(-cameraTilt, transform.eulerAngles.y, transform.eulerAngles.z);
 
         oldDirection = GameManager.GameRotation;
     }

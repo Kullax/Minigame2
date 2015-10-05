@@ -22,9 +22,9 @@ public class characterRenderController : MonoBehaviour {
         transform.localScale = PlayerCube.transform.localScale;
         Vector3 tmpVector = new Vector3(PlayerCube.transform.position.x, PlayerCube.transform.position.y - (PlayerCube.transform.localScale.y/2), PlayerCube.transform.position.z);
         transform.position = tmpVector;
-       
+
         //Makes the rendered image look into the camera. 
-        transform.rotation = MainCamera.transform.rotation;
+        transform.eulerAngles = new Vector3(0, MainCamera.transform.eulerAngles.y, 0);
         transform.Rotate(new Vector3 (0,180,0));
 
         //Tild the rendered image on basis of the rigidbody
