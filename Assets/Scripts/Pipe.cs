@@ -50,19 +50,23 @@ public class Pipe : ResettableMonoBehaviour
         audioSource.spatialBlend = 1.0f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         handle = transform.Find("../activator/lever_hotCold/handle");
-        org_degree = handle.transform.rotation.x;
         if (active)
         {
             handle.transform.rotation = Quaternion.Euler(90, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Activate();
             if (audioSource)
                 audioSource.Play();
+            degree = 90;
         }
+        else
+            degree = 0;
+
+        org_degree = degree;
+
         if (effect == CubeScale.Status.Freezing)
             MakeCold();
         if (effect == CubeScale.Status.Melting)
             MakeHot();
-        degree = handle.transform.rotation.x;
     }
 
     // Update is called once per frame
@@ -105,7 +109,6 @@ public class Pipe : ResettableMonoBehaviour
                 degree = 0;
                 break;
             default:
-                degree = 90;
                 break;
         }
         handle.transform.rotation = Quaternion.Euler(degree, handle.transform.rotation.y, handle.transform.rotation.z);
