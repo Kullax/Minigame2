@@ -31,7 +31,7 @@ public class ClickScript : MonoBehaviour {
             { 
                 if (Pipe)
                 {
-                    if(Pipe.isIdle())
+                    if (Pipe.isIdle())
                     {
                         Pipe.Activate();
                         // PLay Sound
