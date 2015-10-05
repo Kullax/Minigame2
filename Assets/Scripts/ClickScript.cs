@@ -10,6 +10,7 @@ public class ClickScript : MonoBehaviour {
     private AudioSource audioSource;
     private Pipe Pipe;
     private DoorScript Door;
+    private LinkedList<Action> _registeredToggles;
 
     // Use this for initialization
     void Start () {
