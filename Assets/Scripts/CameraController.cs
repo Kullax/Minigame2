@@ -6,19 +6,22 @@ public class CameraController : MonoBehaviour {
     public float camHeight = 1.0f;
     public float camDist = 5.0f;
     public float movementSpeed = 1.0f;
+    public float cameraTilt = 5.0f;
 
-    private Vector3 camPos;
+    private Vector3 offset;
     private float journeyLength;
     private GameRotation oldDirection;
     private float startTime;
     private float distCovered = 0;
     private Vector3 startPos, endPos;
+    private Vector3 camPos;
 
     void Start () {
-	    camPos = new Vector3(0.0f, camHeight, -camDist);
+	    offset = new Vector3(0.0f, camHeight, -camDist);
         startPos = transform.position;
     }
 
+    
     private void StartNewJourney ()
     {
         startTime = Time.time;
@@ -54,22 +57,36 @@ public class CameraController : MonoBehaviour {
         distCovered = distCovered + Time.deltaTime * movementSpeed;
     }
 
-    private void Travel() {
+    private void RotationTravel() {
         var fracJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(transform.position, endPos, fracJourney);
-
+        
         Quaternion wantedRotation = GameManager.GameRotation.AsWorldQuaternion();
         transform.rotation = Quaternion.Lerp(transform.rotation, wantedRotation, fracJourney);
     }
-    
-	void LateUpdate () {
+
+    private void PositionTravel()
+    {
+        var fracJourney = distCovered / journeyLength;
+        transform.position = Vector3.Lerp(transform.position, endPos, fracJourney);
+
+    }
+
+    void LateUpdate () {
         var currentPlayer = GameManager.CurrentPlayer;
         if (!currentPlayer)
             return;
 
         CalculateJourney(currentPlayer);
-        Travel();
- 
+        if (distCovered / journeyLength < 0.9f)
+        {
+            PositionTravel();
+        } else {
+            transform.position = endPos;
+        }
+        RotationTravel();
+
+        transform.eulerAngles = new Vector3(-cameraTilt, transform.eulerAngles.y, transform.eulerAngles.z);
+
         oldDirection = GameManager.GameRotation;
     }
 }
