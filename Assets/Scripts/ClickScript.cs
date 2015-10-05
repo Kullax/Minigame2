@@ -25,8 +25,9 @@ public class ClickScript : MonoBehaviour {
     }
 	
     private void ToggleEverything() {
-        foreach (var toggle in _registeredToggles)
-            toggle();
+        if (null != _registeredToggles)
+            foreach (var toggle in _registeredToggles)
+                toggle();
     }
 
 	// Update is called once per frame
