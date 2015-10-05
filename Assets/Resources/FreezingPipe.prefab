@@ -42,7 +42,10 @@ GameObject:
   - 4: {fileID: 426504}
   - 33: {fileID: 3348734}
   - 23: {fileID: 2328580}
-  m_Layer: 0
+  - 65: {fileID: 6539578}
+  - 82: {fileID: 8252646}
+  - 114: {fileID: 11443036}
+  m_Layer: 8
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,10 +98,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 452792}
-  - 65: {fileID: 6501592}
-  - 114: {fileID: 11415870}
-  - 82: {fileID: 8292380}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: activator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108096}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: 4.66288662, y: -1.685009, z: 1.9745574}
+  m_LocalPosition: {x: 23.0753441, y: 15.1995802, z: 16.9419975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452792}
@@ -334,18 +334,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123588}
   m_Mesh: {fileID: 4300000, guid: 832e658562273e64d94ca502f867087b, type: 3}
---- !u!65 &6501592
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176796}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6503824
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -358,17 +346,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.799999, y: 2.77200031, z: 1.8142978}
   m_Center: {x: -1.40000141, y: 1.4000001, z: -.478855193}
---- !u!82 &8292380
+--- !u!65 &6539578
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .310000002, y: 1.95155919, z: .610000014}
+  m_Center: {x: .209999993, y: .709686935, z: .000426031649}
+--- !u!82 &8252646
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176796}
+  m_GameObject: {fileID: 127432}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fce02feef13be4d449e431c4fa491f2c, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -376,8 +376,8 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5
-  MaxDistance: 15
+  MinDistance: 1
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -512,19 +512,6 @@ MonoBehaviour:
   OnMaterial: {fileID: 2100000, guid: 09e85c8330329e0479b2676ef03c9bd7, type: 2}
   OffMaterial: {fileID: 2100000, guid: 6c33b43385cadf6468db1776262bcb3c, type: 2}
   speed: 3
---- !u!114 &11415870
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfd08ebb105e1a49a55b69519523e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 145350}
-  status: 4
 --- !u!114 &11437464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -540,8 +527,21 @@ MonoBehaviour:
   hot_material: {fileID: 2100000, guid: a019dc2f10db8a54daa53d9c6c51b331, type: 2}
   cold_material: {fileID: 2100000, guid: 3dfed8f34e8f6b941af6fe1170ebd41c, type: 2}
   off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
-  effect: 0
+  effect: 4
   active: 0
+--- !u!114 &11443036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfd08ebb105e1a49a55b69519523e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 145350}
+  status: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
