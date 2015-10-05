@@ -32,7 +32,7 @@ public class characterRenderController : MonoBehaviour {
         yRot = MainCamera.transform.eulerAngles.y + 180;
         RaycastHit hit;
         if (Physics.SphereCast(PlayerCube.transform.position, 0.2f, Vector3.down, out hit)) {
-            Debug.Log(hit.normal);
+            //Debug.Log(hit.normal);
             var quat = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             xRot = quat.eulerAngles.x;
             zRot = quat.eulerAngles.z;
