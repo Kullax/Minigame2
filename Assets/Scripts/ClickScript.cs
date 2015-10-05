@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class ClickScript : MonoBehaviour {
     public GameObject target;
@@ -9,6 +10,7 @@ public class ClickScript : MonoBehaviour {
     private AudioSource audioSource;
     private Pipe Pipe;
     private DoorScript Door;
+    private LinkedList<Action> _registeredToggles;
 
     // Use this for initialization
     void Start () {
@@ -20,18 +22,33 @@ public class ClickScript : MonoBehaviour {
             Door = target.GetComponent<DoorScript>();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void RegisterToggle(Action toggle) {
+        if (null == _registeredToggles)
+            _registeredToggles = new LinkedList<Action>();
+
+        _registeredToggles.AddLast(toggle);
+    }
+
+    private void ToggleEverything() {
+        if (null != _registeredToggles)
+            foreach (var toggle in _registeredToggles)
+                toggle();
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask) && hit.transform.gameObject == gameObject)
-            { 
+            {
+                ToggleEverything();
+                
                 if (Pipe)
                 {
-                    if (Pipe.isIdle())
+                    if(Pipe.isIdle())
                     {
                         Pipe.Activate();
                         // PLay Sound
