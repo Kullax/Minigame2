@@ -24,10 +24,16 @@ public class GodMovable : MonoBehaviour
     private GodPhase _phase;
     private Rigidbody _rb;
     private Vector3 _relativePosition = Vector3.zero;
+    private float _orgScale;
+    private float _scaleMod { get { return DistanceReact + _orgScale / 2; } }
+    private float _trueDistanceReact { get { return DistanceReact + transform.localScale.x / 2; } }
 
     void Awake() {
         _rb = GetComponent<Rigidbody>();
         _phase = GodTouch.Phase;
+
+        // We set the scale mod based on the original localscale
+        _orgScale = transform.localScale.x;
     }
 
     void Update() {
@@ -53,10 +59,10 @@ public class GodMovable : MonoBehaviour
     }
 
     private void ApplyForce() {
-        if (_relativePosition == Vector3.zero || _relativePosition.magnitude > DistanceReact + transform.localScale.x / 2)
+        if (_relativePosition == Vector3.zero || _relativePosition.magnitude > _trueDistanceReact)
             return;
         
-        var distMod = 1 - Mathf.Sqrt(_relativePosition.magnitude / (DistanceReact + transform.localScale.x / 2));
+        var distMod = 1 - Mathf.Sqrt(_relativePosition.magnitude / _scaleMod);
 
         var forceDirection = RestrictDirection(_relativePosition);
 
