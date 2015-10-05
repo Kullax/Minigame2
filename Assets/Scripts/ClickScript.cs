@@ -48,7 +48,6 @@ public class ClickScript : MonoBehaviour {
                         // PLay Sound
 						if (audioSource)
 							audioSource.Play();
-                        Pipe.Activate();
                         switch (status)
                         {
                             case CubeScale.Status.Freezing:
@@ -60,6 +59,8 @@ public class ClickScript : MonoBehaviour {
                             default:
                                 break;
                         }
+                        Pipe.Activate();
+
                     }
                     if (Door)
                     {
