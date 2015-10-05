@@ -20,7 +20,7 @@ public class PipeTransportationSystem : MonoBehaviour {
 
     // Update is called once per frame
     void OnTriggerStay(Collider cube) {
-        if (cube.gameObject.tag != "PlayerRB")
+        if (cube.gameObject.tag != "Player")
             return;
 
         Rigidbody player = cube.attachedRigidbody;
