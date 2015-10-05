@@ -92,8 +92,10 @@ class PerformBuild
 		PlayerSettings.keystorePass = "pjaskevand";
 		PlayerSettings.keyaliasPass = "534231";
 
-		UnityException exc;
-		try{
+        UnityException exc = null;
+
+        try
+        {
 			BuildPipeline.BuildPlayer(scenes, path, BuildTarget.Android, BuildOptions.None);
 		} catch(UnityException e){
 			exc = e;
