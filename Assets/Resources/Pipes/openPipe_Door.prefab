@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 493462}
+  - 95: {fileID: 9547046}
   m_Layer: 0
   m_Name: openPipe_Door
   m_TagString: Untagged
@@ -156,7 +157,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120962}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -3.2584137e-07, w: -1}
   m_LocalPosition: {x: .534826815, y: .453852236, z: 2.84217088e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -218,8 +219,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.6061172, y: 11.7943783, z: 6.01839924}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  m_LocalPosition: {x: 1.89999998, y: -1, z: 15.0761337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 496010}
@@ -475,6 +476,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .930000007, y: 1.42999995, z: 1.05999994}
   m_Center: {x: .519999981, y: .949999988, z: -.0017805025}
+--- !u!95 &9547046
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107988}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5f39e3ca28bcf84ca9109891de4c516, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11408994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -486,11 +504,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ac9e3fb93f5d4cad262828a903857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hangtime: 0
+  hangtime: 5
   distance: 1.5
-  closes: 0
-  upspeed: 0
-  downspeed: 0
+  closes: 1
   MovingSound: {fileID: 8300000, guid: 2d504f5e864930f4e9371212f9ebfc94, type: 3}
   Click: {fileID: 8300000, guid: 0cc09727b8c050349abb9a2a112084a9, type: 3}
   Clunk: {fileID: 8300000, guid: ab2be1cf4db68d64ca01fbd06e67806b, type: 3}
