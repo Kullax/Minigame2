@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SetTarget : MonoBehaviour
 {
-    public float speed = 20.0f;
+    public float speed = 10.0f;
 
     private Vector3 _target;
 
