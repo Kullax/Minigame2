@@ -127,7 +127,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void creditMenu(){
 		playButtonSound ();
-		if (!main || moving)
+		if (!option || moving)
 			return;
 		panStartTime = Time.time;
 		option = false;
