@@ -4330,6 +4330,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86184403f718c09409eddf9dcd29c9ce, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &385307781 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19836882, guid: 91cfdd113c836834293606605d26df2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1440625604}
 --- !u!4 &389358785 stripped
 Transform:
   m_PrefabParentObject: {fileID: 419636, guid: 6972fb76913aa0d44a3166e23e0bbb62, type: 2}
@@ -15310,6 +15315,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .707106709
       objectReference: {fileID: 0}
+    - target: {fileID: 11437464, guid: 91cfdd113c836834293606605d26df2d, type: 2}
+      propertyPath: particleToPlay
+      value: 
+      objectReference: {fileID: 385307781}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91cfdd113c836834293606605d26df2d, type: 2}
   m_IsPrefabParent: 0
@@ -22034,7 +22043,7 @@ MonoBehaviour:
   hot_material: {fileID: 2100000, guid: a019dc2f10db8a54daa53d9c6c51b331, type: 2}
   cold_material: {fileID: 2100000, guid: 3dfed8f34e8f6b941af6fe1170ebd41c, type: 2}
   off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
-  particleToPlay: {fileID: 19858522, guid: 835d3118af0e80a4a89eaae39a7b6a25, type: 2}
+  particleToPlay: {fileID: 385307781}
   effect: 4
   active: 0
   LightSource: {fileID: 0}
