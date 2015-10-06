@@ -10,7 +10,7 @@ public class Pipe : ResettableMonoBehaviour
     private PipeCollider pipe_collider;
     public CubeScale.Status effect;
     private Renderer rend;
-    private float speed = 0.1f;
+    private float speed = 1.0f;
     private Material old_material;
     private Material active_material;
     public bool active;
@@ -19,7 +19,9 @@ public class Pipe : ResettableMonoBehaviour
     private CubeScale.Status org_effect;
     private Transform handle;
     private Animator anm;
-
+    public Light light;
+    private float org_intensity;
+    private float lerp;
 
     // Use this for initialization
     void Start()
@@ -52,8 +54,12 @@ public class Pipe : ResettableMonoBehaviour
         handle = transform.Find("../activator/lever_hotCold/handle");
         anm = handle.GetComponent<Animator>();
         anm.SetBool("Activated", active);
+        if(light)
+            org_intensity = light.intensity;
         if (active)
         {
+            if(light)
+                light.intensity = 0;
             handle.transform.rotation = Quaternion.Euler(90, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Activate();
             if (audioSource)
@@ -72,12 +78,28 @@ public class Pipe : ResettableMonoBehaviour
         if (!active)
         {
             if (rend.material != off_material)
-                rend.material.Lerp(old_material, off_material, speed);
+                rend.material.Lerp(old_material, off_material, lerp);
+            if(light)
+                if (light.intensity > 0)
+                {
+                    light.intensity = Mathf.Lerp(org_intensity, 0, lerp);
+                }
+            if (lerp < 1)
+                lerp += Time.deltaTime / speed;
+
         }
         else
         {
             if (rend.material != active_material)
-                rend.material.Lerp(old_material, active_material, speed);
+                rend.material.Lerp(old_material, active_material, lerp);
+            if(light)
+                if (light.intensity < org_intensity)
+                {
+                    light.intensity = Mathf.Lerp(0, org_intensity, lerp);
+                }
+            if (lerp < 1)
+                lerp += Time.deltaTime / speed;
+
         }
     }
 
@@ -98,6 +120,7 @@ public class Pipe : ResettableMonoBehaviour
             if (audioSource)
                 audioSource.Stop();
         }
+        lerp = 0;
     }
 
     public void MakeHot()

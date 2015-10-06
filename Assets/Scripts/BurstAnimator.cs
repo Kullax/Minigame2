@@ -10,8 +10,7 @@ public class BurstAnimator : MonoBehaviour
     public float volume = 0.2f;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = Instantiate(burst);
         audioSource.maxDistance = 8;
@@ -21,52 +20,35 @@ public class BurstAnimator : MonoBehaviour
 
         burstParticles = GetComponent<ParticleSystem>();
         if (burstParticles == null)
-        {
             Debug.LogWarning("Particle system missing from: " + this.gameObject.name);
-        }
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         transform.position = GodTouch.WorldPositionBegin;
+        transform.rotation = Camera.main.transform.rotation;
 
-        //Makes sure that the burst has the circle fronting the camera and not turned sideways.
-        if (GameManager.GameRotation == GameRotation.NegativeX || GameManager.GameRotation == GameRotation.PositiveX)
-        {
-            transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
-        } else
-        {
-            transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
-        }
-
-        if (GodTouch.Phase == GodPhase.Began)
-        {
-            burstParticles.loop = false;
-            PlayParticle();
-        }
-        else if (GodTouch.Phase == GodPhase.Held)
-        {
+        switch (GodTouch.Phase) {
+            case GodPhase.Began:
+                burstParticles.loop = false;
                 PlayParticle();
-        }
-        else if (GodTouch.Phase == GodPhase.End || GodTouch.Phase == GodPhase.None)
-        {
-            if (burstParticles.isPlaying)
-                burstParticles.Stop();
+                break;
+            case GodPhase.Held:
+                PlayParticle();
+                break;
+            default:
+                if (burstParticles.isPlaying)
+                    burstParticles.Stop();
+                break;
         }
     }
 
-    void PlayParticle()
-    {
-        if (Time.time - last > frequency)
-        {
+    void PlayParticle() {
+        if (Time.time - last > frequency) {
             burstParticles.Play();
             if (audioSource)
-            {
                 audioSource.Play();
-            }
             last = Time.time;
         }
-
     }
 }

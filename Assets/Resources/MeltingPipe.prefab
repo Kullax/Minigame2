@@ -87,6 +87,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &173612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 457198}
+  - 108: {fileID: 10824808}
+  m_Layer: 0
+  m_Name: HotLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &180354
 GameObject:
   m_ObjectHideFlags: 1
@@ -171,6 +187,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 459378}
   m_RootOrder: 2
+--- !u!4 &457198
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173612}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .319999993, y: 1.27999997, z: 1.21200001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 459378}
+  m_RootOrder: 3
 --- !u!4 &459378
 Transform:
   m_ObjectHideFlags: 1
@@ -178,12 +206,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154184}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -1.70000005, y: 5.23000002, z: -3.29999995}
+  m_LocalPosition: {x: 17.4408875, y: -.168586582, z: 3.2009182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 467890}
   - {fileID: 495412}
   - {fileID: 453324}
+  - {fileID: 457198}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &467890
@@ -516,6 +545,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &10824808
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173612}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: .874509811, g: .176470593, b: 0, a: 1}
+  m_Intensity: 4.5
+  m_Range: 5
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11409892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -547,6 +608,7 @@ MonoBehaviour:
   off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
   effect: 2
   active: 0
+  light: {fileID: 10824808}
 --- !u!114 &11494948
 MonoBehaviour:
   m_ObjectHideFlags: 1
