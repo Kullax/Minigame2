@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using System;
 
-public class ClickScript : MonoBehaviour {
+public class ClickScript : MonoBehaviour
+{
     public GameObject target;
-    public IList<GameObject> targetList;
-    private LayerMask mask;
     public CubeScale.Status status;
+    public IList<GameObject> targetList;
+
+    private LayerMask mask;
     private AudioSource audioSource;
     private Pipe Pipe;
     private DoorScript Door;
     private LinkedList<Action> _registeredToggles;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         mask |= (1 << LayerMask.NameToLayer("Clickable"));
-		audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         if (target)
         {
             Pipe = target.GetComponent<Pipe>();
@@ -23,21 +26,24 @@ public class ClickScript : MonoBehaviour {
         }
     }
 
-    public void RegisterToggle(Action toggle) {
+    public void RegisterToggle(Action toggle)
+    {
         if (null == _registeredToggles)
             _registeredToggles = new LinkedList<Action>();
 
         _registeredToggles.AddLast(toggle);
     }
 
-    private void ToggleEverything() {
+    private void ToggleEverything()
+    {
         if (null != _registeredToggles)
             foreach (var toggle in _registeredToggles)
                 toggle();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -45,12 +51,13 @@ public class ClickScript : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask) && hit.transform.gameObject == gameObject)
             {
                 ToggleEverything();
-                
+
                 if (Pipe)
                 {
-                    if(Pipe.isIdle())
+                    if (Pipe.isIdle())
                     {
                         Pipe.Activate();
+
                         // PLay Sound
                         if (audioSource)
                             audioSource.Play();
@@ -70,11 +77,11 @@ public class ClickScript : MonoBehaviour {
                 if (Door)
                 {
                     // PLay Sound
-					if (audioSource)
-						audioSource.Play();
+                    if (audioSource)
+                        audioSource.Play();
                     Door.Activate();
                 }
             }
         }
-	}
+    }
 }

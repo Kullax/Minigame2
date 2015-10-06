@@ -2184,10 +2184,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 11489066, guid: 9fe000bc34a14254a9af244aae265c67, type: 2}
-      propertyPath: MovementThreshhold
-      value: .699999988
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fe000bc34a14254a9af244aae265c67, type: 2}
   m_IsPrefabParent: 0
