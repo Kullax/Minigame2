@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class CameraSoundScript : MonoBehaviour {
+public class CameraSoundScript : ResettableMonoBehaviour {
 
     public AudioClip FreezingMelody;
     public AudioClip MeltingMelody;
@@ -72,5 +73,21 @@ public class CameraSoundScript : MonoBehaviour {
     public AudioSource getMeltingMelody()
     {
         return melting;
+    }
+
+    public override void ResetBehaviour()
+    {
+        if(refreeze.isPlaying)
+            refreeze.Stop();
+        if (melting.isPlaying)
+            refreeze.Stop();
+        if (!refreeze.isPlaying)
+            refreeze.Stop();
+        if (!freezing.isPlaying)
+           freezing.Stop();
+        freezing.Play();
+
+
+        //        throw new NotImplementedException();
     }
 }
