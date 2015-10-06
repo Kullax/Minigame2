@@ -16717,6 +16717,7 @@ MonoBehaviour:
   hot_material: {fileID: 2100000, guid: a019dc2f10db8a54daa53d9c6c51b331, type: 2}
   cold_material: {fileID: 2100000, guid: 3dfed8f34e8f6b941af6fe1170ebd41c, type: 2}
   off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
+  particleToPlay: {fileID: 19858522, guid: 835d3118af0e80a4a89eaae39a7b6a25, type: 2}
   effect: 4
   active: 1
   LightSource: {fileID: 0}
