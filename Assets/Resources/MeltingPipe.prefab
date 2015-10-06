@@ -729,8 +729,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: fce02feef13be4d449e431c4fa491f2c, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -870,7 +870,7 @@ MonoBehaviour:
   off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
   effect: 2
   active: 0
-  light: {fileID: 10824808}
+  LightSource: {fileID: 0}
 --- !u!114 &11494948
 MonoBehaviour:
   m_ObjectHideFlags: 1
