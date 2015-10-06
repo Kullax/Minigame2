@@ -8,15 +8,19 @@ ModelImporter:
     100000: //RootNode
     100002: openPipe_45corner_colFloor01
     100004: openPipe_45corner_colFloor02
+    100006: openPipe_45corner
     400000: //RootNode
     400002: openPipe_45corner_colFloor01
     400004: openPipe_45corner_colFloor02
+    400006: openPipe_45corner
     2300000: //RootNode
     2300002: openPipe_45corner_colFloor01
     2300004: openPipe_45corner_colFloor02
+    2300006: openPipe_45corner
     3300000: //RootNode
     3300002: openPipe_45corner_colFloor01
     3300004: openPipe_45corner_colFloor02
+    3300006: openPipe_45corner
     4300000: openPipe_45corner
     4300002: openPipe_45corner_colFloor01
     4300004: openPipe_45corner_colFloor02

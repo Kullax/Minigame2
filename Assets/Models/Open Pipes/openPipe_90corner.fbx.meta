@@ -10,21 +10,25 @@ ModelImporter:
     100004: openPipe_90corner_02
     100006: openPipe_90corner_03
     100008: openPipe_90corner_04
+    100010: openPipe_90corner
     400000: //RootNode
     400002: openPipe_90corner_01
     400004: openPipe_90corner_02
     400006: openPipe_90corner_03
     400008: openPipe_90corner_04
+    400010: openPipe_90corner
     2300000: //RootNode
     2300002: openPipe_90corner_01
     2300004: openPipe_90corner_02
     2300006: openPipe_90corner_03
     2300008: openPipe_90corner_04
+    2300010: openPipe_90corner
     3300000: //RootNode
     3300002: openPipe_90corner_01
     3300004: openPipe_90corner_02
     3300006: openPipe_90corner_03
     3300008: openPipe_90corner_04
+    3300010: openPipe_90corner
     4300000: openPipe_90corner
     4300002: openPipe_90corner_01
     4300004: openPipe_90corner_02

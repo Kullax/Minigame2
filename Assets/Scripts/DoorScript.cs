@@ -1,50 +1,68 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DoorScript : MonoBehaviour
+public class DoorScript : ResettableMonoBehaviour
 {
-    Vector3 start;
+    private Vector3 start;
     bool active = false;
     public float hangtime;
     public float distance = 1.5f;
     private float bck_hangtime;
     public bool closes = false;
-    private bool moving = false;
+
+    public AudioClip MovingSound;
+    public AudioClip Click;
+    public AudioClip Clunk;
+    private AudioSource move;
+    private AudioSource click;
+    private AudioSource clunk;
+    private Animator anm;
 
     // Use this for initialization
     void Start()
     {
+        move = gameObject.AddComponent<AudioSource>();
+        move.clip = Instantiate(MovingSound);
+        move.loop = true;
+        click = gameObject.AddComponent<AudioSource>();
+        click.clip = Instantiate(Click);
+        clunk = gameObject.AddComponent<AudioSource>();
+        clunk.clip = Instantiate(Clunk);
         start = transform.position;
         bck_hangtime = hangtime;
+        anm = GetComponentInParent<Animator>();
+        anm.SetBool("Up", active);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.up, Time.deltaTime);
-            if (distance <= Vector3.Distance(transform.position, start))
-                moving = false;
+        if (!active)
             return;
-        }
+        anm.SetBool("Up", active);
         if (!closes)
             return;
         if (hangtime > 0)
             hangtime -= Time.deltaTime;
         else
-            transform.position = Vector3.MoveTowards(transform.position, start, Time.deltaTime);
-        if (0 >= Vector3.Distance(transform.position, start))
+        {
             active = false;
+            anm.SetBool("Up", active);
+        }
+    }
 
+    public override void ResetBehaviour() {
+        active = false;
+        transform.position = start;
+        hangtime = 0;
+        anm.SetBool("Up", active);
     }
 
     public void Activate()
     {
         if (!active)
         {
+            anm.SetBool("Up", active);
             active = true;
-            moving = true;
             hangtime = bck_hangtime;
         }
     }

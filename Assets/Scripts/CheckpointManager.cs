@@ -6,7 +6,6 @@ public class CheckpointManager : MonoBehaviour {
     public GameObject InitialSpawnPoint;
 
     [Header("Debug options")]
-    public bool SpawnInitialPlayer = true;
     public bool ShowActiveCheckpoint = true;
 
     private static GameObject _prefab;
@@ -43,28 +42,24 @@ public class CheckpointManager : MonoBehaviour {
         return true;
     }
 
-	void Start () {
+	void Awake () {
         // If we can't pass sanity checks we disable ourselves and do nothing.
         if (!sanity())
         {
             enabled = false;
             return;
         }
-
-        // Spawn initial player
-        if (SpawnInitialPlayer)
-            SpawnPlayer();
 	}
 
-    public static void SpawnPlayer()
+    public static GameObject SpawnPlayer()
     {
         if (!_activeCheckpoint)
         {
-            Debug.LogError("Spawn failed! No active checkpoint. Also, this should not happen.");
-            return;
+            Debug.LogError("Spawn failed! No active checkpoint. Also, this should not happen, are you sure you have a working Checkpoint Manager in the scene?");
+            return null;
         }
 
-        _activeCheckpoint.Spawn(_prefab);
+        return _activeCheckpoint.Spawn(_prefab);
     }
 
     public static void SetActiveCheckpoint(Checkpoint checkpoint)

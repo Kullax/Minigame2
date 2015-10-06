@@ -6,9 +6,13 @@ ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: openPipe_textureHolder
     400000: //RootNode
+    400002: openPipe_textureHolder
     2300000: //RootNode
+    2300002: openPipe_textureHolder
     3300000: //RootNode
+    3300002: openPipe_textureHolder
     4300000: openPipe_textureHolder
   materials:
     importMaterials: 1
@@ -51,8 +55,8 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
-    normalImportMode: 0
-    tangentImportMode: 1
+    normalImportMode: 2
+    tangentImportMode: 2
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
