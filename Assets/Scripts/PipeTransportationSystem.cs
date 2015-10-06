@@ -21,8 +21,6 @@ public class PipeTransportationSystem : MonoBehaviour
         if (cube.gameObject.tag != "Player")
             return;
 
-        audioSourceTP.Play();
-
         Rigidbody player = cube.attachedRigidbody;
 
         if (cube.transform.localScale.x > requiredsize)
@@ -32,6 +30,7 @@ public class PipeTransportationSystem : MonoBehaviour
 
         //Do animation before changing the location and make sure the animation is complete.
 
+        audioSourceTP.Play();
         player.velocity = new Vector3(0, 0, 0);
         cube.transform.position = ExitLocation.transform.position;
         GameManager.SetGameRotation(NewGameRotation);
