@@ -1,38 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PipeTransportationSystem : MonoBehaviour {
+[RequireComponent(typeof(AudioSource))]
 
- 
+public class PipeTransportationSystem : MonoBehaviour
+{
     public GameObject ExitLocation;
     public float requiredsize = 1.0f;
     public GameRotation NewGameRotation = GameRotation.NegativeX;
-    //public direction;
 
-    //private Rigidbody playerRB;
-    //private GameObject player;
+    private AudioSource audioSourceTP;
 
-    // Use this for initialization
-    void Start () {
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-        //playerRB = player.GetComponent<Rigidbody>();
+    void Start()
+    {
+        audioSourceTP = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void OnTriggerStay(Collider cube) {
+    void OnTriggerStay(Collider cube)
+    {
         if (cube.gameObject.tag != "Player")
             return;
 
         Rigidbody player = cube.attachedRigidbody;
 
-
-        if(cube.transform.localScale.x > requiredsize)
+        if (cube.transform.localScale.x > requiredsize)
         {
             return;
         }
 
         //Do animation before changing the location and make sure the animation is complete.
 
+        audioSourceTP.Play();
         player.velocity = new Vector3(0, 0, 0);
         cube.transform.position = ExitLocation.transform.position;
         GameManager.SetGameRotation(NewGameRotation);
