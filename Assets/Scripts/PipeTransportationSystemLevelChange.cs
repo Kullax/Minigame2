@@ -13,9 +13,11 @@ public class PipeTransportationSystemLevelChange : MonoBehaviour
 
     private float waitTimeElapsed = 0.0f;
     private float WaitTimeEndScreen = 3.0f;
-    private float WaitTimeParticles = 3.0f;
+    private float WaitTimeParticles = 0.5f;
     private bool EndLevel = false;
     private bool particlesPlayed = false;
+
+    private ParticleSystem SnowBurstParticleSystem;
 
     // Fade to white screen
     private GameObject victoryTransistionScreen;
@@ -31,6 +33,9 @@ public class PipeTransportationSystemLevelChange : MonoBehaviour
 
         victoryTransistionScreen = (GameObject)Instantiate(Resources.Load("VictoryTransitionScreen"));
         fadeScreen = victoryTransistionScreen.GetComponentInChildren<Image>();
+
+        GameObject EndBurstParticleSystem = GameObject.Find("FX_ExitSnowBurst");
+        SnowBurstParticleSystem = EndBurstParticleSystem.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -43,6 +48,8 @@ public class PipeTransportationSystemLevelChange : MonoBehaviour
 
         player.velocity = new Vector3(0, 0, 0);
         cube.transform.position = transform.position;
+
+        SnowBurstParticleSystem.enableEmission = true;
 
         if (!particlesPlayed)
         {
