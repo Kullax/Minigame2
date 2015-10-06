@@ -2281,18 +2281,6 @@ Prefab:
       propertyPath: InitialSpawnPoint
       value: 
       objectReference: {fileID: 1812322477}
-    - target: {fileID: 11481696, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
-      propertyPath: InitialGameRotation
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11462958, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
-      propertyPath: DistanceFromCamera
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 11476668, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
-      propertyPath: InitialPlayerPrefab
-      value: 
-      objectReference: {fileID: 126094, guid: 9fe000bc34a14254a9af244aae265c67, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
   m_IsPrefabParent: 0
@@ -13938,7 +13926,7 @@ MonoBehaviour:
   off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
   effect: 4
   active: 1
-  light: {fileID: 0}
+  LightSource: {fileID: 0}
 --- !u!23 &2068216182
 MeshRenderer:
   m_ObjectHideFlags: 0
