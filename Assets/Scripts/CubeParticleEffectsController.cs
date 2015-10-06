@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CubeParticleEffectsController : MonoBehaviour {
+public class CubeParticleEffectsController : MonoBehaviour
+{
 
     public ParticleSystem freezing;
     public ParticleSystem melting;
     public ParticleSystem death;
 
     private CubeScale _cs;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         _cs = GetComponent<CubeScale>();
         /*if (_cs.status == CubeScale.Status.None)
         {
@@ -24,7 +27,7 @@ public class CubeParticleEffectsController : MonoBehaviour {
 
         if (_cs.status == CubeScale.Status.Freezing)
         {
-            Debug.Log("FREEZ");
+            //Debug.Log("FREEZ");
             freezing.transform.position = this.transform.position;
             if (!freezing.isPlaying)
             {
@@ -35,7 +38,7 @@ public class CubeParticleEffectsController : MonoBehaviour {
         }
         if (_cs.status == CubeScale.Status.Melting)
         {
-            Debug.Log("MELT");
+            //Debug.Log("MELT");
             melting.transform.position = this.transform.position;
             if (!melting.isPlaying)
             {

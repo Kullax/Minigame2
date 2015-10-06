@@ -14,6 +14,7 @@ GameObject:
   - 81: {fileID: 8124144}
   - 114: {fileID: 11493910}
   - 114: {fileID: 11456644}
+  - 114: {fileID: 11480950}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.32999992, y: 3.98000002, z: -12.6199999}
+  m_LocalPosition: {x: .699999988, y: 7.69000006, z: -12.6199999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,6 +96,19 @@ MonoBehaviour:
   FreezingMelody: {fileID: 8300000, guid: 7c29c3829c9b8c84caad420b190bf5eb, type: 3}
   MeltingMelody: {fileID: 8300000, guid: 3ecdc809096f12b4691d8fad64f1697c, type: 3}
   RefreezeSound: {fileID: 8300000, guid: 21aac7d1cf40d9e48bf319fd5dbcdce1, type: 3}
+  volume: 1
+--- !u!114 &11480950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2584931d04ae7964f9a5a4cd995d3333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 1
 --- !u!114 &11493910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,8 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camHeight: 1
-  camDist: 5
+  camDist: 7
   movementSpeed: 1
+  cameraTilt: 5
 --- !u!124 &12420534
 Behaviour:
   m_ObjectHideFlags: 1
