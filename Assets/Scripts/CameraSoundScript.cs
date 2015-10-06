@@ -63,4 +63,14 @@ public class CameraSoundScript : MonoBehaviour {
     {
         return !freezing.isPlaying && !melting.isPlaying && !death.isPlaying;
     }
+
+    public AudioSource getFreezingMelody()
+    {
+        return freezing;
+    }
+
+    public AudioSource getMeltingMelody()
+    {
+        return melting;
+    }
 }

@@ -24,6 +24,7 @@ public class CubeParticleEffectsController : MonoBehaviour {
 
         if (_cs.status == CubeScale.Status.Freezing)
         {
+            //Debug.Log("FREEZ");
             freezing.transform.position = this.transform.position;
             if (!freezing.isPlaying)
             {
@@ -34,6 +35,7 @@ public class CubeParticleEffectsController : MonoBehaviour {
         }
         if (_cs.status == CubeScale.Status.Melting)
         {
+            //Debug.Log("MELT");
             melting.transform.position = this.transform.position;
             if (!melting.isPlaying)
             {
@@ -44,7 +46,7 @@ public class CubeParticleEffectsController : MonoBehaviour {
         }
         if (GameManager.CurrentPlayer.transform.localScale.x < _cs.lethallimit)
         {
-            Debug.Log("DIE");
+            //Debug.Log("DIE");
             death.transform.position = this.transform.position;
             if (!death.isPlaying)
             {

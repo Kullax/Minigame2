@@ -5,63 +5,41 @@ public class CornerRotation : MonoBehaviour {
 
     public bool rightTurn;
 
-    // Use this for initialization
-    void Start () {
-    }
-	
-    void OnCollisionEnter ( Collision player)
-    {
-        /* (player.tag != "Player")
-        {
-            return;
-        }*/
+    private Vector3 lastForward;
 
+    void OnCollisionEnter ( Collision player) {
+        lastForward = GameManager.GameRotation.GetForward();
+        DeflectPlayer(player.rigidbody, player.impulse, lastForward);
+        SetRotation();
+    }
+
+    void OnCollisionStay ( Collision player ) {
+        DeflectPlayer(player.rigidbody, 25, lastForward, ForceMode.Acceleration);
+    }
+
+    private void SetRotation() {
         switch (GameManager.GameRotation) {
             case GameRotation.NegativeX:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveZ);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeZ);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.PositiveZ : GameRotation.NegativeZ);
                 break;
             case GameRotation.PositiveX:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeZ);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveZ);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.NegativeZ : GameRotation.PositiveZ);
                 break;
             case GameRotation.NegativeZ:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveX);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeX);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.PositiveX : GameRotation.NegativeX);
                 break;
             case GameRotation.PositiveZ:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeX);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveX);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.NegativeX : GameRotation.PositiveX);
                 break;
         }
     }
 
-	// Update is called once per frame
-	void Update () {
+    private void DeflectPlayer(Rigidbody rb, Vector3 strength, Vector3 direction, ForceMode mode = ForceMode.Impulse) {
+        DeflectPlayer(rb, strength.magnitude, direction, mode);
+    }
 
-	}
+    private void DeflectPlayer(Rigidbody rb, float strength, Vector3 direction, ForceMode mode = ForceMode.Impulse)
+    {
+        rb.AddForce(strength * direction.normalized, mode);
+    }
 }
