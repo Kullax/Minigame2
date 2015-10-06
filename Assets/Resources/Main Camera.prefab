@@ -96,6 +96,7 @@ MonoBehaviour:
   FreezingMelody: {fileID: 8300000, guid: 7c29c3829c9b8c84caad420b190bf5eb, type: 3}
   MeltingMelody: {fileID: 8300000, guid: 3ecdc809096f12b4691d8fad64f1697c, type: 3}
   RefreezeSound: {fileID: 8300000, guid: 21aac7d1cf40d9e48bf319fd5dbcdce1, type: 3}
+  DeathMelody: {fileID: 8300000, guid: d7a8f075ca51e514a95dc75159dfb0b4, type: 3}
   volume: 1
 --- !u!114 &11480950
 MonoBehaviour:

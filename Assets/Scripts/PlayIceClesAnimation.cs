@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class PlayIceClesAnimation : ResettableMonoBehaviour
+public class PlayIceClesAnimation : MonoBehaviour
 {
     private Animator _animator;
 
@@ -19,8 +19,8 @@ public class PlayIceClesAnimation : ResettableMonoBehaviour
             _animator.SetTrigger("Reset");
     }
 
-    public override void ResetBehaviour()
-    {
-        PlayAnimation(false);
-    }
+    //public override void ResetBehaviour()
+    //{
+    //    PlayAnimation(false);
+    //}
 }
