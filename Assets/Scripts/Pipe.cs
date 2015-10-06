@@ -121,7 +121,7 @@ public class Pipe : ResettableMonoBehaviour
 
             var tmpRot = handle.transform.localRotation;
             var tmpActivator = transform.Find("../activator");
-            if (tmpActivator.localRotation.y != 0)
+            if (tmpActivator.localRotation.y == 0)
                 tmpRot.y = tmpRot.y + 90;
 
             Debug.Log(tmpRot.y);
