@@ -6,18 +6,33 @@ public class AudioManager : MonoBehaviour {
     private AudioSource freezingmusic;
     private AudioSource meltingmusic;
 
-    public bool MuteMusic;
-    public bool MuteAudio;
+	private bool mutedSet;
 
-    // Use this for initialization
-    void Start()
-    {
-        allAudioSources = FindObjectsOfType<AudioSource>();
-        var camera = FindObjectOfType<Camera>();
-        CameraSoundScript camerasound = camera.GetComponent<CameraSoundScript>();
-        freezingmusic = camerasound.getFreezingMelody();
-        meltingmusic = camerasound.getMeltingMelody();
-    }
+	void Update(){
+		if (AudioSettings.GetInstance ().muted && !mutedSet) {
+
+			allAudioSources = FindObjectsOfType<AudioSource>();
+			var camera = FindObjectOfType<Camera>();
+			CameraSoundScript camerasound = camera.GetComponent<CameraSoundScript>();
+			freezingmusic = camerasound.getFreezingMelody();
+			meltingmusic = camerasound.getMeltingMelody();
+
+			MuteMusicSources ();
+			MuteSoundSources();
+			mutedSet = true;
+		} else if(!mutedSet) {
+
+			allAudioSources = FindObjectsOfType<AudioSource>();
+			var camera = FindObjectOfType<Camera>();
+			CameraSoundScript camerasound = camera.GetComponent<CameraSoundScript>();
+			freezingmusic = camerasound.getFreezingMelody();
+			meltingmusic = camerasound.getMeltingMelody();
+
+			UnmuteMusicSources();
+			UnmuteSoundSources();
+			mutedSet = true;
+		}
+	}
 
     public void MuteMusicSources()
     {
@@ -35,8 +50,7 @@ public class AudioManager : MonoBehaviour {
     {
         foreach (AudioSource audio in allAudioSources)
         {
-            if (audio != freezingmusic && audio != meltingmusic)
-                audio.mute = true;
+            audio.mute = true;
         }
     }
 
@@ -44,8 +58,7 @@ public class AudioManager : MonoBehaviour {
     {
         foreach (AudioSource audio in allAudioSources)
         {
-            if (audio != freezingmusic && audio != meltingmusic)
-                audio.mute = false;
+            audio.mute = false;
         }
     }
 
