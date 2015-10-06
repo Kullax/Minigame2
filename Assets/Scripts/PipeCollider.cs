@@ -56,6 +56,16 @@ public class PipeCollider : MonoBehaviour {
             script.Effect(effect);
     }
 
+    void OnTriggerEnter(Collider cube)
+    {
+        if(effect == CubeScale.Status.Freezing)
+        {
+            var script = cube.GetComponent<CubeScale>();
+            if(script)
+                script.PlayAnimation(effect);
+        }
+    }
+
     public void Activate()
     {
         // Attempt to avoid instant max if spam clicked
