@@ -10,12 +10,16 @@ public class MainMenu : MonoBehaviour {
 	public Image backgroundImage;
 	public Image shade;
 
+	public GameObject animator;
+
 	private Vector3 origPos;
 	private float panStartTime;
 	private bool option;
 	private bool main;
 	private bool start;
 	private bool moving;
+	private bool credit;
+	private bool creditback;
 
     [Range(0,1)]
     public float buttonVolume = 1;
@@ -42,6 +46,10 @@ public class MainMenu : MonoBehaviour {
 			scrollLeft ();
 		if (main)
 			scrollRight ();
+		if (credit)
+			scrollCredit ();
+		if (creditback)
+			scrollCreditBack ();
 	}
 
 	private void scrollDown(){
@@ -81,14 +89,46 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	public void startGame(){
+	private void scrollCredit(){
+		if (panStartTime != 0) {
+			backgroundImage.transform.localPosition =  Vector3.Lerp(
+				new Vector3(origPos.x + 800,origPos.y,origPos.z),
+				new Vector3(origPos.x + 1600,origPos.y,origPos.z),
+				(Time.time - panStartTime)/panTimeOptions);
+			if (panStartTime + panTimeOptions < Time.time) {
+				moving = false;
+			}
+		}
+	}
+
+	private void scrollCreditBack(){
+		if (panStartTime != 0) {
+			backgroundImage.transform.localPosition =  Vector3.Lerp(
+				new Vector3(origPos.x + 1600,origPos.y,origPos.z),
+				new Vector3(origPos.x + 800,origPos.y,origPos.z),
+				(Time.time - panStartTime)/panTimeOptions);
+			if (panStartTime + panTimeOptions < Time.time) {
+				moving = false;
+			}
+		}
+	}
+
+	public void startAnimation(){
 		playButtonSound ();
+		if (!main || moving)
+			return;
+		animator.GetComponent<Animator> ().SetTrigger ("start");
+	}
+
+	public void startGame(){
 		if (!main || moving)
 			return;
 		panStartTime = Time.time;
 		start = true;
 		moving = true;
 		main = false;
+		credit = false;
+		creditback = false;
 	}
 
 	public void optionMenu(){
@@ -98,17 +138,45 @@ public class MainMenu : MonoBehaviour {
 		panStartTime = Time.time;
 		option = true;
 		main = false;
+		credit = false;
+		moving = true;
+		creditback = false;
+	}
+
+	public void creditMenu(){
+		playButtonSound ();
+		if ((!creditback && !option) || moving)
+			return;
+		panStartTime = Time.time;
+		option = false;
+		credit = true;
+		main = false;
+		creditback = false;
+		moving = true;
+	}
+
+	public void creditBack(){
+		playButtonSound ();
+		if (!credit || moving)
+			return;
+		panStartTime = Time.time;
+		option = false;
+		credit = false;
+		creditback = true;
+		main = false;
 		moving = true;
 	}
 
 	public void mainMenu(){
 		playButtonSound ();
-		if (!option || moving)
+		if ((!creditback && !option) || moving)
 			return;
 		panStartTime = Time.time;
 		option = false;
 		moving = true;
+		credit = false;
 		main = true;
+		creditback = false;
 	}
 
 	public void stopGame() {
