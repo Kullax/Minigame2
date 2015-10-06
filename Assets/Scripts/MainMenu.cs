@@ -111,4 +111,12 @@ public class MainMenu : MonoBehaviour {
 			textField.updateField();
 		}
 	}
+
+	public void muteMusic(){
+		AudioSettings.GetInstance ().muted = true;
+	}
+
+	public void unmuteMusic(){
+		AudioSettings.GetInstance ().muted = false;
+	}
 }
