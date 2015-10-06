@@ -58,11 +58,14 @@ public class PipeCollider : MonoBehaviour {
 
     void OnTriggerEnter(Collider cube)
     {
-        if(effect == CubeScale.Status.Freezing)
+        if (active)
         {
-            var script = cube.GetComponent<CubeScale>();
-            if(script)
-                script.PlayAnimation(effect);
+            if (effect == CubeScale.Status.Freezing)
+            {
+                var script = cube.GetComponent<CubeScale>();
+                if (script)
+                    script.PlayAnimation(effect);
+            }
         }
     }
 
