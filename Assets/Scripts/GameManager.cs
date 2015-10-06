@@ -102,20 +102,23 @@ public class GameManager : MonoBehaviour {
     }
 
     private static void EnforceRigidbodyConstraints() {
+
         switch (_gameRotation) {
             case GameRotation.PositiveX:
             case GameRotation.NegativeX:
                 _currentRigidbody.constraints =
                     RigidbodyConstraints.FreezePositionX |
-                    RigidbodyConstraints.FreezeRotationY |
-                    RigidbodyConstraints.FreezeRotationZ;
+                    RigidbodyConstraints.FreezeRotation;
+                    /*RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationZ;*/
                 break;
             case GameRotation.PositiveZ:
             case GameRotation.NegativeZ:
                 _currentRigidbody.constraints =
                     RigidbodyConstraints.FreezePositionZ |
-                    RigidbodyConstraints.FreezeRotationY |
-                    RigidbodyConstraints.FreezeRotationX;
+                    RigidbodyConstraints.FreezeRotation;
+                    /*RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationX;*/
                 break;
         }
     }
