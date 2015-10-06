@@ -7,6 +7,8 @@ public class Pipe : ResettableMonoBehaviour
     public Material hot_material;
     public Material cold_material;
     public Material off_material;
+    public ParticleSystem particleToPlay;
+
     private PipeCollider pipe_collider;
     public CubeScale.Status effect;
     private Renderer rend;
@@ -54,11 +56,11 @@ public class Pipe : ResettableMonoBehaviour
         handle = transform.Find("../activator/lever_hotCold/handle");
         anm = handle.GetComponent<Animator>();
         anm.SetBool("Activated", active);
-        if(LightSource)
+        if (LightSource)
             org_intensity = LightSource.intensity;
         if (active)
         {
-            if(LightSource)
+            if (LightSource)
                 LightSource.intensity = 0;
             handle.transform.rotation = Quaternion.Euler(90, handle.transform.rotation.y, handle.transform.rotation.z);
             pipe_collider.Activate();
@@ -70,6 +72,9 @@ public class Pipe : ResettableMonoBehaviour
             MakeCold();
         if (effect == CubeScale.Status.Melting)
             MakeHot();
+
+        if (particleToPlay == null)
+            Debug.LogWarning("Particle for pipe missing, in: " + this.gameObject.name);
     }
 
     // Update is called once per frame
@@ -79,7 +84,7 @@ public class Pipe : ResettableMonoBehaviour
         {
             if (rend.material != off_material)
                 rend.material.Lerp(old_material, off_material, lerp);
-            if(LightSource)
+            if (LightSource)
                 if (LightSource.intensity > 0)
                 {
                     LightSource.intensity = Mathf.Lerp(org_intensity, 0, lerp);
@@ -92,7 +97,7 @@ public class Pipe : ResettableMonoBehaviour
         {
             if (rend.material != active_material)
                 rend.material.Lerp(old_material, active_material, lerp);
-            if(LightSource)
+            if (LightSource)
                 if (LightSource.intensity < org_intensity)
                 {
                     LightSource.intensity = Mathf.Lerp(0, org_intensity, lerp);
@@ -113,6 +118,8 @@ public class Pipe : ResettableMonoBehaviour
             pipe_collider.Activate();
             if (audioSource)
                 audioSource.PlayDelayed(0.5f);
+
+            Instantiate(particleToPlay, handle.transform.position, handle.transform.rotation);
         }
         else
         {

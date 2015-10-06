@@ -8,23 +8,23 @@ public class CameraController : MonoBehaviour {
     public float movementSpeed = 1.0f;
     public float cameraTilt = 5.0f;
 
-    private Vector3 offset;
+    //private Vector3 offset;
     private float journeyLength;
     private GameRotation oldDirection;
-    private float startTime;
+    //private float startTime;
     private float distCovered = 0;
     private Vector3 startPos, endPos;
     private Vector3 camPos;
 
     void Start () {
-	    offset = new Vector3(0.0f, camHeight, -camDist);
+	    //offset = new Vector3(0.0f, camHeight, -camDist);
         startPos = transform.position;
     }
 
     
     private void StartNewJourney ()
     {
-        startTime = Time.time;
+        //startTime = Time.time;
         distCovered = 0.0f;
         startPos = transform.position;
     }

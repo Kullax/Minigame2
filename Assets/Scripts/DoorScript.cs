@@ -18,8 +18,7 @@ public class DoorScript : ResettableMonoBehaviour
     private Animator anm;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         move = gameObject.AddComponent<AudioSource>();
         move.clip = Instantiate(MovingSound);
         move.loop = true;
@@ -34,8 +33,7 @@ public class DoorScript : ResettableMonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (!active)
             return;
         anm.SetBool("Up", active);
@@ -43,8 +41,7 @@ public class DoorScript : ResettableMonoBehaviour
             return;
         if (hangtime > 0)
             hangtime -= Time.deltaTime;
-        else
-        {
+        else {
             active = false;
             anm.SetBool("Up", active);
         }
@@ -57,13 +54,27 @@ public class DoorScript : ResettableMonoBehaviour
         anm.SetBool("Up", active);
     }
 
-    public void Activate()
-    {
-        if (!active)
-        {
+    public void Activate() {
+        if (!active) {
             anm.SetBool("Up", active);
             active = true;
             hangtime = bck_hangtime;
         }
+    }
+
+    public void OnCollisionEnter(Collision c) {
+        if (c.gameObject != GameManager.CurrentPlayer)
+            return;
+
+        foreach (var contact in c.contacts) {
+            if (CloseToYAxis(contact.normal)) {
+                GameManager.RespawnPlayer();
+                GameManager.ResetResettables();
+            }
+        }
+    }
+
+    public bool CloseToYAxis (Vector3 vector) {
+        return Vector3.Angle(vector, Vector3.up) < 15;
     }
 }
