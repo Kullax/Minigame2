@@ -29,7 +29,7 @@ public class CubeScale : MonoBehaviour {
         elapsedtime = 0f;
         camerasound = Camera.main.GetComponent<CameraSoundScript>();
         smelted = new Vector3(lethallimit, lethallimit, lethallimit);
-        obj = GameObject.Find("iceCube_aimation_control");
+        obj = GameObject.Find("iceCube_animation_control");
         anm = obj.GetComponent<Animator>();
     }
 
