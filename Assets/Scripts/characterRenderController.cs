@@ -3,18 +3,15 @@ using System.Collections;
 
 public class characterRenderController : MonoBehaviour {
 
+    public float rotateTime = 0.35f;
+    public float faceRotateTime = 0.45f;
+
     private Camera MainCamera;
     private GameObject PlayerCube;
 
     private float xRotateVelocity = 0f;
+    private float yRotateVelocity = 0f;
     private float zRotateVelocity = 0f;
-    private float rotateTime = 0.35f;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void LateUpdate () {
@@ -26,7 +23,7 @@ public class characterRenderController : MonoBehaviour {
         
         //Makes the rendered image look into the camera.
         float xRot, yRot, zRot;
-        yRot = MainCamera.transform.eulerAngles.y + 180;
+
         RaycastHit hit;
         if (Physics.SphereCast(PlayerCube.transform.position, 0.2f, Vector3.down, out hit)) {
             var quat = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
@@ -37,7 +34,10 @@ public class characterRenderController : MonoBehaviour {
             zRot = 0;
         }
 
+        yRot = Quaternion.LookRotation(-GameManager.GameRotation.GetForward()).eulerAngles.y;
+
         xRot = Mathf.SmoothDampAngle(transform.eulerAngles.x, xRot, ref xRotateVelocity, rotateTime);
+        yRot = Mathf.SmoothDampAngle(transform.eulerAngles.y, yRot, ref yRotateVelocity, faceRotateTime);
         zRot = Mathf.SmoothDampAngle(transform.eulerAngles.z, zRot, ref zRotateVelocity, rotateTime);
 
         var euler = new Vector3(xRot, yRot, zRot);
