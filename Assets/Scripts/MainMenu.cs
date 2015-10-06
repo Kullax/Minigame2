@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour {
 
@@ -16,9 +17,18 @@ public class MainMenu : MonoBehaviour {
 	private bool start;
 	private bool moving;
 
+	public AudioClip[] buttonSounds;
+	private AudioSource[] buttonSources;
+
 	void Start(){
 		origPos = backgroundImage.transform.localPosition;
 		main = true;
+		buttonSources = new AudioSource[buttonSounds.Length];
+		for (int i = 0;i<buttonSounds.Length;i++){
+			buttonSources[i] = Camera.main.gameObject.AddComponent<AudioSource>();
+			buttonSources[i].clip = buttonSounds[i];
+			buttonSources[i].playOnAwake = false;
+		}
 	}
 
 	void Update(){
@@ -68,6 +78,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void startGame(){
+		playButtonSound ();
 		if (!main || moving)
 			return;
 		panStartTime = Time.time;
@@ -77,6 +88,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void optionMenu(){
+		playButtonSound ();
 		if (!main || moving)
 			return;
 		panStartTime = Time.time;
@@ -86,6 +98,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void mainMenu(){
+		playButtonSound ();
 		if (!option || moving)
 			return;
 		panStartTime = Time.time;
@@ -95,10 +108,12 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void stopGame() {
+		playButtonSound ();
 		Application.Quit ();
 	}
 
 	public void english(){
+		playButtonSound ();
 		I18n.GetInstance ().LoadLanguage ("en");
 		foreach (TextI18n textField in FindObjectsOfType<TextI18n> ()) {
 			textField.updateField();
@@ -106,6 +121,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void danish(){
+		playButtonSound ();
 		I18n.GetInstance ().LoadLanguage ("da");
 		foreach (TextI18n textField in FindObjectsOfType<TextI18n> ()) {
 			textField.updateField();
@@ -113,10 +129,19 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void muteMusic(){
+		Camera.main.GetComponent<AudioSource>().mute = true;
 		AudioSettings.GetInstance ().muted = true;
 	}
 
 	public void unmuteMusic(){
+		Camera.main.GetComponent<AudioSource>().mute = false;
 		AudioSettings.GetInstance ().muted = false;
+		playButtonSound ();
+	}
+
+	private void playButtonSound(){
+		if (AudioSettings.GetInstance ().muted)
+			return;
+		buttonSources [Random.Range (0, 100) % buttonSounds.Length].Play ();
 	}
 }
