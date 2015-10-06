@@ -49,7 +49,7 @@ public class CubeParticleEffectsController : MonoBehaviour
         }
         if (GameManager.CurrentPlayer.transform.localScale.x < _cs.lethallimit)
         {
-            Debug.Log("DIE");
+            //Debug.Log("DIE");
             death.transform.position = this.transform.position;
             if (!death.isPlaying)
             {
