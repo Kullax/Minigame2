@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: 4f6f53c7ca84b854399bba7360e9437b
+timeCreated: 1444055100
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: IceCube_ref:BlendShapeController
+    100002: IceCube_ref:blendshapeGrp
+    100004: IceCube_ref:Eyebrow_Grp
+    100006: IceCube_ref:eyeBrowBS_grp
+    100008: IceCube_ref:EyesBS_grp
+    100010: IceCube_ref:EyesGrp
+    100012: IceCube_ref:iceCube
+    100014: IceCube_ref:iceCubeBS_grp
+    100016: IceCube_ref:leftEye
+    100018: IceCube_ref:leftEyeBrow
+    100020: IceCube_ref:leftPupil
+    100022: IceCube_ref:mouth
+    100024: IceCube_ref:mouthBS_grp
+    100026: IceCube_ref:mouthGrp
+    100028: IceCube_ref:pupilBS_grp
+    100030: IceCube_ref:rightEye
+    100032: IceCube_ref:rightEyeBrow
+    100034: IceCube_ref:rightPupil
+    100036: //RootNode
+    400000: IceCube_ref:BlendShapeController
+    400002: IceCube_ref:blendshapeGrp
+    400004: IceCube_ref:Eyebrow_Grp
+    400006: IceCube_ref:eyeBrowBS_grp
+    400008: IceCube_ref:EyesBS_grp
+    400010: IceCube_ref:EyesGrp
+    400012: IceCube_ref:iceCube
+    400014: IceCube_ref:iceCubeBS_grp
+    400016: IceCube_ref:leftEye
+    400018: IceCube_ref:leftEyeBrow
+    400020: IceCube_ref:leftPupil
+    400022: IceCube_ref:mouth
+    400024: IceCube_ref:mouthBS_grp
+    400026: IceCube_ref:mouthGrp
+    400028: IceCube_ref:pupilBS_grp
+    400030: IceCube_ref:rightEye
+    400032: IceCube_ref:rightEyeBrow
+    400034: IceCube_ref:rightPupil
+    400036: //RootNode
+    4300000: IceCube_ref:iceCube
+    4300002: IceCube_ref:leftEye
+    4300004: IceCube_ref:leftPupil
+    4300006: IceCube_ref:rightEye
+    4300008: IceCube_ref:rightPupil
+    4300010: IceCube_ref:mouth
+    4300012: IceCube_ref:rightEyeBrow
+    4300014: IceCube_ref:leftEyeBrow
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: IceCube_ref:iceCube
+    13700002: IceCube_ref:leftEye
+    13700004: IceCube_ref:leftEyeBrow
+    13700006: IceCube_ref:leftPupil
+    13700008: IceCube_ref:mouth
+    13700010: IceCube_ref:rightEye
+    13700012: IceCube_ref:rightEyeBrow
+    13700014: IceCube_ref:rightPupil
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
