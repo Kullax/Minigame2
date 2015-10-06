@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovementAnimationController : MonoBehaviour {
+public class PlayerMovementAnimationController : MonoBehaviour
+{
 
     public float MovementThreshhold = 0.7f;
 
     private Rigidbody _rb;
     private CubeScale _cs;
+
+    private float oldSize;
+    private float newSize;
 
     private Animator CAC; //Character Animation Controller
 
@@ -14,7 +18,8 @@ public class PlayerMovementAnimationController : MonoBehaviour {
     private float waitTime = 2.5f;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _rb = GetComponent<Rigidbody>(); //to know velocity
         _cs = GetComponent<CubeScale>(); //to now status of the cube
 
@@ -25,15 +30,16 @@ public class PlayerMovementAnimationController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(Mathf.Abs(_rb.velocity.z) > MovementThreshhold || Mathf.Abs(_rb.velocity.x) > MovementThreshhold)
+        if (!(Mathf.Abs(_rb.velocity.z) > MovementThreshhold || Mathf.Abs(_rb.velocity.x) > MovementThreshhold) && !CAC.GetBool("SpeedToLow"))
         {
             CAC.SetBool("SpeedToLow", false);
-        } else
+        }
+        else
         {
             CAC.SetBool("SpeedToLow", true);
         }
 
-        if (!(CAC.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle Pose") || CAC.GetCurrentAnimatorStateInfo(0).IsName("Idle Pose"))) // Checking if the cube is ready to move
+        if (!(CAC.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle Pose") || CAC.GetCurrentAnimatorStateInfo(0).IsName("Idle Pose") || CAC.GetCurrentAnimatorStateInfo(0).IsName("Idle Waiting"))) // Checking if the cube is ready to move
         {
             return;
         }
@@ -154,23 +160,36 @@ public class PlayerMovementAnimationController : MonoBehaviour {
 
                     break;
             }
-        } 
+        }
         StartWaitAnimation();
     }
 
     private void StartWaitAnimation()
     {
+        //This code gave me cancer and i would rather drag my private parts through 8 miles of broken glass than having to rewrite this.
+        if (waitTimeElapsed >= waitTime+2 && CAC.GetBool("LookAround"))
+        {
+            CAC.SetBool("LookAround", false);
+            waitTimeElapsed = 0;
+
+        }
+
+        if (_cs.status == CubeScale.Status.Melting)
+        {
+            return;
+        }
+
         if (Mathf.Abs(_rb.velocity.z) > 0 || Mathf.Abs(_rb.velocity.x) > 0)
         {
             waitTimeElapsed = 0;
         }
         else
         {
+            Debug.Log(waitTimeElapsed);
             waitTimeElapsed += Time.deltaTime;
-            if (waitTimeElapsed >= waitTime)
+            if ((waitTimeElapsed >= waitTime) && !CAC.GetBool("LookAround"))
             {
-                CAC.Play("Idle Waiting");
-                waitTimeElapsed = 0;
+                CAC.SetBool("LookAround", true);
             }
         }
     }

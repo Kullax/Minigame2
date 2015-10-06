@@ -3,7 +3,19 @@ using System.Collections;
 
 public class PipeCollider : MonoBehaviour {
 
-    private bool active;
+    private bool _active;
+    private bool active {
+        get
+        {
+            return _active;
+        }
+        set
+        {
+            _active = value;
+            if (!_active)
+                firstTime = false;
+        }
+    }
     private CubeScale.Status effect;
     private MeshRenderer rend;
     public Material OnMaterial;
@@ -44,19 +56,41 @@ public class PipeCollider : MonoBehaviour {
         }
     }
 
-
+    private bool firstTime = false;
     void OnTriggerStay(Collider cube)
     {
+        var script = cube.GetComponent<CubeScale>();
+
         if (!active)
             return;
         if (!cube.tag.Equals("Player"))
             return;
-        var script = cube.GetComponent<CubeScale>();
+       // var script = cube.GetComponent<CubeScale>();
         if (script)
             script.Effect(effect);
+
+        //Added by Rasmus
+        if (active && !firstTime)
+        {
+            firstTime = true;
+            if (!(cube.GetComponent<CubeScale>().status == CubeScale.Status.Freezing))
+            {
+                if (effect == CubeScale.Status.Freezing)
+                {
+                   // var script = cube.GetComponent<CubeScale>();
+                    if (script)
+                        script.PlayAnimation(effect);
+                }
+            }
+        }
     }
 
-    void OnTriggerEnter(Collider cube)
+    void OnTriggerExit(Collider whatever) {
+        if (whatever.gameObject == GameManager.CurrentPlayer)
+            firstTime = false;
+    }
+
+    /*void OnTriggerEnter(Collider cube)
     {
         if (active)
         {
@@ -67,7 +101,7 @@ public class PipeCollider : MonoBehaviour {
                     script.PlayAnimation(effect);
             }
         }
-    }
+    }*/
 
     public void Activate()
     {

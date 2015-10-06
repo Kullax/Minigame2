@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: hotColdLever_textures
+  m_Name: ColdPipeTexturee
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 12bb8fc5c801159449b7ade972e30e8b, type: 3}
+          m_Texture: {fileID: 2800000, guid: 8eb9faed56230f94383528fb9e335be5, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -131,7 +131,7 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: .338235319, g: .00497405371, b: .00497405371, a: 1}
+        second: {r: .0934256017, g: .137641683, b: .198529422, a: 1}
       data:
         first:
           name: _Color
