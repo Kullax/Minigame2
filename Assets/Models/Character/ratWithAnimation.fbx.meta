@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: c1bf17bd1bee6a248920f520e877d650
+timeCreated: 1444115602
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: ass
+    100002: headEnd
+    100004: jaw
+    100006: jawEnd
+    100008: l_backLeg01
+    100010: l_backLeg02
+    100012: l_backLeg03
+    100014: l_backLegEnd
+    100016: l_frontLeg01
+    100018: l_frontLeg02
+    100020: l_frontLeg03
+    100022: l_frontLegEnd
+    100024: masterCtrl
+    100026: neck
+    100028: pelvis
+    100030: r_backLeg01
+    100032: r_backLeg02
+    100034: r_backLeg03
+    100036: r_backLegEnd
+    100038: r_frontLeg01
+    100040: r_frontLeg02
+    100042: r_frontLeg03
+    100044: r_frontLegEnd
+    100046: ratMesh
+    100048: //RootNode
+    100050: root
+    100052: spine01
+    100054: spine02
+    100056: spine03
+    100058: tail01
+    100060: tail02
+    100062: tail03
+    100064: tail04
+    100066: tail05
+    100068: tailEnd
+    400000: ass
+    400002: headEnd
+    400004: jaw
+    400006: jawEnd
+    400008: l_backLeg01
+    400010: l_backLeg02
+    400012: l_backLeg03
+    400014: l_backLegEnd
+    400016: l_frontLeg01
+    400018: l_frontLeg02
+    400020: l_frontLeg03
+    400022: l_frontLegEnd
+    400024: masterCtrl
+    400026: neck
+    400028: pelvis
+    400030: r_backLeg01
+    400032: r_backLeg02
+    400034: r_backLeg03
+    400036: r_backLegEnd
+    400038: r_frontLeg01
+    400040: r_frontLeg02
+    400042: r_frontLeg03
+    400044: r_frontLegEnd
+    400046: ratMesh
+    400048: //RootNode
+    400050: root
+    400052: spine01
+    400054: spine02
+    400056: spine03
+    400058: tail01
+    400060: tail02
+    400062: tail03
+    400064: tail04
+    400066: tail05
+    400068: tailEnd
+    4300000: ratMesh
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: ratMesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: masterCtrl
+        weight: 1
+      - path: masterCtrl/root
+        weight: 1
+      - path: masterCtrl/root/pelvis
+        weight: 1
+      - path: masterCtrl/root/pelvis/ass
+        weight: 1
+      - path: masterCtrl/root/pelvis/ass/tail01
+        weight: 1
+      - path: masterCtrl/root/pelvis/ass/tail01/tail02
+        weight: 1
+      - path: masterCtrl/root/pelvis/ass/tail01/tail02/tail03
+        weight: 1
+      - path: masterCtrl/root/pelvis/ass/tail01/tail02/tail03/tail04
+        weight: 1
+      - path: masterCtrl/root/pelvis/ass/tail01/tail02/tail03/tail04/tail05
+        weight: 1
+      - path: masterCtrl/root/pelvis/ass/tail01/tail02/tail03/tail04/tail05/tailEnd
+        weight: 1
+      - path: masterCtrl/root/pelvis/l_backLeg01
+        weight: 1
+      - path: masterCtrl/root/pelvis/l_backLeg01/l_backLeg02
+        weight: 1
+      - path: masterCtrl/root/pelvis/l_backLeg01/l_backLeg02/l_backLeg03
+        weight: 1
+      - path: masterCtrl/root/pelvis/l_backLeg01/l_backLeg02/l_backLeg03/l_backLegEnd
+        weight: 1
+      - path: masterCtrl/root/pelvis/r_backLeg01
+        weight: 1
+      - path: masterCtrl/root/pelvis/r_backLeg01/r_backLeg02
+        weight: 1
+      - path: masterCtrl/root/pelvis/r_backLeg01/r_backLeg02/r_backLeg03
+        weight: 1
+      - path: masterCtrl/root/pelvis/r_backLeg01/r_backLeg02/r_backLeg03/r_backLegEnd
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/l_frontLeg01
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/l_frontLeg01/l_frontLeg02
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/l_frontLeg01/l_frontLeg02/l_frontLeg03
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/l_frontLeg01/l_frontLeg02/l_frontLeg03/l_frontLegEnd
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/neck
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/neck/headEnd
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/neck/jaw
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/neck/jaw/jawEnd
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/r_frontLeg01
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/r_frontLeg01/r_frontLeg02
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/r_frontLeg01/r_frontLeg02/r_frontLeg03
+        weight: 1
+      - path: masterCtrl/root/pelvis/spine01/spine02/spine03/r_frontLeg01/r_frontLeg02/r_frontLeg03/r_frontLegEnd
+        weight: 1
+      - path: ratMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
