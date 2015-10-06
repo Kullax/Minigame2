@@ -45,4 +45,14 @@ public class CameraSoundScript : MonoBehaviour {
         melting.Stop();
         freezing.UnPause();
     }
+
+    public AudioSource getMeltingMelody()
+    {
+        return melting;
+    }
+
+    public AudioSource getFreezingMelody()
+    {
+        return freezing;
+    }
 }
