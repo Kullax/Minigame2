@@ -8,6 +8,7 @@ public class CheckpointManager : MonoBehaviour {
     [Header("Debug options")]
     public bool ShowActiveCheckpoint = true;
 
+	private static Checkpoint _initialSpawnPoint;
     private static GameObject _prefab;
     private static Checkpoint _activeCheckpoint;
 
@@ -39,6 +40,8 @@ public class CheckpointManager : MonoBehaviour {
             return false;
         }
 
+		_initialSpawnPoint = _activeCheckpoint;
+
         return true;
     }
 
@@ -61,6 +64,10 @@ public class CheckpointManager : MonoBehaviour {
 
         return _activeCheckpoint.Spawn(_prefab);
     }
+
+	public static void ResetToInitialSpawnPoint() {
+		_activeCheckpoint = _initialSpawnPoint;
+	}
 
     public static void SetActiveCheckpoint(Checkpoint checkpoint)
     {
