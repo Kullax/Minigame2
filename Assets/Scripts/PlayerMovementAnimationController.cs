@@ -10,6 +10,9 @@ public class PlayerMovementAnimationController : MonoBehaviour {
 
     private Animator CAC; //Character Animation Controller
 
+    private float waitTimeElapsed = 0;
+    private float waitTime = 2.5f;
+
     // Use this for initialization
     void Start () {
         _rb = GetComponent<Rigidbody>(); //to know velocity
@@ -142,6 +145,24 @@ public class PlayerMovementAnimationController : MonoBehaviour {
                     }
 
                     break;
+            }
+        }
+        StartWaitAnimation();
+    }
+
+    private void StartWaitAnimation()
+    {
+        if (Mathf.Abs(_rb.velocity.z) > 0 || Mathf.Abs(_rb.velocity.x) > 0)
+        {
+            waitTimeElapsed = 0;
+        }
+        else
+        {
+            waitTimeElapsed += Time.deltaTime;
+            if (waitTimeElapsed >= waitTime)
+            {
+                CAC.Play("Idle Waiting");
+                waitTimeElapsed = 0;
             }
         }
     }
