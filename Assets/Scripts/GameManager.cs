@@ -24,6 +24,20 @@ public static class GameRotationMethods {
         }
         return Vector3.zero;
     }
+
+    public static Vector3 GetLeft(this GameRotation rotation) {
+        switch (rotation) {
+            case GameRotation.NegativeX:
+                return -Vector3.forward;
+            case GameRotation.PositiveX:
+                return Vector3.forward;
+            case GameRotation.NegativeZ:
+                return Vector3.left;
+            case GameRotation.PositiveZ:
+                return -Vector3.left;
+        }
+        return Vector3.zero;
+    }
     
     public static Quaternion AsWorldQuaternion(this GameRotation rotation) {
         return Quaternion.LookRotation(rotation.GetForward(), Vector3.up);
@@ -109,16 +123,12 @@ public class GameManager : MonoBehaviour {
                 _currentRigidbody.constraints =
                     RigidbodyConstraints.FreezePositionX |
                     RigidbodyConstraints.FreezeRotation;
-                    /*RigidbodyConstraints.FreezeRotationY |
-                    RigidbodyConstraints.FreezeRotationZ;*/
                 break;
             case GameRotation.PositiveZ:
             case GameRotation.NegativeZ:
                 _currentRigidbody.constraints =
                     RigidbodyConstraints.FreezePositionZ |
                     RigidbodyConstraints.FreezeRotation;
-                    /*RigidbodyConstraints.FreezeRotationY |
-                    RigidbodyConstraints.FreezeRotationX;*/
                 break;
         }
     }
