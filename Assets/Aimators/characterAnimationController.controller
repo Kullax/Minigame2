@@ -639,7 +639,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle to Right
+  m_Name: Idle to the right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -687,7 +687,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Left to ilde
+  m_Name: Left to idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
