@@ -1845,6 +1845,7 @@ GameObject:
   - 124: {fileID: 800729728}
   - 81: {fileID: 800729727}
   - 114: {fileID: 800729732}
+  - 114: {fileID: 800729733}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1934,6 +1935,22 @@ MonoBehaviour:
   camDist: 5
   movementSpeed: .800000012
   cameraTilt: 5
+--- !u!114 &800729733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 800729726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4db7afdd8811b84c8aef9e66f7b09d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FreezingMelody: {fileID: 8300000, guid: 3e953f7337d10254185ee057b596771e, type: 3}
+  MeltingMelody: {fileID: 8300000, guid: ab2be1cf4db68d64ca01fbd06e67806b, type: 3}
+  RefreezeSound: {fileID: 8300000, guid: 0cc09727b8c050349abb9a2a112084a9, type: 3}
+  DeathMelody: {fileID: 8300000, guid: 2d504f5e864930f4e9371212f9ebfc94, type: 3}
+  volume: 1
 --- !u!1 &962345515 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 126094, guid: 9fe000bc34a14254a9af244aae265c67, type: 2}
@@ -2662,7 +2679,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 494804, guid: 3417a111e2c6b734a946fe10c7a24239, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 122960, guid: 3417a111e2c6b734a946fe10c7a24239, type: 2}
       propertyPath: m_Name
@@ -3051,7 +3068,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 494804, guid: 3417a111e2c6b734a946fe10c7a24239, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 122960, guid: 3417a111e2c6b734a946fe10c7a24239, type: 2}
       propertyPath: m_Name
