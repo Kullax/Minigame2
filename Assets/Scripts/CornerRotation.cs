@@ -5,63 +5,33 @@ public class CornerRotation : MonoBehaviour {
 
     public bool rightTurn;
 
-    // Use this for initialization
-    void Start () {
-    }
-	
     void OnCollisionEnter ( Collision player)
     {
-        /* (player.tag != "Player")
-        {
-            return;
-        }*/
+        DeflectPlayer(player.collider.attachedRigidbody, player.impulse);
+        SetRotation();
+    }
 
+    private void SetRotation() {
         switch (GameManager.GameRotation) {
             case GameRotation.NegativeX:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveZ);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeZ);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.PositiveZ : GameRotation.NegativeZ);
                 break;
             case GameRotation.PositiveX:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeZ);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveZ);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.NegativeZ : GameRotation.PositiveZ);
                 break;
             case GameRotation.NegativeZ:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveX);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeX);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.PositiveX : GameRotation.NegativeX);
                 break;
             case GameRotation.PositiveZ:
-                if (rightTurn)
-                {
-                    GameManager.SetGameRotation(GameRotation.NegativeX);
-                }
-                else
-                {
-                    GameManager.SetGameRotation(GameRotation.PositiveX);
-                }
+                GameManager.SetGameRotation(rightTurn ? GameRotation.NegativeX : GameRotation.PositiveX);
                 break;
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-
-	}
+    private void DeflectPlayer(Rigidbody rb, Vector3 impulse) {
+        // We are currently looking down the direction we want to push.
+        var forward = GameManager.GameRotation.GetForward();
+        // We redirect the full impulse towards our desired direction
+        rb.AddForce(impulse.magnitude * forward, ForceMode.Impulse);
+    }
 }
