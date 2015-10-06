@@ -9,7 +9,6 @@ public class DeathForTheRat : MonoBehaviour
         {
             //Debug.Log("Rat point reached and destroyed!");
             Destroy(col.gameObject);
-            Destroy(this.gameObject);
         }
     }
 }
