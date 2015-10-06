@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2395626}
   - 64: {fileID: 6453300}
   - 65: {fileID: 6511216}
+  - 65: {fileID: 6524138}
   m_Layer: 0
   m_Name: openPipe_end
   m_TagString: Untagged
@@ -96,7 +97,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160888}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -177,6 +178,18 @@ MeshCollider:
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: b6eb38cac72bdbc4f9bfc5f118354312, type: 3}
 --- !u!65 &6511216
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .769999981, y: 3.73506737, z: 3.72000003}
+  m_Center: {x: .315852046, y: 1.48306632, z: -2.38418579e-07}
+--- !u!65 &6524138
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
