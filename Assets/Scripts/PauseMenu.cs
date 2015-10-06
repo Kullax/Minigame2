@@ -3,24 +3,20 @@ using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
 
-	private GameObject pauseMenu;
-
-	private Vector3 origPos;
-
 	void Start () {
-		pauseMenu  = (GameObject) Instantiate(Resources.Load("Pause Menu"));
-		pauseMenu.SetActive (false);
+		Instantiate(Resources.Load ("Pause Menu"));
+		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
 		Time.timeScale = 1;
 	}
 
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
-			if(!pauseMenu.activeSelf){
+			if(!GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled){
 				Time.timeScale = 0;
-				pauseMenu.SetActive(true);
+				GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = true;
 			} else {
 				Time.timeScale = 1;
-				pauseMenu.SetActive(false);
+				GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
 			}
 		}
 	}

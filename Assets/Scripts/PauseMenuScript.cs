@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PauseMenuScript : MonoBehaviour {
 
 	public void resetGame(){
 		GameManager.RestartLevel ();
-		GameObject pauseMenu = GameObject.FindGameObjectWithTag ("PauseMenu");
-		pauseMenu.SetActive (false);
+		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
 		Time.timeScale = 1;
 	}
 
 	public void resumeGame(){
-		GameObject pauseMenu = GameObject.FindGameObjectWithTag ("PauseMenu");
-		pauseMenu.SetActive (false);
+		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
 		Time.timeScale = 1;
 	}
 
 	public void loadMainMenu(){
 		Application.LoadLevel ("MainMenu");
+	}
+
+	public void showPauseMenu(){
+		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = true;
+		Time.timeScale = 0;
 	}
 
 }
