@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 452462}
   - 198: {fileID: 19810124}
   - 199: {fileID: 19986400}
+  - 114: {fileID: 11452138}
   m_Layer: 0
   m_Name: FX_ValveSteam
   m_TagString: Untagged
@@ -29,6 +30,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11452138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7cde7b2dd27d94089c8970b4f72a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19810124
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1086,6 +1098,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: InitialModule.maxNumParticles
       value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
