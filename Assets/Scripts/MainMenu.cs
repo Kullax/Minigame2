@@ -17,6 +17,9 @@ public class MainMenu : MonoBehaviour {
 	private bool start;
 	private bool moving;
 
+    [Range(0,1)]
+    public float buttonVolume = 1;
+
 	public AudioClip[] buttonSounds;
 	private AudioSource[] buttonSources;
 
@@ -27,7 +30,8 @@ public class MainMenu : MonoBehaviour {
 		for (int i = 0;i<buttonSounds.Length;i++){
 			buttonSources[i] = Camera.main.gameObject.AddComponent<AudioSource>();
 			buttonSources[i].clip = buttonSounds[i];
-			buttonSources[i].playOnAwake = false;
+            buttonSources[i].volume = buttonVolume;
+            buttonSources[i].playOnAwake = false;
 		}
 	}
 
