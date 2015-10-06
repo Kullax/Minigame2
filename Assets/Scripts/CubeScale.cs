@@ -13,6 +13,9 @@ public class CubeScale : MonoBehaviour {
     public float meltingspeed;
     public float lethallimit;
     private CameraSoundScript camerasound;
+    private GameObject obj;
+    private Animator anm;
+    private bool alreadyplayed = false;
 
     public enum Status
     {
@@ -22,29 +25,49 @@ public class CubeScale : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start () { 
         elapsedtime = 0f;
         camerasound = Camera.main.GetComponent<CameraSoundScript>();
         smelted = new Vector3(lethallimit, lethallimit, lethallimit);
+        obj = GameObject.Find("iceCube_aimation_control");
+        anm = obj.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void FixedUpdate() {
         if (transform.localScale.x <= lethallimit)
         {
-            // PLACEHOLDER FOR DEATH ANIMATION
+            GetComponent<GodMovable>().enabled = false;
+            anm.SetBool("Dead", true);
+            if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death"))
+            {
+                if (camerasound && !alreadyplayed)
+                {
+                    camerasound.deathmelody();
+                    alreadyplayed = true;
+                }
+                if (camerasound.isIdle())
+                {
+                    anm.SetBool("Melting", false);
+                    anm.SetBool("Dead", false);
+                    anm.Play("Idle Pose");
+                    GameManager.RespawnPlayer();
+                    GameManager.ResetResettables();
+                }
 
-            GameManager.RespawnPlayer();
-            GameManager.ResetResettables();
+            }
+            return;
         }
 
 
         switch (status)
         {
             case Status.Melting:
+                anm.SetBool("Melting", true);
                 ScaleObject(smelted);
                 break;
             case Status.Freezing:
+                anm.SetBool("Melting", false);
                 ScaleObject(frozen);
                 break;
             default:
@@ -68,8 +91,25 @@ public class CubeScale : MonoBehaviour {
         }
     }
 
+    public void PlayAnimation(Status effect)
+    {
+        switch (effect)
+        {
+            case Status.Freezing:
+                if (status == Status.None)
+                    anm.Play("Ilde to Refreeze");
+                if (status == Status.Melting)
+                    anm.Play("Melting Idle To Refreeze");
+                    break;
+            default:
+                break;
+        }
+    }
+
     public void Effect(Status effect)
     {
+        if (transform.localScale.x <= lethallimit)
+            return;
         if (effect == status)
             return;
         switch (effect)
