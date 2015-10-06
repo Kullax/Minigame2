@@ -115,6 +115,12 @@ public class GameManager : MonoBehaviour {
         return true;
     }
 
+	public static void RestartLevel() {
+		CheckpointManager.ResetToInitialSpawnPoint ();
+		RespawnPlayer ();
+		ResetResettables ();
+	}
+
     private static void EnforceRigidbodyConstraints() {
 
         switch (_gameRotation) {

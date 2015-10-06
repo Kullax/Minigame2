@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11414920}
   - 114: {fileID: 11481696}
   - 114: {fileID: 11437626}
+  - 114: {fileID: 11466850}
   m_Layer: 0
   m_Name: GameScripts
   m_TagString: Untagged
@@ -66,6 +67,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceFromCamera: 7
+--- !u!114 &11466850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cf374f7a91044a9b9a4c47e76408c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11476668
 MonoBehaviour:
   m_ObjectHideFlags: 1

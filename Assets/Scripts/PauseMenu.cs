@@ -11,8 +11,6 @@ public class PauseMenu : MonoBehaviour {
 		pauseMenu  = (GameObject) Instantiate(Resources.Load("Pause Menu"));
 		pauseMenu.SetActive (false);
 		Time.timeScale = 1;
-		pauseMenu.transform.SetParent(Camera.main.transform);
-		pauseMenu.transform.localPosition = new Vector3 (5.1f,2.33f,5.75f);
 	}
 
 	void Update () {
