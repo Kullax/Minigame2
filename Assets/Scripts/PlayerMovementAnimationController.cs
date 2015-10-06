@@ -25,6 +25,14 @@ public class PlayerMovementAnimationController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(Mathf.Abs(_rb.velocity.z) > MovementThreshhold || Mathf.Abs(_rb.velocity.x) > MovementThreshhold)
+        {
+            CAC.SetBool("SpeedToLow", false);
+        } else
+        {
+            CAC.SetBool("SpeedToLow", true);
+        }
+
         if (!(CAC.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle Pose") || CAC.GetCurrentAnimatorStateInfo(0).IsName("Idle Pose"))) // Checking if the cube is ready to move
         {
             return;
@@ -146,7 +154,7 @@ public class PlayerMovementAnimationController : MonoBehaviour {
 
                     break;
             }
-        }
+        } 
         StartWaitAnimation();
     }
 
