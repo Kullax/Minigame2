@@ -22,8 +22,8 @@ public class CompleteLevelEntrance : MonoBehaviour
         var player = GameObject.FindGameObjectWithTag("Player");
         //state = player.GetComponent<PlayerState>();
         rbody = player.GetComponent<Rigidbody>();
-        victoryTransistionScreen = (GameObject)Instantiate(Resources.Load("VictoryTransitionScreen"));
-        fadeScreen = victoryTransistionScreen.GetComponentInChildren<Image>();
+        //victoryTransistionScreen = (GameObject)Instantiate(Resources.Load("VictoryTransitionScreen"));
+        //fadeScreen = victoryTransistionScreen.GetComponentInChildren<Image>();
 
     }
     void Update()
