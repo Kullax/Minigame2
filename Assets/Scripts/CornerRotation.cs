@@ -5,10 +5,16 @@ public class CornerRotation : MonoBehaviour {
 
     public bool rightTurn;
 
-    void OnCollisionEnter ( Collision player)
-    {
-        DeflectPlayer(player.collider.attachedRigidbody, player.impulse);
+    private Vector3 lastForward;
+
+    void OnCollisionEnter ( Collision player) {
+        lastForward = GameManager.GameRotation.GetForward();
+        DeflectPlayer(player.rigidbody, player.impulse, lastForward);
         SetRotation();
+    }
+
+    void OnCollisionStay ( Collision player ) {
+        DeflectPlayer(player.rigidbody, 25, lastForward, ForceMode.Acceleration);
     }
 
     private void SetRotation() {
@@ -28,10 +34,12 @@ public class CornerRotation : MonoBehaviour {
         }
     }
 
-    private void DeflectPlayer(Rigidbody rb, Vector3 impulse) {
-        // We are currently looking down the direction we want to push.
-        var forward = GameManager.GameRotation.GetForward();
-        // We redirect the full impulse towards our desired direction
-        rb.AddForce(impulse.magnitude * forward, ForceMode.Impulse);
+    private void DeflectPlayer(Rigidbody rb, Vector3 strength, Vector3 direction, ForceMode mode = ForceMode.Impulse) {
+        DeflectPlayer(rb, strength.magnitude, direction, mode);
+    }
+
+    private void DeflectPlayer(Rigidbody rb, float strength, Vector3 direction, ForceMode mode = ForceMode.Impulse)
+    {
+        rb.AddForce(strength * direction.normalized, mode);
     }
 }
