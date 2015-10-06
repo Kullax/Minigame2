@@ -29,7 +29,12 @@ public class MainMenu : MonoBehaviour {
 
 	void Start(){
 		origPos = backgroundImage.transform.localPosition;
+		option = false;
 		main = true;
+		start = false;
+		moving = false;
+		credit = false;
+		creditback = false;
 		buttonSources = new AudioSource[buttonSounds.Length];
 		for (int i = 0;i<buttonSounds.Length;i++){
 			buttonSources[i] = Camera.main.gameObject.AddComponent<AudioSource>();
@@ -65,7 +70,7 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	private void scrollLeft(){
+	private void scrollLeft(){;
 		if (panStartTime != 0) {
 			backgroundImage.transform.localPosition =  Vector3.Lerp(
 				origPos, 

@@ -16,6 +16,7 @@ public class PauseMenuScript : MonoBehaviour {
 	}
 
 	public void loadMainMenu(){
+		Time.timeScale = 1;
 		Application.LoadLevel ("MainMenu");
 	}
 

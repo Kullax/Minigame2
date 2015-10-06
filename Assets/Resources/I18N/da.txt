@@ -1,4 +1,4 @@
-credits=Holdet bag
+credits=HOLDET BAG
 resume=Fortsæt
 mainmenu=Hovedmenu
 restart=Genstart
