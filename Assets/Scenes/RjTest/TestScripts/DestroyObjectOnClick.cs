@@ -5,7 +5,7 @@ public class DestroyObjectOnClick : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
 
     // Update is called once per frame
@@ -19,8 +19,8 @@ public class DestroyObjectOnClick : MonoBehaviour {
             {
                 if (hit.collider.gameObject.tag == "Destroyable")
                 {
-                    Debug.Log(hit.collider.gameObject.transform.localRotation);
                     var destroyableCounter = hit.collider.gameObject.GetComponent<DestroyableObjectCounter>();
+                    destroyableCounter.PlayNastySound();
                     destroyableCounter.IncrementClicked();
                     
                     //Destroy(hit.collider.gameObject);

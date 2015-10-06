@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CubeScale : MonoBehaviour {
+public class CubeScale : MonoBehaviour
+{
     private float elapsedtime;
     private float epsilon = 0.05f;
     private float refreeze = 0.25f;
@@ -25,7 +26,8 @@ public class CubeScale : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () { 
+    void Start()
+    {
         elapsedtime = 0f;
         camerasound = Camera.main.GetComponent<CameraSoundScript>();
         smelted = new Vector3(lethallimit, lethallimit, lethallimit);
@@ -34,7 +36,8 @@ public class CubeScale : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         if (transform.localScale.x <= lethallimit)
         {
             GetComponent<GodMovable>().enabled = false;
@@ -100,7 +103,7 @@ public class CubeScale : MonoBehaviour {
                     anm.Play("Ilde to Refreeze");
                 if (status == Status.Melting)
                     anm.Play("Melting Idle To Refreeze");
-                    break;
+                break;
             default:
                 break;
         }
@@ -119,7 +122,7 @@ public class CubeScale : MonoBehaviour {
                 status = Status.Melting;
                 elapsedtime = 0;
                 speed = meltingspeed;
-                if(camerasound)
+                if (camerasound)
                     camerasound.meltingmelody();
                 break;
             case Status.Freezing:
@@ -129,7 +132,7 @@ public class CubeScale : MonoBehaviour {
                 status = Status.Freezing;
                 elapsedtime = 0;
                 speed = refreeze;
-                if(camerasound)
+                if (camerasound)
                     camerasound.normalmelody();
                 break;
             default:
