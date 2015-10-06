@@ -6,16 +6,21 @@ public class Spawner : ResettableMonoBehaviour
 {
     public GameObject SpawnGO, StartGO, EndGO;
     public bool Active = true;
+    public float ratSpeed = 10.0f;
+
 
     private bool initiallyActive;
-    
-    void Start () {
-        initiallyActive = Active;
-    }    
 
-    public override void ResetBehaviour() {
+    void Start()
+    {
+        initiallyActive = Active;
+    }
+
+    public override void ResetBehaviour()
+    {
         Active = initiallyActive;
     }
+
 
     void OnTriggerEnter(Collider collider)
     {
@@ -27,6 +32,7 @@ public class Spawner : ResettableMonoBehaviour
         Instantiate(SpawnGO, StartGO.transform.position, StartGO.transform.rotation);
 
         SetTarget tmp = FindObjectOfType<SetTarget>();
-        tmp.GetComponent<SetTarget>().EndTarget(EndGO.transform.position);
+        tmp.EndTarget(EndGO.transform.position);
+        tmp.speed = ratSpeed;
     }
 }
