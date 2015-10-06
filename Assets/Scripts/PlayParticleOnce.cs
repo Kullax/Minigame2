@@ -9,7 +9,7 @@ public class PlayParticleOnce : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        ParticleToPlay.Play();
     }
 
     // Update is called once per frame
