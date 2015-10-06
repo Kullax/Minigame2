@@ -2703,6 +2703,7 @@ MonoBehaviour:
   panTimeOptions: 1
   backgroundImage: {fileID: 1922818507}
   shade: {fileID: 166690867}
+  buttonVolume: 1
   buttonSounds:
   - {fileID: 8300000, guid: 4bdad6048551aa446b1397c851a165d7, type: 3}
   - {fileID: 8300000, guid: 0a2fa228b4b29164abedf73b7008ce5e, type: 3}
@@ -2805,7 +2806,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 11758f4b69ab521429b2a163c6fc0b4d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .25
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2817,7 +2818,7 @@ AudioSource:
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
-  BypassListenerEffects: 0
+  BypassListenerEffects: 1
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
