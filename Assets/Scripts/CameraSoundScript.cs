@@ -5,9 +5,11 @@ public class CameraSoundScript : MonoBehaviour {
     public AudioClip FreezingMelody;
     public AudioClip MeltingMelody;
     public AudioClip RefreezeSound;
+    public AudioClip DeathMelody;
     private AudioSource freezing;
     private AudioSource melting;
     private AudioSource refreeze;
+    private AudioSource death;
     public float volume = 1f;
 
 	// Use this for initialization
@@ -23,14 +25,17 @@ public class CameraSoundScript : MonoBehaviour {
         refreeze = gameObject.AddComponent<AudioSource>();
         refreeze.clip = Instantiate(RefreezeSound);
         refreeze.volume = volume;
+        death = gameObject.AddComponent<AudioSource>();
+        death.clip = DeathMelody;
+        death.volume = volume;
     }
 
-	void Update(){
-		if (!freezing.isPlaying && !melting.isPlaying) {
+/*	void Update(){
+		if (!freezing.isPlaying && !melting.isPlaying && !death.isPlaying) {
 			freezing.Stop ();
 			freezing.PlayDelayed (1);
 		}
-	}
+	}*/
 
     public void meltingmelody()
     {
@@ -46,13 +51,26 @@ public class CameraSoundScript : MonoBehaviour {
         freezing.UnPause();
     }
 
-    public AudioSource getMeltingMelody()
+    public void deathmelody()
     {
-        return melting;
+        if (!death.isPlaying)
+            death.Play();
+        freezing.Stop();
+       melting.Stop();
+    }
+
+    public bool isIdle()
+    {
+        return !freezing.isPlaying && !melting.isPlaying && !death.isPlaying;
     }
 
     public AudioSource getFreezingMelody()
     {
         return freezing;
+    }
+
+    public AudioSource getMeltingMelody()
+    {
+        return melting;
     }
 }
