@@ -33,6 +33,10 @@ public class CubeScale : MonoBehaviour
         smelted = new Vector3(lethallimit, lethallimit, lethallimit);
         obj = GameObject.Find("iceCube_animation_control");
         anm = obj.GetComponent<Animator>();
+
+        anm.SetBool("Melting", false);
+        anm.SetBool("Dead", false);
+        anm.Play("Idle Pose");
     }
 
     // Update is called once per frame
