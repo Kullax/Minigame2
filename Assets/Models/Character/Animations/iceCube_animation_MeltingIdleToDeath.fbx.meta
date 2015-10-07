@@ -51,7 +51,8 @@ ModelImporter:
     4300010: IceCube_ref:mouth
     4300012: IceCube_ref:rightEyeBrow
     4300014: IceCube_ref:leftEyeBrow
-    7400000: Take 001
+    7400000: Death by melting
+    7400002: Death by door
     9500000: //RootNode
     13700000: IceCube_ref:iceCube
     13700002: IceCube_ref:leftEye
@@ -80,7 +81,135 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Death by melting
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:BlendShapeController
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:eyeBrowBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:EyesBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:iceCubeBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:mouthBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:pupilBS_grp
+        weight: 1
+      - path: IceCube_ref:iceCube
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:Eyebrow_Grp
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:Eyebrow_Grp/IceCube_ref:leftEyeBrow
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:Eyebrow_Grp/IceCube_ref:rightEyeBrow
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:leftEye
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:leftEye/IceCube_ref:leftPupil
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:rightEye
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:rightEye/IceCube_ref:rightPupil
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:mouthGrp
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:mouthGrp/IceCube_ref:mouth
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Death by door
+      takeName: Take 001
+      firstFrame: 35
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:BlendShapeController
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:eyeBrowBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:EyesBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:iceCubeBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:mouthBS_grp
+        weight: 1
+      - path: IceCube_ref:blendshapeGrp/IceCube_ref:pupilBS_grp
+        weight: 1
+      - path: IceCube_ref:iceCube
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:Eyebrow_Grp
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:Eyebrow_Grp/IceCube_ref:leftEyeBrow
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:Eyebrow_Grp/IceCube_ref:rightEyeBrow
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:leftEye
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:leftEye/IceCube_ref:leftPupil
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:rightEye
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:EyesGrp/IceCube_ref:rightEye/IceCube_ref:rightPupil
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:mouthGrp
+        weight: 1
+      - path: IceCube_ref:iceCube/IceCube_ref:mouthGrp/IceCube_ref:mouth
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
