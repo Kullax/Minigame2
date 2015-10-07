@@ -2,27 +2,57 @@
 using System.Collections;
 using System;
 
-public class DestroyableObjectCounter : MonoBehaviour {
+public class DestroyableObjectCounter : MonoBehaviour
+{
 
     private int clickedCounter = 0;
-    private int newCounter;
-    private int previousCounter;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private int newCounter = 0;
+    private int previousCounter = 0;
+    // sound
+    private AudioSource pipeHit;
+
+    //shaking time
+    private float ShakeTimeElapsed = 1.0f;
+    private float ShakeTime = 1.0f;
+
+    // Use this for initialization
+    void Start()
+    {
+        pipeHit = GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         newCounter = clickedCounter;
+
+        // Did someone click to start shaking?
         if (newCounter != previousCounter)
+        {
+            ShakeTimeElapsed = 0;
+        }
+
+        //stop shaking? else shake!
+        if (ShakeTimeElapsed > ShakeTime)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else
         {
             shake();
         }
+        ShakeTimeElapsed += Time.deltaTime;
 
+        // shaking kills you, be carefull.
         if (clickedCounter > 4)
         {
-            Destroy(gameObject);
+            var delta = new Vector3(0, Mathf.Min(ShakeTimeElapsed, 3), 0);
+            transform.localPosition -= delta;
+
+            if (ShakeTimeElapsed > 100)
+            {
+                Destroy(gameObject);
+            }
         }
 
         previousCounter = newCounter;
@@ -32,25 +62,33 @@ public class DestroyableObjectCounter : MonoBehaviour {
     {
         switch (GameManager.GameRotation)
         {
-            case (GameRotation.NegativeX):
-            case (GameRotation.PositiveX):
-
-                transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            case (GameRotation.NegativeZ):
+            case (GameRotation.PositiveZ):
+                transform.Rotate(0.0f, 0.0f, UnityEngine.Random.Range(-2.0f, 2.0f));
+                var newZRotation = transform.rotation;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.rotation = Quaternion.Lerp(transform.rotation, newZRotation, Time.time);
 
                 break;
 
-            case (GameRotation.NegativeZ):
-            case (GameRotation.PositiveZ):
-
-                //transform.eulerAngles = new Vector3(Random.Range(-10.0f,10.0f), 0.0f, 0.0f);
+            case (GameRotation.NegativeX):
+            case (GameRotation.PositiveX):
+                transform.Rotate(UnityEngine.Random.Range(-2.0f, 2.0f), 0.0f, 0.0f);
+                var newXRotation = transform.rotation;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.rotation = Quaternion.Lerp(transform.rotation, newXRotation, Time.time);
 
                 break;
         }
-        transform.eulerAngles = new Vector3 (0,0,0);
     }
 
-    public int IncrementClicked ()
+    public int IncrementClicked()
     {
         return ++clickedCounter;
+    }
+
+    public void PlayNastySound()
+    {
+        pipeHit.Play();
     }
 }

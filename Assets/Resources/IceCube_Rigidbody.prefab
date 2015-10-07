@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137258}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: -.133000016, y: -.330000013, z: 0}
+  m_LocalPosition: {x: -.133000016, y: -.439999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 452532}
@@ -174,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.88000011, y: 3.20000005, z: 3.06999993}
+  m_LocalPosition: {x: -2.79530478, y: -80.756958, z: 57.122467}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494258}
@@ -364,7 +364,7 @@ TrailRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7361b803e0fc390498fa32d6e300d421, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -384,16 +384,16 @@ TrailRenderer:
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4293717228
     m_Color[1]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4294967276
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 2164255981
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 1711276031
     m_Color[4]:
       serializedVersion: 2
       rgba: 16777215

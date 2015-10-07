@@ -24,8 +24,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179806}
-  m_LocalRotation: {x: 1, y: 1.62920713e-07, z: 1.62920713e-07, w: -1.33158053e-07}
-  m_LocalPosition: {x: 20.396368, y: -1.84000003, z: 47.5069389}
+  m_LocalRotation: {x: -1.00531545e-14, y: 1.33158068e-07, z: 1, w: 7.54979013e-08}
+  m_LocalPosition: {x: 52.3291893, y: -88.9614258, z: 31.5867786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36,7 +36,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179806}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f7cde7b2dd27d94089c8970b4f72a1a, type: 3}
   m_Name: 
@@ -1071,6 +1071,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: InitialModule.maxNumParticles
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

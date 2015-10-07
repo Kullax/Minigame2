@@ -119,7 +119,7 @@ public class Pipe : ResettableMonoBehaviour
             if (audioSource)
                 audioSource.PlayDelayed(0.5f);
 
-            Instantiate(particleToPlay, handle.transform.position, handle.transform.rotation);
+            particleToPlay.Play();
         }
         else
         {

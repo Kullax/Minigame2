@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Destroyable
+  - Rat
   - New Tag
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
