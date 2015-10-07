@@ -14,9 +14,15 @@ public class PauseMenu : MonoBehaviour {
 			if(!GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled){
 				Time.timeScale = 0;
 				GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = true;
+				AudioManager am = FindObjectOfType<AudioManager>();
+				am.MuteMusicSources();
+				am.MuteSoundSources();
 			} else {
 				Time.timeScale = 1;
 				GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
+				AudioManager am = FindObjectOfType<AudioManager>();
+				am.UnmuteMusicSources();
+				am.UnmuteSoundSources();
 			}
 		}
 	}

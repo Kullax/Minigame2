@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour {
     private AudioSource meltingmusic;
 
 	private bool mutedSet;
+	private bool pausedMelting;
 
 	void Update(){
 		if (AudioSettings.GetInstance ().muted && !mutedSet) {
@@ -37,13 +38,19 @@ public class AudioManager : MonoBehaviour {
     public void MuteMusicSources()
     {
         freezingmusic.mute = true;
-        meltingmusic.mute = true;
+		if (meltingmusic.isPlaying) {
+			meltingmusic.Pause();
+			pausedMelting = true;
+		}
     }
 
     public void UnmuteMusicSources()
     {
         freezingmusic.mute = false;
-        meltingmusic.mute = false;
+        if (pausedMelting) {
+			meltingmusic.UnPause();
+			pausedMelting = false;
+		}
     }
 
     public void MuteSoundSources()
