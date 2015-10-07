@@ -86,6 +86,10 @@ public class CheckpointManager : MonoBehaviour {
         SetActiveCheckpoint(checkpointScript);
     }
 
+    public static bool IsActiveCheckpoint(Checkpoint checkpoint) {
+        return checkpoint == _activeCheckpoint;
+    }
+
     void OnDrawGizmos()
     {
         if (ShowActiveCheckpoint && Application.isPlaying && _activeCheckpoint)

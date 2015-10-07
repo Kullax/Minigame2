@@ -46,12 +46,16 @@ public class CheckpointCollisionTrigger : MonoBehaviour
             enabled = false;
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
+    void OnTriggerEnter(Collider collider) {
         if (!Activated || collider.tag != "Player")
             return;
 
         _checkpoint.SetThisAsActiveCheckpoint();
         Icecles.GetComponent<PlayIceClesAnimation>().PlayAnimation(true);        
+    }
+
+    void OnTriggerStay(Collider collider) {
+        if (!CheckpointManager.IsActiveCheckpoint(_checkpoint))
+            OnTriggerEnter(collider);
     }
 }
