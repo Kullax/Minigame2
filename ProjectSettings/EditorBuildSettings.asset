@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Jeanette (LvlDesign)/Introduction_Level.unity
   - enabled: 1
     path: Assets/Scenes/Jeanette (LvlDesign)/Recombined_Level_with_correct_prefabs.unity
+  - enabled: 1
+    path: Assets/Scenes/EndingScene.unity

@@ -498,7 +498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &221609891
 Transform:
   m_ObjectHideFlags: 0
@@ -3370,7 +3370,7 @@ ParticleSystem:
     m_Mesh: {fileID: 0}
     randomDirection: 0
   EmissionModule:
-    enabled: 1
+    enabled: 0
     m_Type: 0
     rate:
       scalar: 1000
