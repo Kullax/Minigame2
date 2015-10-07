@@ -34,6 +34,25 @@ public class DoorScript : ResettableMonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorReset") | anm.GetCurrentAnimatorStateInfo(0).IsName("DoorAnimation"))
+            if (!move.isPlaying)
+                move.Play();
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorUp"))
+        {
+            if (move.isPlaying)
+                move.Stop();
+        }
+        if(anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk1"))
+            clunk.Play();
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk0"))
+            clunk.Play();
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorDown"))
+        {
+            if (move.isPlaying)
+                move.Stop();
+        }
+
+        //        if ((anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death")) ;
         if (!active)
             return;
         anm.SetBool("Up", active);
@@ -68,8 +87,7 @@ public class DoorScript : ResettableMonoBehaviour
 
         foreach (var contact in c.contacts) {
             if (CloseToYAxis(contact.normal)) {
-                GameManager.RespawnPlayer();
-                GameManager.ResetResettables();
+                GameManager.CurrentPlayer.GetComponent<CubeScale>().DeathByAnimation();
             }
         }
     }
