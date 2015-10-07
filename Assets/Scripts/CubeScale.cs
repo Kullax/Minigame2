@@ -18,6 +18,10 @@ public class CubeScale : MonoBehaviour
     private Animator anm;
     private bool alreadyplayed = false;
     private Vector3 deathlocation;
+    public float timeelapsed = 0;
+    private float timelimit = 4f;
+    public bool dead = false;
+    public bool door = false;
 
     public enum Status
     {
@@ -43,10 +47,15 @@ public class CubeScale : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.localScale.x <= lethallimit)
+        if (dead)
         {
             DeathByAnimation();
-            transform.position = deathlocation;
+            return;
+        }
+
+        if (transform.localScale.x <= lethallimit)
+        {
+            dead = true;
             return;
         }
 
@@ -70,16 +79,26 @@ public class CubeScale : MonoBehaviour
     {
         GetComponent<GodMovable>().enabled = false;
         anm.SetBool("Dead", true);
+        if (!anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death") || !anm.GetCurrentAnimatorStateInfo(0).IsName("Death by door"))
+        {
+            if (!door)
+                anm.Play("Melting Idle To Death");
+            else
+                anm.Play("Death by door");
+
+        }
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         //GetComponent<Collider>().enabled = false;
         deathlocation = transform.position;
-        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death"))
+        timeelapsed += Time.deltaTime;
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death") || anm.GetCurrentAnimatorStateInfo(0).IsName("Death by door"))
         {
             if (camerasound && !alreadyplayed)
             {
                 camerasound.deathmelody();
                 alreadyplayed = true;
             }
+            //            if (timelimit <= timeelapsed)
             if (camerasound.isIdle())
             {
                 anm.SetBool("Melting", false);
