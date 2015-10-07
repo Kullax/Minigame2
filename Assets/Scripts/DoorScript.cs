@@ -100,7 +100,9 @@ public class DoorScript : ResettableMonoBehaviour
         {
             if (CloseToYAxis(contact.normal))
             {
-                GameManager.CurrentPlayer.GetComponent<CubeScale>().DeathByAnimation();
+                CubeScale script = GameManager.CurrentPlayer.GetComponent<CubeScale>();
+                script.door = true;
+                script.dead = true;
             }
         }
     }
