@@ -959,7 +959,7 @@ MonoBehaviour:
   target: {fileID: 168620}
   hot_material: {fileID: 2100000, guid: 9eb8d6bb42c35b04e8385eef7c8a9939, type: 2}
   cold_material: {fileID: 2100000, guid: 26304a4ab6797734bb313c5339a9bab3, type: 2}
-  off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
+  off_material: {fileID: 2100000, guid: 08a2a8b51fafa1543886220c1f345b49, type: 2}
   particleToPlay: {fileID: 19814986}
   effect: 2
   active: 0

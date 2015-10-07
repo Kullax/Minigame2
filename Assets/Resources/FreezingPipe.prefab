@@ -896,9 +896,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 161626}
-  hot_material: {fileID: 2100000, guid: a019dc2f10db8a54daa53d9c6c51b331, type: 2}
-  cold_material: {fileID: 2100000, guid: 3dfed8f34e8f6b941af6fe1170ebd41c, type: 2}
-  off_material: {fileID: 2100000, guid: 6afcf53b4719bc242bd27deb10d4b98a, type: 2}
+  hot_material: {fileID: 2100000, guid: 9eb8d6bb42c35b04e8385eef7c8a9939, type: 2}
+  cold_material: {fileID: 2100000, guid: 26304a4ab6797734bb313c5339a9bab3, type: 2}
+  off_material: {fileID: 2100000, guid: 3816d0f1e58ddc245914e3fd3634bd20, type: 2}
   particleToPlay: {fileID: 19836882}
   effect: 4
   active: 0
