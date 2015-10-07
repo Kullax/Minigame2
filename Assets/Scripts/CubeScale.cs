@@ -17,6 +17,7 @@ public class CubeScale : MonoBehaviour
     private GameObject obj;
     private Animator anm;
     private bool alreadyplayed = false;
+    private Vector3 deathlocation;
 
     public enum Status
     {
@@ -44,25 +45,8 @@ public class CubeScale : MonoBehaviour
     {
         if (transform.localScale.x <= lethallimit)
         {
-            GetComponent<GodMovable>().enabled = false;
-            anm.SetBool("Dead", true);
-            if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death"))
-            {
-                if (camerasound && !alreadyplayed)
-                {
-                    camerasound.deathmelody();
-                    alreadyplayed = true;
-                }
-                if (camerasound.isIdle())
-                {
-                    anm.SetBool("Melting", false);
-                    anm.SetBool("Dead", false);
-                    anm.Play("Idle Pose");
-                    GameManager.RespawnPlayer();
-                    GameManager.ResetResettables();
-                }
-
-            }
+            DeathByAnimation();
+            transform.position = deathlocation;
             return;
         }
 
@@ -79,6 +63,32 @@ public class CubeScale : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void DeathByAnimation()
+    {
+        GetComponent<GodMovable>().enabled = false;
+        anm.SetBool("Dead", true);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        //GetComponent<Collider>().enabled = false;
+        deathlocation = transform.position;
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death"))
+        {
+            if (camerasound && !alreadyplayed)
+            {
+                camerasound.deathmelody();
+                alreadyplayed = true;
+            }
+            if (camerasound.isIdle())
+            {
+                anm.SetBool("Melting", false);
+                anm.SetBool("Dead", false);
+                anm.Play("Idle Pose");
+                GameManager.RespawnPlayer();
+                GameManager.ResetResettables();
+            }
+
         }
     }
 
@@ -100,17 +110,20 @@ public class CubeScale : MonoBehaviour
 
     public void PlayAnimation(Status effect)
     {
-        switch (effect)
-        {
-            case Status.Freezing:
-                if (status == Status.None)
-                    anm.Play("Ilde to Refreeze");
-                if (status == Status.Melting)
-                    anm.Play("Melting Idle To Refreeze");
-                break;
-            default:
-                break;
-        }
+        /*        switch (effect)
+                {
+                    case Status.Freezing:
+                        if (status == Status.None)
+                            anm.Play("Ilde to Refreeze");
+                        else
+                            anm.Play("Ilde to Refreeze");
+
+                        //                    anm.Play("Melting Idle To Refreeze");
+                        break;
+                    default:
+                        break;
+                }*/
+        anm.Play("Ilde to Refreeze");
     }
 
     public void Effect(Status effect)
