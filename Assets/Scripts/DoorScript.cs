@@ -16,6 +16,8 @@ public class DoorScript : ResettableMonoBehaviour
     private AudioSource click;
     private AudioSource clunk;
     private Animator anm;
+    private bool firstimeclunk = true;
+    private bool firsttimemove = true;
 
     // Use this for initialization
     void Start() {
@@ -30,29 +32,52 @@ public class DoorScript : ResettableMonoBehaviour
         bck_hangtime = hangtime;
         anm = GetComponentInParent<Animator>();
         anm.SetBool("Up", active);
+        click.maxDistance = 10;
+        clunk.maxDistance = 10;
+        move.maxDistance = 10;
+        move.mute = true;
+        click.mute = true;
+        clunk.mute = true;
     }
 
     // Update is called once per frame
     void Update() {
         if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorReset") | anm.GetCurrentAnimatorStateInfo(0).IsName("DoorAnimation"))
             if (!move.isPlaying)
-                move.Play();
+            {
+                if (!firsttimemove)
+                {
+                    move.Play();
+                }
+                firsttimemove = false;
+            }
         if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorUp"))
         {
             if (move.isPlaying)
                 move.Stop();
         }
-        if(anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk1"))
-            clunk.Play();
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk1"))
+        {
+            if (!firstimeclunk)
+            {
+                clunk.Play();
+            }
+            firstimeclunk = false;
+        }
         if (anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk0"))
-            clunk.Play();
+        {
+            if (!firstimeclunk)
+            {
+                clunk.Play();
+            }
+            firstimeclunk = false;
+        }
         if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorDown"))
         {
             if (move.isPlaying)
-                move.Stop();
+               move.Stop();
         }
 
-        //        if ((anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death")) ;
         if (!active)
             return;
         anm.SetBool("Up", active);
