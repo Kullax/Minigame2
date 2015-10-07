@@ -31,11 +31,11 @@ public class PipeTransportationSystem : MonoBehaviour
 
         //Do animation before changing the location and make sure the animation is complete.
         CAC.Play("Melting Idle To enter Teleport");
-        audioSourceTP.Play();
         cube.transform.position = this.transform.position;
 
         if (CAC.GetCurrentAnimatorStateInfo(0).IsName("Exit Teleport Pipe to idle"))
         {
+            audioSourceTP.Play();
             playerRB.velocity = new Vector3(0, 0, 0);
             cube.transform.position = ExitLocation.transform.position;
             GameManager.SetGameRotation(NewGameRotation);
