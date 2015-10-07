@@ -42,6 +42,9 @@ public class MainMenu : MonoBehaviour {
             buttonSources[i].volume = buttonVolume;
             buttonSources[i].playOnAwake = false;
 		}
+		if (AudioSettings.GetInstance ().muted) {
+			Camera.main.GetComponent<AudioSource>().mute = true;
+		}
 	}
 
 	void Update(){
