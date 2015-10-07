@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour {
 	private bool moving;
 	private bool credit;
 	private bool creditback;
+	private bool started;
 
     [Range(0,1)]
     public float buttonVolume = 1;
@@ -126,10 +127,12 @@ public class MainMenu : MonoBehaviour {
 		if (!main || moving)
 			return;
 		animator.GetComponent<Animator> ().SetTrigger ("start");
+		main = false;
+		started = true;
 	}
 
 	public void startGame(){
-		if (!main || moving)
+		if (!started || moving)
 			return;
 		panStartTime = Time.time;
 		start = true;
