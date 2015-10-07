@@ -30,7 +30,7 @@ public class PlayerMovementAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!(Mathf.Abs(_rb.velocity.z) > MovementThreshhold || Mathf.Abs(_rb.velocity.x) > MovementThreshhold) && !CAC.GetBool("SpeedToLow"))
+        if ((Mathf.Abs(_rb.velocity.z) > MovementThreshhold || Mathf.Abs(_rb.velocity.x) > MovementThreshhold))
         {
             CAC.SetBool("SpeedToLow", false);
         }
