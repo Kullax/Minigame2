@@ -117,8 +117,12 @@ public class GameManager : MonoBehaviour {
 
 	public static void RestartLevel() {
 		CheckpointManager.ResetToInitialSpawnPoint ();
-		RespawnPlayer ();
-		ResetResettables ();
+        Animator anm = GameObject.Find("iceCube_animation_control").GetComponent<Animator>();
+        anm.SetBool("Melting", false);
+        anm.SetBool("Dead", false);
+        anm.Play("Idle Pose");
+        RespawnPlayer();
+        ResetResettables();
 	}
 
     private static void EnforceRigidbodyConstraints() {

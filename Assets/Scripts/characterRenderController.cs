@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class characterRenderController : MonoBehaviour {
+public class characterRenderController : ResettableMonoBehaviour {
 
     public float rotateTime = 0.35f;
     public float faceRotateTime = 0.45f;
@@ -15,7 +16,8 @@ public class characterRenderController : MonoBehaviour {
 
     // Update is called once per frame
     void LateUpdate () {
-        PlayerCube = GameManager.CurrentPlayer;
+        if(!PlayerCube)
+            PlayerCube = GameObject.Find("IceCube_Rigidbody(Clone)");
         MainCamera = Camera.main;
 
         //positions the rendered cube on the rigidbody.
@@ -48,5 +50,10 @@ public class characterRenderController : MonoBehaviour {
         var offsetDistance = Quaternion.Euler(euler) * new Vector3(0, PlayerCube.transform.localScale.y / 2, 0);
 
         transform.position = pos - offsetDistance;
+    }
+
+    public override void ResetBehaviour()
+    {
+//        throw new NotImplementedException();
     }
 }
