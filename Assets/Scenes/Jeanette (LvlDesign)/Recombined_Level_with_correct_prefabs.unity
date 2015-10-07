@@ -7619,7 +7619,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11460000, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
       propertyPath: Activated
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11460000, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
       propertyPath: ToggleLever
