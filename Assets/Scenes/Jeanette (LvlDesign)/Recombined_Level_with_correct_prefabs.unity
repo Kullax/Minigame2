@@ -3842,10 +3842,10 @@ Prefab:
     - target: {fileID: 11476668, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
       propertyPath: InitialSpawnPoint
       value: 
-      objectReference: {fileID: 1107317146}
+      objectReference: {fileID: 1421241741}
     - target: {fileID: 11481696, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
       propertyPath: InitialGameRotation
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 570a2cf14ac174e458946ad871c5b04a, type: 2}
@@ -11618,6 +11618,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.62200487
       objectReference: {fileID: 0}
+    - target: {fileID: 11412098, guid: e5754e1ebd92d7c4c94e25b4052fb489, type: 2}
+      propertyPath: LevelToLoad
+      value: EndingScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412098, guid: e5754e1ebd92d7c4c94e25b4052fb489, type: 2}
+      propertyPath: NewGameRotation
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5754e1ebd92d7c4c94e25b4052fb489, type: 2}
   m_IsPrefabParent: 0
@@ -11842,13 +11850,13 @@ Prefab:
       propertyPath: SpawnRotation
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 130204, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1107317146 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 178782, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
-  m_PrefabInternal: {fileID: 1107317145}
 --- !u!1 &1110269764
 GameObject:
   m_ObjectHideFlags: 0
@@ -15605,6 +15613,10 @@ Prefab:
 --- !u!4 &1421241740 stripped
 Transform:
   m_PrefabParentObject: {fileID: 457628, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
+  m_PrefabInternal: {fileID: 1421241739}
+--- !u!1 &1421241741 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 178782, guid: cc4cde457da200f4fb78a511584b162c, type: 2}
   m_PrefabInternal: {fileID: 1421241739}
 --- !u!1001 &1425217942
 Prefab:
