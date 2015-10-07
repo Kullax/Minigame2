@@ -16,11 +16,10 @@ public class DoorScript : ResettableMonoBehaviour
     private AudioSource click;
     private AudioSource clunk;
     private Animator anm;
-    private bool firstimeclunk = true;
-    private bool firsttimemove = true;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         move = gameObject.AddComponent<AudioSource>();
         move.clip = Instantiate(MovingSound);
         move.loop = true;
@@ -35,47 +34,29 @@ public class DoorScript : ResettableMonoBehaviour
         click.maxDistance = 10;
         clunk.maxDistance = 10;
         move.maxDistance = 10;
-        move.mute = true;
-        click.mute = true;
-        clunk.mute = true;
     }
 
     // Update is called once per frame
-    void Update() {
-        if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorReset") | anm.GetCurrentAnimatorStateInfo(0).IsName("DoorAnimation"))
+    void Update()
+    {
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorReset") || anm.GetCurrentAnimatorStateInfo(0).IsName("DoorAnimation"))
             if (!move.isPlaying)
             {
-                if (!firsttimemove)
-                {
                     move.Play();
-                }
-                firsttimemove = false;
             }
-        if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorUp"))
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk1") || anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk0"))
         {
-            if (move.isPlaying)
-                move.Stop();
-        }
-        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk1"))
-        {
-            if (!firstimeclunk)
-            {
                 clunk.Play();
-            }
-            firstimeclunk = false;
-        }
-        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Clunk0"))
-        {
-            if (!firstimeclunk)
-            {
-                clunk.Play();
-            }
-            firstimeclunk = false;
         }
         if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorDown"))
         {
             if (move.isPlaying)
-               move.Stop();
+                move.Stop();
+        }
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("DoorUp"))
+        {
+            if (move.isPlaying)
+                move.Stop();
         }
 
         if (!active)
@@ -85,39 +66,47 @@ public class DoorScript : ResettableMonoBehaviour
             return;
         if (hangtime > 0)
             hangtime -= Time.deltaTime;
-        else {
+        else
+        {
             active = false;
             anm.SetBool("Up", active);
         }
     }
 
-    public override void ResetBehaviour() {
+    public override void ResetBehaviour()
+    {
         active = false;
         transform.position = start;
         hangtime = 0;
         anm.SetBool("Up", active);
     }
 
-    public void Activate() {
-        if (!active) {
+    public void Activate()
+    {
+        if (!active)
+        {
             anm.SetBool("Up", active);
             active = true;
             hangtime = bck_hangtime;
         }
     }
 
-    public void OnCollisionEnter(Collision c) {
+    public void OnCollisionEnter(Collision c)
+    {
         if (c.gameObject != GameManager.CurrentPlayer)
             return;
 
-        foreach (var contact in c.contacts) {
-            if (CloseToYAxis(contact.normal)) {
+        foreach (var contact in c.contacts)
+        {
+            if (CloseToYAxis(contact.normal))
+            {
                 GameManager.CurrentPlayer.GetComponent<CubeScale>().DeathByAnimation();
             }
         }
     }
 
-    public bool CloseToYAxis (Vector3 vector) {
+    public bool CloseToYAxis(Vector3 vector)
+    {
         return Vector3.Angle(vector, Vector3.up) < 15;
     }
 }
