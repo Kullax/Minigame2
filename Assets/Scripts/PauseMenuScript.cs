@@ -13,6 +13,9 @@ public class PauseMenuScript : MonoBehaviour {
 	public void resumeGame(){
 		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
 		Time.timeScale = 1;
+		AudioManager am = FindObjectOfType<AudioManager>();
+		am.UnmuteMusicSources();
+		am.UnmuteSoundSources();
 	}
 
 	public void loadMainMenu(){
@@ -23,6 +26,9 @@ public class PauseMenuScript : MonoBehaviour {
 	public void showPauseMenu(){
 		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = true;
 		Time.timeScale = 0;
+		AudioManager am = FindObjectOfType<AudioManager>();
+		am.MuteMusicSources();
+		am.MuteSoundSources();
 	}
 
 }
