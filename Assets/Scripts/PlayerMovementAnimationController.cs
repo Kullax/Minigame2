@@ -185,7 +185,6 @@ public class PlayerMovementAnimationController : MonoBehaviour
         }
         else
         {
-            Debug.Log(waitTimeElapsed);
             waitTimeElapsed += Time.deltaTime;
             if ((waitTimeElapsed >= waitTime) && !CAC.GetBool("LookAround"))
             {
