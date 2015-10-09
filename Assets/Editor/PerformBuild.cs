@@ -1,161 +1,152 @@
-﻿// C# example
-using UnityEditor;
-using System.IO;
-using System.Collections;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEngine;
 
-class PerformBuild
+namespace Assets.Editor
 {
-	
-	static string buildFolder = "Builds";
-	static string apkName = "Icescape.apk";
-	
-	static string[] GetBuildScenes()
-	{
-		List<string> names = new List<string>();
-		
-		foreach(EditorBuildSettingsScene e in EditorBuildSettings.scenes)
-		{
-			if(e==null)
-				continue;
-			
-			if(e.enabled)
-				names.Add(e.path);
-		}
-		return names.ToArray();
-	}
-	
-	static void CommandLineBuildAndroid ()
-	{
-		Debug.Log("Command line build android version\n------------------\n------------------");
-		
-		string[] scenes = GetBuildScenes();
-		string path = buildFolder + "/" + apkName;
-		if(scenes == null || scenes.Length==0 || path == null)
-			return;
-		
-		Debug.Log(string.Format("Path: \"{0}\"", path));
-		for(int i=0; i<scenes.Length; ++i)
-		{
-			Debug.Log(string.Format("Scene[{0}]: \"{1}\"", i, scenes[i]));
-		}
+    class PerformBuild
+    {
+        private const string BuildFolder = "Builds";
 
-		PlayerSettings.Android.useAPKExpansionFiles = false;
-		
-		PlayerSettings.keystorePass = "pjaskevand";
-		PlayerSettings.keyaliasPass = "534231";
-		
-		string[] args = System.Environment.GetCommandLineArgs ();
-		for (int i = 0; i < args.Length; i++) {
-			//Debug.Log("############################# - arg: " + i + " value: " + args[i]);
-			if(args[i].Equals("-bversion")){
-				PlayerSettings.Android.bundleVersionCode = int.Parse(args[i+1]);
-				PlayerSettings.bundleVersion = args[i+1];
-			}
-		}
-		
-		Debug.Log("Starting Android Build!");
-		BuildPipeline.BuildPlayer(scenes, path, BuildTarget.Android, BuildOptions.None);
-	}
-	
-	static Regex sceneNameRgx = new Regex(@"(?<=/)([^/]+)(?=.unity)", RegexOptions.IgnoreCase);
+        static readonly Regex SceneNameRgx = new Regex(@"(?<=/)([^/]+)(?=.unity)", RegexOptions.IgnoreCase);
+        static readonly Regex RemoveNonCharactersRgx = new Regex("[^a-zA-Z]");
 
-	static Regex removeNonCharactersRgx = new Regex("[^a-zA-Z]");
-
-	[UnityEditor.MenuItem("Build/Build Test Release")]
-	static void FinalBuild(){
-		System.IO.Directory.CreateDirectory (buildFolder);
-
-		EditorApplication.SaveScene();
-		
-		string[] scenes = GetBuildScenes();
-		string path = buildFolder + "/TestRelease.apk";
-		if(scenes == null || scenes.Length==0 || path == null)
-			return;
-		
-		Debug.Log(string.Format("Path: \"{0}\"", path));
-		for(int i=0; i<scenes.Length; ++i)
-		{
-			Debug.Log(string.Format("Scene[{0}]: \"{1}\"", i, scenes[i]));
-		}
-		
-		PlayerSettings.Android.useAPKExpansionFiles = false;
-
-		string bundleIdent = PlayerSettings.bundleIdentifier;
-		PlayerSettings.bundleIdentifier = "com.prototype.game2test";
-		
-		string pName = PlayerSettings.productName;
-		PlayerSettings.productName = "Test Minigame 2";
-		
-		PlayerSettings.keystorePass = "pjaskevand";
-		PlayerSettings.keyaliasPass = "534231";
-
-        UnityException exc = null;
-
-        try
+        public static void CommandLineBuildAndroid ()
         {
-			BuildPipeline.BuildPlayer(scenes, path, BuildTarget.Android, BuildOptions.None);
-		} catch(UnityException e){
-			exc = e;
-		}
+            var settings = new Settings("Icescape") {Scenes = GetBuildScenes()};
 
-		PlayerSettings.bundleIdentifier = bundleIdent;
-		PlayerSettings.productName = pName;
-
-		EditorApplication.SaveScene();
-
-		if (exc != null)
-			throw exc;
-
-		System.Diagnostics.Process.Start (System.IO.Directory.GetCurrentDirectory() + "/" + buildFolder + "/");
-	}
-
-	[UnityEditor.MenuItem("Build/Prototype From Open Scene")]
-	static void PrototypeBuild ()
-	{
-
-		EditorApplication.SaveScene();
-
-		string sceneToBuild = "MainMenu";
-		string sceneToBuildPath = "Assets/Scenes/MainMenu.unity";
+            var args = System.Environment.GetCommandLineArgs ();
+            for (var i = 0; i < args.Length; i++) {
+                if (!args[i].Equals("-bversion")) continue;
+                Settings.BundleVersionCode = int.Parse(args[i+1]);
+                Settings.BundleVersion = args[i+1];
+            }
 		
-		sceneToBuildPath = EditorApplication.currentScene;
-		sceneToBuild = sceneNameRgx.Match (sceneToBuildPath).Value;
+            MakeBuild(settings);
+        }
+	
+        [MenuItem("Build/Build Test Release")]
+        public static void TestBuild(){
 		
-		System.IO.Directory.CreateDirectory (buildFolder);
-		
-		PlayerSettings.keystorePass = "pjaskevand";
-		PlayerSettings.keyaliasPass = "534231";
-		
-		bool obbFiles = PlayerSettings.Android.useAPKExpansionFiles;
-		PlayerSettings.Android.useAPKExpansionFiles = false;
-		
-		string bundleIdent = PlayerSettings.bundleIdentifier;
-		PlayerSettings.bundleIdentifier = "com.prototype." + removeNonCharactersRgx.Replace(sceneToBuild, "");
-		
-		string pName = PlayerSettings.productName;
-		PlayerSettings.productName = sceneToBuild;
+            var settings = new Settings("IcescapeTest") {Scenes = GetBuildScenes() };
 
-		UnityException exc = null;
+            MakeBuild(settings);
 
-		Debug.Log ("Building prototype with scene: " + sceneToBuild);
-		try{
-			BuildPipeline.BuildPlayer(new string[]{sceneToBuildPath}, buildFolder + "/" + sceneToBuild + ".apk", BuildTarget.Android, BuildOptions.None);
-		} catch(UnityException e){
-			exc = e;
-		}
+            System.Diagnostics.Process.Start (Directory.GetCurrentDirectory() + "/" + BuildFolder + "/");
+        }
 
-		PlayerSettings.Android.useAPKExpansionFiles = obbFiles;
-		PlayerSettings.bundleIdentifier = bundleIdent;
-		PlayerSettings.productName = pName;
+        [MenuItem("Build/Prototype From Open Scene")]
+        public static void PrototypeBuild ()
+        {
 
-		EditorApplication.SaveScene();
+            var settings = new Settings(RemoveNonCharactersRgx.Replace(
+                    SceneNameRgx.Match(EditorApplication.currentScene).Value, ""))
+            {
+                Scenes = new[] {EditorApplication.currentScene}
+            };
 
-		if (exc != null)
-			throw exc;
+            Debug.Log("Building prototype with scene: " + settings.ApkName);
+            MakeBuild(settings);
 
-		System.Diagnostics.Process.Start (System.IO.Directory.GetCurrentDirectory() + "/" + buildFolder + "/");
-	}
+            System.Diagnostics.Process.Start (Directory.GetCurrentDirectory() + "/" + BuildFolder + "/");
+        }
+
+        private static string[] GetBuildScenes()
+        {
+            return (from e in EditorBuildSettings.scenes where e != null where e.enabled select e.path).ToArray();
+        }
+
+        private static void MakeBuild(Settings settings)
+        {
+
+            if (settings.Scenes == null || settings.Scenes.Length == 0)
+            {
+                settings.Reset();
+                throw new UnityException("No scenes to build.");
+            }
+
+            Directory.CreateDirectory(BuildFolder);
+
+            UnityException exc = null;
+        
+            try
+            {
+                BuildPipeline.BuildPlayer(
+                    settings.Scenes, 
+                    BuildFolder + "/" + settings.ApkName + ".apk", 
+                    BuildTarget.Android, BuildOptions.None);
+            }
+            catch (UnityException e)
+            {
+                exc = e;
+            }
+
+            settings.Reset();
+        
+            if (exc != null)
+                throw exc;
+        }
+
+        private class Settings
+        {
+            private static bool UseApkExpansionFiles
+            {
+                set { PlayerSettings.Android.useAPKExpansionFiles = value; }
+            }
+
+            private string ProductName
+            {
+                set { PlayerSettings.productName = value;
+                    ApkName = value;
+                    PlayerSettings.bundleIdentifier = @"com.dadiu." + value;
+                }
+            }
+
+            public static int BundleVersionCode
+            {
+                set { PlayerSettings.Android.bundleVersionCode = value; }
+            }
+
+            public static string BundleVersion
+            {
+                set { PlayerSettings.bundleVersion = value; }
+            }
+
+            public string ApkName { get; private set; }
+            public string[] Scenes;
+
+            private readonly bool _origUseApkExpansionFiles;
+            private readonly string _origBundleIdentifier;
+            private readonly string _origProductName;
+            private readonly int _origBundleVersionCode;
+            private readonly string _origBundleVersion;
+
+            public Settings(string productName)
+            {
+                EditorApplication.SaveScene();
+                _origUseApkExpansionFiles = PlayerSettings.Android.useAPKExpansionFiles;
+                _origBundleVersionCode = PlayerSettings.Android.bundleVersionCode;
+                _origBundleIdentifier = PlayerSettings.bundleIdentifier;
+                _origProductName = PlayerSettings.productName;
+                _origBundleVersion = PlayerSettings.bundleVersion;
+                ProductName = productName;
+                UseApkExpansionFiles = false;
+                PlayerSettings.keystorePass = "pjaskevand";
+                PlayerSettings.keyaliasPass = "534231";
+            }
+        
+            public void Reset()
+            {
+                PlayerSettings.Android.useAPKExpansionFiles = _origUseApkExpansionFiles;
+                PlayerSettings.bundleIdentifier = _origBundleIdentifier;
+                PlayerSettings.productName = _origProductName;
+                PlayerSettings.Android.bundleVersionCode = _origBundleVersionCode;
+                PlayerSettings.bundleVersion = _origBundleVersion;
+                EditorApplication.SaveScene();
+            }
+
+        }
+    }
 }
