@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Net;
 
 public class CubeScale : MonoBehaviour
 {
@@ -47,6 +48,16 @@ public class CubeScale : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (anm == null)
+        {
+            obj = GameObject.Find("iceCube_animation_control");
+            if (obj == null) return;
+            anm = obj.GetComponent<Animator>();
+            if (anm == null) return;
+            anm.SetBool("Melting", false);
+            anm.SetBool("Dead", false);
+            anm.Play("Idle Pose");
+        }
         if (dead)
         {
             DeathByAnimation();
@@ -142,7 +153,8 @@ public class CubeScale : MonoBehaviour
                     default:
                         break;
                 }*/
-        anm.Play("Ilde to Refreeze");
+        if (anm != null)
+         anm.Play("Ilde to Refreeze");
     }
 
     public void Effect(Status effect)

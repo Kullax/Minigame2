@@ -8,7 +8,9 @@ public class PauseMenuScript : MonoBehaviour {
 		GameManager.RestartLevel ();
 		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
 		Time.timeScale = 1;
-	}
+        AudioManager am = FindObjectOfType<AudioManager>();
+        am.Reset();
+    }
 
 	public void resumeGame(){
 		GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>().enabled = false;
