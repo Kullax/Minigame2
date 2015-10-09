@@ -98,7 +98,7 @@ class PerformBuild
         {
             set { PlayerSettings.productName = value;
                 ApkName = value;
-                PlayerSettings.bundleIdentifier = @"com.dadiu." + value;
+                PlayerSettings.bundleIdentifier = @"com.dadiu." + value.ToLower();
             }
         }
 
@@ -123,7 +123,8 @@ class PerformBuild
 
         public Settings(string productName)
         {
-            EditorApplication.SaveScene();
+            if(EditorApplication.currentScene != "")
+                EditorApplication.SaveScene();
             _origUseApkExpansionFiles = PlayerSettings.Android.useAPKExpansionFiles;
             _origBundleVersionCode = PlayerSettings.Android.bundleVersionCode;
             _origBundleIdentifier = PlayerSettings.bundleIdentifier;
@@ -142,7 +143,8 @@ class PerformBuild
             PlayerSettings.productName = _origProductName;
             PlayerSettings.Android.bundleVersionCode = _origBundleVersionCode;
             PlayerSettings.bundleVersion = _origBundleVersion;
-            EditorApplication.SaveScene();
+            if (EditorApplication.currentScene != "")
+                EditorApplication.SaveScene();
         }
 
     }
