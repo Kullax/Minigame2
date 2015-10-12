@@ -16,13 +16,15 @@ public class characterRenderController : ResettableMonoBehaviour {
 
     // Update is called once per frame
     void LateUpdate () {
-        if(!PlayerCube)
+        if (!PlayerCube)
+        {
             PlayerCube = GameObject.Find("IceCube_Rigidbody(Clone)");
+            return;
+        }
         MainCamera = Camera.main;
-
+            
         //positions the rendered cube on the rigidbody.
         transform.localScale = PlayerCube.transform.localScale;
-        
         //Makes the rendered image look into the camera.
         float xRot, yRot, zRot;
 
@@ -47,6 +49,10 @@ public class characterRenderController : ResettableMonoBehaviour {
 
         // Correct pivot point to be center
         var pos = PlayerCube.transform.position;
+        Debug.Log(pos + " <-");
+        //        if (float.IsNaN(PlayerCube.transform.localScale.x))
+//        Debug.Log("ABORT!");
+
         var offsetDistance = Quaternion.Euler(euler) * new Vector3(0, PlayerCube.transform.localScale.y / 2, 0);
 
         transform.position = pos - offsetDistance;
