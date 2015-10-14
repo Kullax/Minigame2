@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExitLocation: {fileID: 126702}
-  requiredsize: .699999988
+  requiredsize: .899999976
   NewGameRotation: 2
 --- !u!1001 &100100000
 Prefab:
