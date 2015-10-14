@@ -1,35 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class characterRenderController : MonoBehaviour {
+public class characterRenderController : MonoBehaviour
+{
 
     public float rotateTime = 0.35f;
     public float faceRotateTime = 0.45f;
 
     private Camera MainCamera;
-    private GameObject PlayerCube;
+    private GameObject PlayerCube = null;
 
     private float xRotateVelocity = 0f;
     private float yRotateVelocity = 0f;
     private float zRotateVelocity = 0f;
+    private float airDistance = 0.43f;
+
+    private Animator CAC;
+
+    void Start()
+    {
+        CAC = this.gameObject.GetComponent<Animator>();
+    }
 
     // Update is called once per frame
-    void LateUpdate () {
-        PlayerCube = GameManager.CurrentPlayer;
+    void LateUpdate()
+    {
+        if (PlayerCube == null)
+            PlayerCube = GameObject.FindGameObjectWithTag("Player"); //GameManager.CurrentPlayer;
+
         MainCamera = Camera.main;
 
         //positions the rendered cube on the rigidbody.
         transform.localScale = PlayerCube.transform.localScale;
-        
+
         //Makes the rendered image look into the camera.
         float xRot, yRot, zRot;
 
         RaycastHit hit;
-        if (Physics.SphereCast(PlayerCube.transform.position, 0.2f, Vector3.down, out hit)) {
+        if (Physics.SphereCast(PlayerCube.transform.position, 0.2f, Vector3.down, out hit))
+        {
             var quat = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             xRot = quat.eulerAngles.x;
             zRot = quat.eulerAngles.z;
-        } else {
+
+            //Debug.Log("RayDistance: " + hit.distance);
+
+            if (hit.distance <= airDistance)
+                CAC.SetBool("OnGround", true);
+
+            if (hit.distance > airDistance)
+            {
+                CAC.Play("LookDownIdle");
+                CAC.SetBool("OnGround", false);
+            }
+        }
+        else
+        {
             xRot = 0;
             zRot = 0;
         }
