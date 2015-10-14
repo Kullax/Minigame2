@@ -53,6 +53,8 @@ public class AudioManager : MonoBehaviour {
 
     public void UnmuteMusicSources()
     {
+		if(AudioSettings.GetInstance().muted)
+			return;
         freezingmusic.mute = false;
         if (pausedMelting) {
 			meltingmusic.UnPause();
@@ -70,6 +72,8 @@ public class AudioManager : MonoBehaviour {
 
     public void UnmuteSoundSources()
     {
+		if(AudioSettings.GetInstance().muted)
+			return;
         foreach (AudioSource audio in allAudioSources)
         {
             audio.mute = false;
