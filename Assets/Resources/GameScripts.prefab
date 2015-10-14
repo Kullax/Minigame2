@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11481696}
   - 114: {fileID: 11437626}
   - 114: {fileID: 11466850}
+  - 114: {fileID: 11408060}
   m_Layer: 0
   m_Name: GameScripts
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11408060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f923a53d9fe94a0f985d8bde7a6bca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Movement: 100
+  Threshold: .200000003
 --- !u!114 &11437626
 MonoBehaviour:
   m_ObjectHideFlags: 1
