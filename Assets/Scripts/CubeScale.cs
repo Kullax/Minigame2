@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Net;
 
 public class CubeScale : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class CubeScale : MonoBehaviour
     private GameObject obj;
     private Animator anm;
     private bool alreadyplayed = false;
+    private Vector3 deathlocation;
+    public float timeelapsed = 0;
+    private float timelimit = 4f;
+    public bool dead = false;
+    public bool door = false;
 
     public enum Status
     {
@@ -33,32 +39,34 @@ public class CubeScale : MonoBehaviour
         smelted = new Vector3(lethallimit, lethallimit, lethallimit);
         obj = GameObject.Find("iceCube_animation_control");
         anm = obj.GetComponent<Animator>();
+
+        anm.SetBool("Melting", false);
+        anm.SetBool("Dead", false);
+        anm.Play("Idle Pose");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (anm == null)
+        {
+            obj = GameObject.Find("iceCube_animation_control");
+            if (obj == null) return;
+            anm = obj.GetComponent<Animator>();
+            if (anm == null) return;
+            anm.SetBool("Melting", false);
+            anm.SetBool("Dead", false);
+            anm.Play("Idle Pose");
+        }
+        if (dead)
+        {
+            DeathByAnimation();
+            return;
+        }
+
         if (transform.localScale.x <= lethallimit)
         {
-            GetComponent<GodMovable>().enabled = false;
-            anm.SetBool("Dead", true);
-            if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death"))
-            {
-                if (camerasound && !alreadyplayed)
-                {
-                    camerasound.deathmelody();
-                    alreadyplayed = true;
-                }
-                if (camerasound.isIdle())
-                {
-                    anm.SetBool("Melting", false);
-                    anm.SetBool("Dead", false);
-                    anm.Play("Idle Pose");
-                    GameManager.RespawnPlayer();
-                    GameManager.ResetResettables();
-                }
-
-            }
+            dead = true;
             return;
         }
 
@@ -75,6 +83,42 @@ public class CubeScale : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void DeathByAnimation()
+    {
+        GetComponent<GodMovable>().enabled = false;
+        anm.SetBool("Dead", true);
+        if (!anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death") || !anm.GetCurrentAnimatorStateInfo(0).IsName("Death by door"))
+        {
+            if (!door)
+                anm.Play("Melting Idle To Death");
+            else
+                anm.Play("Death by door");
+
+        }
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        //GetComponent<Collider>().enabled = false;
+        deathlocation = transform.position;
+        timeelapsed += Time.deltaTime;
+        if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death") || anm.GetCurrentAnimatorStateInfo(0).IsName("Death by door"))
+        {
+            if (camerasound && !alreadyplayed)
+            {
+                camerasound.deathmelody();
+                alreadyplayed = true;
+            }
+            //            if (timelimit <= timeelapsed)
+            if (camerasound.isIdle())
+            {
+                anm.SetBool("Melting", false);
+                anm.SetBool("Dead", false);
+                anm.Play("Idle Pose");
+                GameManager.RespawnPlayer();
+                GameManager.ResetResettables();
+            }
+
         }
     }
 
@@ -96,17 +140,21 @@ public class CubeScale : MonoBehaviour
 
     public void PlayAnimation(Status effect)
     {
-        switch (effect)
-        {
-            case Status.Freezing:
-                if (status == Status.None)
-                    anm.Play("Ilde to Refreeze");
-                if (status == Status.Melting)
-                    anm.Play("Melting Idle To Refreeze");
-                break;
-            default:
-                break;
-        }
+        /*        switch (effect)
+                {
+                    case Status.Freezing:
+                        if (status == Status.None)
+                            anm.Play("Ilde to Refreeze");
+                        else
+                            anm.Play("Ilde to Refreeze");
+
+                        //                    anm.Play("Melting Idle To Refreeze");
+                        break;
+                    default:
+                        break;
+                }*/
+        if (anm != null)
+         anm.Play("Ilde to Refreeze");
     }
 
     public void Effect(Status effect)
