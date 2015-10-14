@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AudioManager : MonoBehaviour {
     private AudioSource[] allAudioSources;
@@ -34,6 +35,12 @@ public class AudioManager : MonoBehaviour {
 			mutedSet = true;
 		}
 	}
+
+    internal void Reset()
+    {
+        mutedSet = false;
+        pausedMelting = false;
+    }
 
     public void MuteMusicSources()
     {
