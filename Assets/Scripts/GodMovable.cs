@@ -45,9 +45,21 @@ public class GodMovable : MonoBehaviour
     void Update() {
         _phase = GodTouch.Phase;
 
-        _relativePosition = _phase != GodPhase.None ?
-            transform.position - GodTouch.WorldPositionBegin :
-            Vector3.zero;
+        switch (_phase)
+        {
+            case (GodPhase.Began):
+                _relativePosition = transform.position - GodTouch.WorldPositionBegin;
+                break;
+            case (GodPhase.Held):
+                _relativePosition = transform.position - GodTouch.WorldPositionHeld;
+                break;
+            case (GodPhase.End):
+                _relativePosition = transform.position - GodTouch.WorldPositionEnd;
+                break;
+            default:
+                _relativePosition = Vector3.zero;
+                break;
+        }
     }
 
     void FixedUpdate() {

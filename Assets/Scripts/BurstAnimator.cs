@@ -25,16 +25,22 @@ public class BurstAnimator : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        transform.position = GodTouch.WorldPositionBegin;
-        transform.rotation = Camera.main.transform.rotation;
-
-        switch (GodTouch.Phase) {
-            case GodPhase.Began:
+        switch (GodTouch.Phase)
+        {
+            case (GodPhase.Began):
+                transform.position = GodTouch.WorldPositionBegin;
+                transform.rotation = Camera.main.transform.rotation;
                 burstParticles.loop = false;
                 PlayParticle();
                 break;
-            case GodPhase.Held:
+            case (GodPhase.Held):
+                transform.position = GodTouch.WorldPositionHeld;
+                transform.rotation = Camera.main.transform.rotation;
                 PlayParticle();
+                break;
+            case (GodPhase.End):
+                transform.position = GodTouch.WorldPositionEnd;
+                transform.rotation = Camera.main.transform.rotation;
                 break;
             default:
                 if (burstParticles.isPlaying)
