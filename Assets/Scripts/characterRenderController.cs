@@ -26,11 +26,17 @@ public class characterRenderController : MonoBehaviour
     void LateUpdate()
     {
         if (PlayerCube == null)
+        {
             PlayerCube = GameObject.FindGameObjectWithTag("Player"); //GameManager.CurrentPlayer;
+            return;
+        }
 
         MainCamera = Camera.main;
 
         //positions the rendered cube on the rigidbody.
+        if (float.IsNaN(PlayerCube.transform.localScale.x) || float.IsNaN(PlayerCube.transform.localScale.y) || float.IsNaN(PlayerCube.transform.localScale.z))
+            return;
+
         transform.localScale = PlayerCube.transform.localScale;
 
         //Makes the rendered image look into the camera.
@@ -67,12 +73,24 @@ public class characterRenderController : MonoBehaviour
         zRot = Mathf.SmoothDampAngle(transform.eulerAngles.z, zRot, ref zRotateVelocity, rotateTime);
 
         var euler = new Vector3(xRot, yRot, zRot);
+        if (float.IsNaN(xRot) || float.IsNaN(yRot) || float.IsNaN(zRot))
+            return;
+
         transform.eulerAngles = euler;
 
         // Correct pivot point to be center
         var pos = PlayerCube.transform.position;
         var offsetDistance = Quaternion.Euler(euler) * new Vector3(0, PlayerCube.transform.localScale.y / 2, 0);
 
-        transform.position = pos - offsetDistance;
+        Vector3 tmpResult = pos - offsetDistance;
+        if (float.IsNaN(tmpResult.x) || float.IsNaN(tmpResult.y) || float.IsNaN(tmpResult.z))
+            return;
+
+        transform.position = tmpResult;
+    }
+
+    public void SetToNull()
+    {
+        PlayerCube = null;
     }
 }
