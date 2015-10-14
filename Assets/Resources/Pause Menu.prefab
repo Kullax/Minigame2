@@ -191,7 +191,7 @@ GameObject:
   - 114: {fileID: 11419580}
   m_Layer: 5
   m_Name: BgImage
-  m_TagString: Untagged
+  m_TagString: PauseMenuImg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -281,7 +281,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -595.50293, y: -33.1016159, z: -2578.63135}
+  m_LocalPosition: {x: -595.968811, y: -34.2955742, z: -2576.47388}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485296}
