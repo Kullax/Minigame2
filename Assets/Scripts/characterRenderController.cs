@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class characterRenderController : ResettableMonoBehaviour {
+public class characterRenderController : MonoBehaviour {
 
     public float rotateTime = 0.35f;
     public float faceRotateTime = 0.45f;
@@ -49,17 +49,10 @@ public class characterRenderController : ResettableMonoBehaviour {
 
         // Correct pivot point to be center
         var pos = PlayerCube.transform.position;
-        Debug.Log(pos + " <-");
-        //        if (float.IsNaN(PlayerCube.transform.localScale.x))
-//        Debug.Log("ABORT!");
 
         var offsetDistance = Quaternion.Euler(euler) * new Vector3(0, PlayerCube.transform.localScale.y / 2, 0);
 
         transform.position = pos - offsetDistance;
     }
 
-    public override void ResetBehaviour()
-    {
-//        throw new NotImplementedException();
-    }
 }
