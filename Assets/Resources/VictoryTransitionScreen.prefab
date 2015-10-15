@@ -43,6 +43,7 @@ GameObject:
   - 223: {fileID: 22377012}
   - 114: {fileID: 11468888}
   - 114: {fileID: 11474542}
+  - 114: {fileID: 11483118}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7421875, y: 1.484375, z: -6.578125}
+  m_LocalPosition: {x: -595.202637, y: -31.4367371, z: -2581.33105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22484388}
@@ -76,6 +77,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -121,6 +128,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11483118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61779efec548df140a4e6b30c36a7093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &22272936
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -135,9 +153,9 @@ Canvas:
   m_GameObject: {fileID: 172720}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 3
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0

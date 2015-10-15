@@ -23,13 +23,13 @@ public class PipeTransportationSystemLevelChange : MonoBehaviour
     private GameObject victoryTransistionScreen;
     private Image fadeScreen;
 
-    private Animator CAC; //Character Animation Controller
+    //private Animator CAC; //Character Animation Controller
 
     // Use this for initialization
     void Start()
     {
-        GameObject CharacterRenderer = GameObject.Find("iceCube_animation_control");
-        CAC = CharacterRenderer.GetComponent<Animator>();
+        //GameObject CharacterRenderer = GameObject.Find("iceCube_animation_control");
+        //CAC = CharacterRenderer.GetComponent<Animator>();
 
         victoryTransistionScreen = (GameObject)Instantiate(Resources.Load("VictoryTransitionScreen"));
         fadeScreen = victoryTransistionScreen.GetComponentInChildren<Image>();

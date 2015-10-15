@@ -27,9 +27,19 @@ public class MainMenu : MonoBehaviour {
 
 	public AudioClip[] buttonSounds;
 	private AudioSource[] buttonSources;
+    void Awake()
+    {
+        float w = Screen.width;
+        float h = Screen.height;
+        RectTransform img = GameObject.FindGameObjectWithTag("PauseMenuImg").GetComponent<RectTransform>();
+        float sca = h / w * 4f / 3f;
+        img.localScale = new Vector3(1, sca, 1);
+        float x = (img.rect.height - img.rect.height * sca) / 2;
+        img.position = (img.TransformPoint(0,x,0));
+    }
 
-	void Start(){
-		origPos = backgroundImage.transform.localPosition;
+    void Start(){    
+        origPos = backgroundImage.transform.localPosition;
 		option = false;
 		main = true;
 		start = false;
@@ -46,10 +56,10 @@ public class MainMenu : MonoBehaviour {
 		if (AudioSettings.GetInstance ().muted) {
 			Camera.main.GetComponent<AudioSource>().mute = true;
 		}
-	}
+    }
 
-	void Update(){
-		if (start)
+    void Update(){
+        if (start)
 			scrollDown ();
 		if (option)
 			scrollLeft ();
@@ -59,9 +69,9 @@ public class MainMenu : MonoBehaviour {
 			scrollCredit ();
 		if (creditback)
 			scrollCreditBack ();
-	}
+    }
 
-	private void scrollDown(){
+    private void scrollDown(){
 		if (panStartTime != 0) {
 			backgroundImage.transform.localPosition =  Vector3.Lerp(
 				origPos, 
@@ -74,8 +84,8 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	private void scrollLeft(){;
-		if (panStartTime != 0) {
+	private void scrollLeft(){
+        if (panStartTime != 0) {
 			backgroundImage.transform.localPosition =  Vector3.Lerp(
 				origPos, 
 				new Vector3(origPos.x + 800,origPos.y,origPos.z), 

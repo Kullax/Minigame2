@@ -1,4 +1,4 @@
 credits=CREDITS
-resume=Resume
-mainmenu=Main menu
-restart=Restart
+resume=resume
+mainmenu=main menu
+restart=restart
