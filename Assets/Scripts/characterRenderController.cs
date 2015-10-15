@@ -7,7 +7,7 @@ public class characterRenderController : MonoBehaviour
     public float rotateTime = 0.35f;
     public float faceRotateTime = 0.45f;
 
-    private Camera MainCamera;
+    //private Camera MainCamera;
     private GameObject PlayerCube = null;
 
     private float xRotateVelocity = 0f;
@@ -25,13 +25,15 @@ public class characterRenderController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (PlayerCube == null)
-            PlayerCube = GameObject.FindGameObjectWithTag("Player"); //GameManager.CurrentPlayer;
+        PlayerCube = GameManager.CurrentPlayer;
 
-        MainCamera = Camera.main;
+        //MainCamera = Camera.main;
 
         //positions the rendered cube on the rigidbody.
-        transform.localScale = PlayerCube.transform.localScale;
+        Vector3 tmpVector = PlayerCube.transform.localScale;
+        if (tmpVector.x < 0.1f)
+            return;
+        transform.localScale = tmpVector;
 
         //Makes the rendered image look into the camera.
         float xRot, yRot, zRot;
