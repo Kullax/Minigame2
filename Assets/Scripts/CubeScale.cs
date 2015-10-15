@@ -140,21 +140,8 @@ public class CubeScale : MonoBehaviour
 
     public void PlayAnimation(Status effect)
     {
-        /*        switch (effect)
-                {
-                    case Status.Freezing:
-                        if (status == Status.None)
-                            anm.Play("Ilde to Refreeze");
-                        else
-                            anm.Play("Ilde to Refreeze");
-
-                        //                    anm.Play("Melting Idle To Refreeze");
-                        break;
-                    default:
-                        break;
-                }*/
         if (anm != null)
-         anm.Play("Ilde to Refreeze");
+            anm.Play("Ilde to Refreeze");
     }
 
     public void Effect(Status effect)
