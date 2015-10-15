@@ -1,4 +1,4 @@
-credits=HOLDET BAG
-resume=Fortsæt
-mainmenu=Hovedmenu
-restart=Genstart
+﻿credits=HOLDET BAG
+resume=fortsæt
+mainmenu=hovedmenu
+restart=genstart

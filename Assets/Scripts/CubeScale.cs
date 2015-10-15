@@ -9,18 +9,18 @@ public class CubeScale : MonoBehaviour
     private float refreeze = 0.25f;
     private float speed;
     private Vector3 smelted;
-    private Vector3 frozen = new Vector3(1, 1, 1);
+    private readonly Vector3 frozen = new Vector3(1, 1, 1);
     private Vector3 startstate;
     public Status status = Status.None;
     public float meltingspeed;
     public float lethallimit;
     private CameraSoundScript camerasound;
-    private GameObject obj;
+    private characterRenderController _crc;
     private Animator anm;
     private bool alreadyplayed = false;
-    private Vector3 deathlocation;
+    //private Vector3 deathlocation;
     public float timeelapsed = 0;
-    private float timelimit = 4f;
+    //private float timelimit = 4f;
     public bool dead = false;
     public bool door = false;
 
@@ -34,30 +34,12 @@ public class CubeScale : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        elapsedtime = 0f;
-        camerasound = Camera.main.GetComponent<CameraSoundScript>();
-        smelted = new Vector3(lethallimit, lethallimit, lethallimit);
-        obj = GameObject.Find("iceCube_animation_control");
-        anm = obj.GetComponent<Animator>();
-
-        anm.SetBool("Melting", false);
-        anm.SetBool("Dead", false);
-        anm.Play("Idle Pose");
+        //ResetCubeRBBehaviorAndStatus();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (anm == null)
-        {
-            obj = GameObject.Find("iceCube_animation_control");
-            if (obj == null) return;
-            anm = obj.GetComponent<Animator>();
-            if (anm == null) return;
-            anm.SetBool("Melting", false);
-            anm.SetBool("Dead", false);
-            anm.Play("Idle Pose");
-        }
         if (dead)
         {
             DeathByAnimation();
@@ -100,7 +82,7 @@ public class CubeScale : MonoBehaviour
         }
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         //GetComponent<Collider>().enabled = false;
-        deathlocation = transform.position;
+        //deathlocation = transform.position;
         timeelapsed += Time.deltaTime;
         if (anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death") || anm.GetCurrentAnimatorStateInfo(0).IsName("Death by door"))
         {
@@ -175,4 +157,45 @@ public class CubeScale : MonoBehaviour
         }
     }
 
+    public void ResetCubeRBBehaviorAndStatus()
+    {
+        camerasound = Camera.main.GetComponent<CameraSoundScript>();
+        if (camerasound == null)
+        {
+            Debug.LogWarning("Camera sound missing!");
+            return;
+        }
+
+        _crc = FindObjectOfType<characterRenderController>();
+        if (_crc == null)
+        {
+            Debug.LogWarning("characterRenderController missing!");
+            return;
+        }
+        _crc.transform.position = this.gameObject.transform.position;
+        _crc.transform.rotation = this.gameObject.transform.rotation;
+
+        anm = _crc.GetComponent<Animator>();
+        if (anm == null)
+        {
+            Debug.LogWarning("Animator from characterRenderController missing!");
+            return;
+        }
+
+        anm.SetBool("Melting", false);
+        anm.SetBool("Dead", false);
+        anm.Play("Idle Pose");
+
+        status = Status.None;
+        alreadyplayed = false;
+        dead = false;
+        door = false;
+        speed = refreeze;
+        elapsedtime = 0f;
+        smelted = new Vector3(lethallimit, lethallimit, lethallimit);
+
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        GetComponent<WindyVirtualJoystick>().enabled = true;
+        ScaleObject(frozen);
+    }
 }

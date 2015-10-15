@@ -28,7 +28,7 @@ public class GodMovable : MonoBehaviour
     private float _scaleMod { get { return DistanceReact + _orgScale / 2; } }
     private float _trueDistanceReact { get { return DistanceReact + transform.localScale.x / 2; } }
 
-    private Animator CAC; //Character Animation Controller
+    //private Animator CAC; //Character Animation Controller
 
     void Awake() {
         _rb = GetComponent<Rigidbody>();
@@ -38,8 +38,8 @@ public class GodMovable : MonoBehaviour
         _orgScale = transform.localScale.x;
 
         // Getting the animator
-        GameObject CharacterRenderer = GameObject.Find("iceCube_animation_control");
-        CAC = CharacterRenderer.GetComponent<Animator>();
+        //GameObject CharacterRenderer = GameObject.Find("iceCube_animation_control");
+        //CAC = CharacterRenderer.GetComponent<Animator>();
     }
 
     void Update() {
