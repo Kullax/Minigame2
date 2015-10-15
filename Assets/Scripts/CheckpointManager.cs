@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class CheckpointManager : MonoBehaviour {
+public class CheckpointManager : MonoBehaviour
+{
 
     public GameObject InitialPlayerPrefab;
     public GameObject InitialSpawnPoint;
@@ -8,51 +9,52 @@ public class CheckpointManager : MonoBehaviour {
     [Header("Debug options")]
     public bool ShowActiveCheckpoint = true;
 
-	private static Checkpoint _initialSpawnPoint;
+    private static Checkpoint _initialSpawnPoint;
     private static GameObject _prefab;
     private static Checkpoint _activeCheckpoint;
 
-    private bool sanity ()
+    private bool sanity()
     {
         if (GameObject.FindObjectsOfType<CheckpointManager>().Length != 1)
         {
             Debug.LogError("Multiple checkpoint managers in scene.");
             return false;
         }
-        
+
         _prefab = InitialPlayerPrefab;
         if (!_prefab)
         {
             Debug.LogError("No player prefab set on checkpoint manager.");
             return false;
         }
-        
+
         if (!InitialSpawnPoint)
         {
             Debug.LogError("No spawnpoint set on checkpoint manager.");
             return false;
         }
 
-        _activeCheckpoint = InitialSpawnPoint.GetComponent<Checkpoint> ();
+        _activeCheckpoint = InitialSpawnPoint.GetComponent<Checkpoint>();
         if (!_activeCheckpoint)
         {
             Debug.LogError("Invalid spawnpoint set on checkpoint manager - no attached Checkpoint script.");
             return false;
         }
 
-		_initialSpawnPoint = _activeCheckpoint;
+        _initialSpawnPoint = _activeCheckpoint;
 
         return true;
     }
 
-	void Awake () {
+    void Awake()
+    {
         // If we can't pass sanity checks we disable ourselves and do nothing.
         if (!sanity())
         {
             enabled = false;
             return;
         }
-	}
+    }
 
     public static GameObject SpawnPlayer()
     {
@@ -62,12 +64,14 @@ public class CheckpointManager : MonoBehaviour {
             return null;
         }
 
-        return _activeCheckpoint.Spawn(_prefab);
+        //return _activeCheckpoint.Spawn(_prefab);
+        return _activeCheckpoint.PlaceCubeRB(_prefab);
     }
 
-	public static void ResetToInitialSpawnPoint() {
-		_activeCheckpoint = _initialSpawnPoint;
-	}
+    public static void ResetToInitialSpawnPoint()
+    {
+        _activeCheckpoint = _initialSpawnPoint;
+    }
 
     public static void SetActiveCheckpoint(Checkpoint checkpoint)
     {
@@ -86,7 +90,8 @@ public class CheckpointManager : MonoBehaviour {
         SetActiveCheckpoint(checkpointScript);
     }
 
-    public static bool IsActiveCheckpoint(Checkpoint checkpoint) {
+    public static bool IsActiveCheckpoint(Checkpoint checkpoint)
+    {
         return checkpoint == _activeCheckpoint;
     }
 

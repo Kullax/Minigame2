@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class Checkpoint : MonoBehaviour {
+public class Checkpoint : MonoBehaviour
+{
     public GameRotation SpawnRotation;
 
     [Header("Debug options")]
@@ -12,6 +13,15 @@ public class Checkpoint : MonoBehaviour {
         GameManager.SetGameRotation(SpawnRotation);
 
         return Instantiate(prefab, transform.position, SpawnRotation.AsReverseWorldQuaternion()) as GameObject;
+    }
+
+    public GameObject PlaceCubeRB(GameObject prefab)
+    {
+        GameManager.SetGameRotation(SpawnRotation);
+        
+        prefab.transform.position = this.gameObject.transform.position;
+        prefab.transform.rotation = SpawnRotation.AsReverseWorldQuaternion();
+        return prefab;
     }
 
     public void SetThisAsActiveCheckpoint()
