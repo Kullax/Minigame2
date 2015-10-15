@@ -88,7 +88,7 @@ public class CubeScale : MonoBehaviour
 
     public void DeathByAnimation()
     {
-        GetComponent<GodMovable>().enabled = false;
+        GetComponent<WindyVirtualJoystick>().enabled = false;
         anm.SetBool("Dead", true);
         if (!anm.GetCurrentAnimatorStateInfo(0).IsName("Melting Idle To Death") || !anm.GetCurrentAnimatorStateInfo(0).IsName("Death by door"))
         {

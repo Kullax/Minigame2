@@ -63,12 +63,11 @@ GameObject:
   - 33: {fileID: 3394332}
   - 23: {fileID: 2303220}
   - 54: {fileID: 5485354}
-  - 114: {fileID: 11473630}
   - 114: {fileID: 11440402}
   - 135: {fileID: 13562648}
-  - 114: {fileID: 11440424}
   - 114: {fileID: 11485298}
   - 114: {fileID: 11435804}
+  - 114: {fileID: 11414528}
   m_Layer: 0
   m_Name: IceCube_Rigidbody
   m_TagString: Player
@@ -325,6 +324,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11414528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbf214f495721543ba17c4469aba2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeadZoneSize: .5
+  WindStrength: 2000
+  MaximalVelocityWhileFrozen: 4.80000019
+  MaximalVelocityWhileMelting: 12.3999996
+  TurnSpeedFactor: 2
 --- !u!114 &11435804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -351,40 +366,9 @@ MonoBehaviour:
   status: 0
   meltingspeed: 15
   lethallimit: .200000003
---- !u!114 &11440424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 570d4a08c1a8c05438e4152db269d9a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meltMaximalVelocity: 12
---- !u!114 &11473630
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df28e136e69b30f479b4f17680303a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DistanceReact: 1
-  HeldForce: 200
-  HeldForceMode: 0
-  TapForce: 2
-  TapForceMode: 1
-  MaximalVelocity: 4.80000019
-  DampeningForce: 40
-  DampeningForceMode: 0
-  ShowDistanceInEditMode: 1
-  ShowDistanceInPlayMode: 0
-  ShowTouch: 1
+  timeelapsed: 0
+  dead: 0
+  door: 0
 --- !u!114 &11485298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4676,6 +4660,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: WindStrength
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: TurnSpeedFactor
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
